@@ -1,6 +1,6 @@
 # Keystone scenario labeling sheet
 
-Fill `LABEL` and `REASON` by hand for each entry. Source evidence is reproduced without a status assessment.
+Fill `LABEL` and `REASON` by hand. Seed 42; source evidence only, no expected values read. Catalog ownership shown is the initial D0 state, not a final label.
 
 ## Scenario authors
 
@@ -19,7 +19,7 @@ Fill `LABEL` and `REASON` by hand for each entry. Source evidence is reproduced 
 
 **Resolved Person authors missing MEMBER_OF:** none.
 
-**Unresolved source authors (no Person/MEMBER_OF):** `ghost_coder_99` (`DOC-CHAT-S4`), `phantom_ops` (`DOC-TICKET-S5`), `shadow_actor` (`DOC-TICKET-S5B`), `system` (`DOC-CATALOG`).
+**Unresolved source authors:** `ghost_coder_99`, `phantom_ops`, `shadow_actor`, `system`.
 
 ## S1
 
@@ -33,7 +33,7 @@ Fill `LABEL` and `REASON` by hand for each entry. Source evidence is reproduced 
 
 - `DOC-ADR-3`; type `adr` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -47,7 +47,6 @@ Fill `LABEL` and `REASON` by hand for each entry. Source evidence is reproduced 
 LABEL:
 
 REASON:
-
 
 ### EID-S1-02
 
@@ -72,7 +71,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S1-08
 
 | eid | type | src name → dst name | valid_from |
@@ -83,7 +81,7 @@ REASON:
 
 - `DOC-ADR-5`; type `adr` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** payments (`team-payments`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -97,7 +95,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ### EID-S1-09
 
@@ -122,7 +119,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S1-03
 
 | eid | type | src name → dst name | valid_from |
@@ -133,7 +129,7 @@ REASON:
 
 - `DOC-ADR-7`; type `adr` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -147,7 +143,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ### EID-S1-04
 
@@ -172,7 +167,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S1-05
 
 | eid | type | src name → dst name | valid_from |
@@ -195,7 +189,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ### EID-S1-06
 
@@ -220,7 +213,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S1-07
 
 | eid | type | src name → dst name | valid_from |
@@ -231,7 +223,7 @@ REASON:
 
 - `DOC-ADR-7`; type `adr` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -246,7 +238,6 @@ LABEL:
 
 REASON:
 
-
 ## S2
 
 ### EID-S2-01
@@ -259,7 +250,7 @@ REASON:
 
 - `DOC-ADR-CHECKOUT`; type `adr` (authority `3`); author_id=`person-dev-patel`, author_handle=`dpatel`, author_email=`dev.patel@company.internal` → Dev Patel (`person-dev-patel`), team payments (`team-payments`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -274,7 +265,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S2-02
 
 | eid | type | src name → dst name | valid_from |
@@ -285,7 +275,7 @@ REASON:
 
 - `T-482`; type `ticket` (authority `2`); author_id=`person-chloe-martin`, author_handle=`cmartin`, author_email=`chloe.martin@company.internal` → Chloe Martin (`person-chloe-martin`), team commerce (`team-commerce`); src_conf=`0.85`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -300,7 +290,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S2-03
 
 | eid | type | src name → dst name | valid_from |
@@ -311,7 +300,7 @@ REASON:
 
 - `T-482-C1`; type `ticket` (authority `2`); author_id=`person-dev-patel`, author_handle=`dpatel`, author_email=`dev.patel@company.internal` → Dev Patel (`person-dev-patel`), team payments (`team-payments`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -326,7 +315,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S2-04
 
 | eid | type | src name → dst name | valid_from |
@@ -337,7 +325,7 @@ REASON:
 
 - `C-901`; type `chat` (authority `1`); author_id=`person-samira-khan`, author_handle=`skhan`, author_email=`samira.khan@company.internal` → Samira Khan (`person-samira-khan`), team platform (`team-platform`); src_conf=`0.75`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -352,7 +340,6 @@ LABEL:
 
 REASON:
 
-
 ## S3
 
 ### EID-S3-01
@@ -365,7 +352,7 @@ REASON:
 
 - `DOC-ADR-SEARCH`; type `adr` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -380,7 +367,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S3-02
 
 | eid | type | src name → dst name | valid_from |
@@ -391,7 +377,7 @@ REASON:
 
 - `DOC-CHAT-S3`; type `chat` (authority `1`); author_id=`person-marcus-vance`, author_handle=`mvance`, author_email=`marcus.vance@company.internal` → Marcus Vance (`person-marcus-vance`), team growth (`team-growth`); src_conf=`0.7`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -406,7 +392,6 @@ LABEL:
 
 REASON:
 
-
 ## S4
 
 ### EID-S4-01
@@ -419,7 +404,7 @@ REASON:
 
 - `DOC-CHAT-S4`; type `chat` (authority `1`); author_id=`None`, author_handle=`ghost_coder_99`, author_email=`None` → UNRESOLVED; src_conf=`0.65`
 
-**Catalog owner of destination service:** none recorded
+**Catalog owner of dst service:** none recorded
 
 **Span (verbatim)**
 
@@ -434,7 +419,6 @@ LABEL:
 
 REASON:
 
-
 ## S5
 
 ### EID-S5-01
@@ -447,7 +431,7 @@ REASON:
 
 - `DOC-TICKET-S5`; type `ticket` (authority `2`); author_id=`None`, author_handle=`phantom_ops`, author_email=`None` → UNRESOLVED; src_conf=`0.5`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -464,8 +448,7 @@ LABEL:
 
 REASON:
 
-
-## S5b
+## S5B
 
 ### EID-S5B-01
 
@@ -477,7 +460,7 @@ REASON:
 
 - `DOC-TICKET-S5B`; type `ticket` (authority `2`); author_id=`None`, author_handle=`shadow_actor`, author_email=`None` → UNRESOLVED; src_conf=`0.5`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -494,7 +477,6 @@ LABEL:
 
 REASON:
 
-
 ## S6
 
 ### EID-S6-01
@@ -507,7 +489,7 @@ REASON:
 
 - `DOC-PM-S6`; type `postmortem` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -521,7 +503,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ### EID-S6-02
 
@@ -533,7 +514,7 @@ REASON:
 
 - `DOC-PM-S6`; type `postmortem` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -547,7 +528,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ## S7
 
@@ -563,37 +543,37 @@ REASON:
 
 **Span (verbatim)**
 
-> (no span recorded)
+(No span; catalog membership metadata.)
 
 **Full source document text**
 
 `DOC-CATALOG`:
 > Service Catalog Master Index (System Generated):
 > Catalog Record: Service session-cache is officially registered under team platform. Designated primary on-call engineer handle is erostova.
-> Catalog Record: Service rate-limiter is officially registered under team payments. Designated primary on-call engineer handle is dpatel.
-> Catalog Record: Service checkout-api is officially registered under team commerce. Designated primary on-call engineer handle is cmartin.
-> Catalog Record: Service ledger is officially registered under team growth. Designated primary on-call engineer handle is skhan.
+> Catalog Record: Service rate-limiter is officially registered under team platform. Designated primary on-call engineer handle is dpatel.
+> Catalog Record: Service checkout-api is officially registered under team payments. Designated primary on-call engineer handle is cmartin.
+> Catalog Record: Service ledger is officially registered under team payments. Designated primary on-call engineer handle is skhan.
 > Catalog Record: Service search-index is officially registered under team platform. Designated primary on-call engineer handle is mvance.
-> Catalog Record: Service notifier is officially registered under team commerce. Designated primary on-call engineer handle is pnair.
-> Catalog Record: Service auth-gateway is officially registered under team growth. Designated primary on-call engineer handle is pnayar.
+> Catalog Record: Service notifier is officially registered under team platform. Designated primary on-call engineer handle is pnair.
+> Catalog Record: Service auth-gateway is officially registered under team platform. Designated primary on-call engineer handle is pnayar.
 > Catalog Record: Service telemetry-collector is officially registered under team platform. Designated primary on-call engineer handle is lvance.
 > Catalog Record: Service billing-worker is officially registered under team payments. Designated primary on-call engineer handle is achen.
-> Catalog Record: Service core-auth-service is officially registered under team commerce. Designated primary on-call engineer handle is staylor.
-> Catalog Record: Service api-hub-service is officially registered under team growth. Designated primary on-call engineer handle is rgreen.
+> Catalog Record: Service core-auth-service is officially registered under team platform. Designated primary on-call engineer handle is staylor.
+> Catalog Record: Service api-hub-service is officially registered under team platform. Designated primary on-call engineer handle is rgreen.
 > Catalog Record: Service batch-exporter-service is officially registered under team platform. Designated primary on-call engineer handle is ksato.
-> Catalog Record: Service web-frontend is officially registered under team payments. Designated primary on-call engineer handle is asterling.
-> Catalog Record: Service api-gateway is officially registered under team commerce. Designated primary on-call engineer handle is doconnor.
-> Catalog Record: Service redis-cluster is officially registered under team growth. Designated primary on-call engineer handle is mlin.
+> Catalog Record: Service web-frontend is officially registered under team platform. Designated primary on-call engineer handle is asterling.
+> Catalog Record: Service api-gateway is officially registered under team platform. Designated primary on-call engineer handle is doconnor.
+> Catalog Record: Service redis-cluster is officially registered under team platform. Designated primary on-call engineer handle is mlin.
 > Catalog Record: Service mobile-app-backend is officially registered under team platform. Designated primary on-call engineer handle is tmansoor.
 > Catalog Record: Service order-service is officially registered under team payments. Designated primary on-call engineer handle is cgomez.
 > Catalog Record: Service payment-vault is officially registered under team commerce. Designated primary on-call engineer handle is fzahra.
 > Catalog Record: Service analytics-pipeline is officially registered under team growth. Designated primary on-call engineer handle is lmurphy.
 > Catalog Record: Service event-stream is officially registered under team platform. Designated primary on-call engineer handle is ytanaka.
 > Catalog Record: Service inventory-api is officially registered under team payments. Designated primary on-call engineer handle is zkravitz.
-> Catalog Record: Service catalog-db is officially registered under team commerce. Designated primary on-call engineer handle is nmiller.
+> Catalog Record: Service catalog-db is officially registered under team platform. Designated primary on-call engineer handle is nmiller.
 > Catalog Record: Service storage-cluster is officially registered under team growth. Designated primary on-call engineer handle is ewatson.
 > Catalog Record: Service notification-dispatcher is officially registered under team platform. Designated primary on-call engineer handle is lsilva.
-> Catalog Record: Service template-renderer is officially registered under team payments. Designated primary on-call engineer handle is asharma.
+> Catalog Record: Service template-renderer is officially registered under team platform. Designated primary on-call engineer handle is asharma.
 > Catalog Record: Service user-preferences is officially registered under team commerce. Designated primary on-call engineer handle is bbecker.
 > Catalog Record: Service identity-provider is officially registered under team growth. Designated primary on-call engineer handle is ghopper.
 > Catalog Record: Service ldap-directory is officially registered under team platform. Designated primary on-call engineer handle is aturing.
@@ -632,7 +612,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ### EID-S7-02
 
@@ -646,37 +625,37 @@ REASON:
 
 **Span (verbatim)**
 
-> (no span recorded)
+(No span; catalog membership metadata.)
 
 **Full source document text**
 
 `DOC-CATALOG`:
 > Service Catalog Master Index (System Generated):
 > Catalog Record: Service session-cache is officially registered under team platform. Designated primary on-call engineer handle is erostova.
-> Catalog Record: Service rate-limiter is officially registered under team payments. Designated primary on-call engineer handle is dpatel.
-> Catalog Record: Service checkout-api is officially registered under team commerce. Designated primary on-call engineer handle is cmartin.
-> Catalog Record: Service ledger is officially registered under team growth. Designated primary on-call engineer handle is skhan.
+> Catalog Record: Service rate-limiter is officially registered under team platform. Designated primary on-call engineer handle is dpatel.
+> Catalog Record: Service checkout-api is officially registered under team payments. Designated primary on-call engineer handle is cmartin.
+> Catalog Record: Service ledger is officially registered under team payments. Designated primary on-call engineer handle is skhan.
 > Catalog Record: Service search-index is officially registered under team platform. Designated primary on-call engineer handle is mvance.
-> Catalog Record: Service notifier is officially registered under team commerce. Designated primary on-call engineer handle is pnair.
-> Catalog Record: Service auth-gateway is officially registered under team growth. Designated primary on-call engineer handle is pnayar.
+> Catalog Record: Service notifier is officially registered under team platform. Designated primary on-call engineer handle is pnair.
+> Catalog Record: Service auth-gateway is officially registered under team platform. Designated primary on-call engineer handle is pnayar.
 > Catalog Record: Service telemetry-collector is officially registered under team platform. Designated primary on-call engineer handle is lvance.
 > Catalog Record: Service billing-worker is officially registered under team payments. Designated primary on-call engineer handle is achen.
-> Catalog Record: Service core-auth-service is officially registered under team commerce. Designated primary on-call engineer handle is staylor.
-> Catalog Record: Service api-hub-service is officially registered under team growth. Designated primary on-call engineer handle is rgreen.
+> Catalog Record: Service core-auth-service is officially registered under team platform. Designated primary on-call engineer handle is staylor.
+> Catalog Record: Service api-hub-service is officially registered under team platform. Designated primary on-call engineer handle is rgreen.
 > Catalog Record: Service batch-exporter-service is officially registered under team platform. Designated primary on-call engineer handle is ksato.
-> Catalog Record: Service web-frontend is officially registered under team payments. Designated primary on-call engineer handle is asterling.
-> Catalog Record: Service api-gateway is officially registered under team commerce. Designated primary on-call engineer handle is doconnor.
-> Catalog Record: Service redis-cluster is officially registered under team growth. Designated primary on-call engineer handle is mlin.
+> Catalog Record: Service web-frontend is officially registered under team platform. Designated primary on-call engineer handle is asterling.
+> Catalog Record: Service api-gateway is officially registered under team platform. Designated primary on-call engineer handle is doconnor.
+> Catalog Record: Service redis-cluster is officially registered under team platform. Designated primary on-call engineer handle is mlin.
 > Catalog Record: Service mobile-app-backend is officially registered under team platform. Designated primary on-call engineer handle is tmansoor.
 > Catalog Record: Service order-service is officially registered under team payments. Designated primary on-call engineer handle is cgomez.
 > Catalog Record: Service payment-vault is officially registered under team commerce. Designated primary on-call engineer handle is fzahra.
 > Catalog Record: Service analytics-pipeline is officially registered under team growth. Designated primary on-call engineer handle is lmurphy.
 > Catalog Record: Service event-stream is officially registered under team platform. Designated primary on-call engineer handle is ytanaka.
 > Catalog Record: Service inventory-api is officially registered under team payments. Designated primary on-call engineer handle is zkravitz.
-> Catalog Record: Service catalog-db is officially registered under team commerce. Designated primary on-call engineer handle is nmiller.
+> Catalog Record: Service catalog-db is officially registered under team platform. Designated primary on-call engineer handle is nmiller.
 > Catalog Record: Service storage-cluster is officially registered under team growth. Designated primary on-call engineer handle is ewatson.
 > Catalog Record: Service notification-dispatcher is officially registered under team platform. Designated primary on-call engineer handle is lsilva.
-> Catalog Record: Service template-renderer is officially registered under team payments. Designated primary on-call engineer handle is asharma.
+> Catalog Record: Service template-renderer is officially registered under team platform. Designated primary on-call engineer handle is asharma.
 > Catalog Record: Service user-preferences is officially registered under team commerce. Designated primary on-call engineer handle is bbecker.
 > Catalog Record: Service identity-provider is officially registered under team growth. Designated primary on-call engineer handle is ghopper.
 > Catalog Record: Service ldap-directory is officially registered under team platform. Designated primary on-call engineer handle is aturing.
@@ -715,7 +694,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ### EID-S7-03
 
@@ -729,37 +707,37 @@ REASON:
 
 **Span (verbatim)**
 
-> (no span recorded)
+(No span; catalog membership metadata.)
 
 **Full source document text**
 
 `DOC-CATALOG`:
 > Service Catalog Master Index (System Generated):
 > Catalog Record: Service session-cache is officially registered under team platform. Designated primary on-call engineer handle is erostova.
-> Catalog Record: Service rate-limiter is officially registered under team payments. Designated primary on-call engineer handle is dpatel.
-> Catalog Record: Service checkout-api is officially registered under team commerce. Designated primary on-call engineer handle is cmartin.
-> Catalog Record: Service ledger is officially registered under team growth. Designated primary on-call engineer handle is skhan.
+> Catalog Record: Service rate-limiter is officially registered under team platform. Designated primary on-call engineer handle is dpatel.
+> Catalog Record: Service checkout-api is officially registered under team payments. Designated primary on-call engineer handle is cmartin.
+> Catalog Record: Service ledger is officially registered under team payments. Designated primary on-call engineer handle is skhan.
 > Catalog Record: Service search-index is officially registered under team platform. Designated primary on-call engineer handle is mvance.
-> Catalog Record: Service notifier is officially registered under team commerce. Designated primary on-call engineer handle is pnair.
-> Catalog Record: Service auth-gateway is officially registered under team growth. Designated primary on-call engineer handle is pnayar.
+> Catalog Record: Service notifier is officially registered under team platform. Designated primary on-call engineer handle is pnair.
+> Catalog Record: Service auth-gateway is officially registered under team platform. Designated primary on-call engineer handle is pnayar.
 > Catalog Record: Service telemetry-collector is officially registered under team platform. Designated primary on-call engineer handle is lvance.
 > Catalog Record: Service billing-worker is officially registered under team payments. Designated primary on-call engineer handle is achen.
-> Catalog Record: Service core-auth-service is officially registered under team commerce. Designated primary on-call engineer handle is staylor.
-> Catalog Record: Service api-hub-service is officially registered under team growth. Designated primary on-call engineer handle is rgreen.
+> Catalog Record: Service core-auth-service is officially registered under team platform. Designated primary on-call engineer handle is staylor.
+> Catalog Record: Service api-hub-service is officially registered under team platform. Designated primary on-call engineer handle is rgreen.
 > Catalog Record: Service batch-exporter-service is officially registered under team platform. Designated primary on-call engineer handle is ksato.
-> Catalog Record: Service web-frontend is officially registered under team payments. Designated primary on-call engineer handle is asterling.
-> Catalog Record: Service api-gateway is officially registered under team commerce. Designated primary on-call engineer handle is doconnor.
-> Catalog Record: Service redis-cluster is officially registered under team growth. Designated primary on-call engineer handle is mlin.
+> Catalog Record: Service web-frontend is officially registered under team platform. Designated primary on-call engineer handle is asterling.
+> Catalog Record: Service api-gateway is officially registered under team platform. Designated primary on-call engineer handle is doconnor.
+> Catalog Record: Service redis-cluster is officially registered under team platform. Designated primary on-call engineer handle is mlin.
 > Catalog Record: Service mobile-app-backend is officially registered under team platform. Designated primary on-call engineer handle is tmansoor.
 > Catalog Record: Service order-service is officially registered under team payments. Designated primary on-call engineer handle is cgomez.
 > Catalog Record: Service payment-vault is officially registered under team commerce. Designated primary on-call engineer handle is fzahra.
 > Catalog Record: Service analytics-pipeline is officially registered under team growth. Designated primary on-call engineer handle is lmurphy.
 > Catalog Record: Service event-stream is officially registered under team platform. Designated primary on-call engineer handle is ytanaka.
 > Catalog Record: Service inventory-api is officially registered under team payments. Designated primary on-call engineer handle is zkravitz.
-> Catalog Record: Service catalog-db is officially registered under team commerce. Designated primary on-call engineer handle is nmiller.
+> Catalog Record: Service catalog-db is officially registered under team platform. Designated primary on-call engineer handle is nmiller.
 > Catalog Record: Service storage-cluster is officially registered under team growth. Designated primary on-call engineer handle is ewatson.
 > Catalog Record: Service notification-dispatcher is officially registered under team platform. Designated primary on-call engineer handle is lsilva.
-> Catalog Record: Service template-renderer is officially registered under team payments. Designated primary on-call engineer handle is asharma.
+> Catalog Record: Service template-renderer is officially registered under team platform. Designated primary on-call engineer handle is asharma.
 > Catalog Record: Service user-preferences is officially registered under team commerce. Designated primary on-call engineer handle is bbecker.
 > Catalog Record: Service identity-provider is officially registered under team growth. Designated primary on-call engineer handle is ghopper.
 > Catalog Record: Service ldap-directory is officially registered under team platform. Designated primary on-call engineer handle is aturing.
@@ -799,7 +777,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S7-04
 
 | eid | type | src name → dst name | valid_from |
@@ -810,7 +787,7 @@ REASON:
 
 - `DOC-S7-1`; type `runbook` (authority `2`); author_id=`None`, author_handle=`None`, author_email=`j.rao@company.internal` → Jitendra Rao (`person-j-rao`), team platform (`team-platform`); src_conf=`0.95`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -825,7 +802,6 @@ LABEL:
 
 REASON:
 
-
 ## S8
 
 ### EID-S8-01
@@ -838,7 +814,7 @@ REASON:
 
 - `DOC-ADR-LEDGER`; type `adr` (authority `3`); author_id=`person-dev-patel`, author_handle=`dpatel`, author_email=`dev.patel@company.internal` → Dev Patel (`person-dev-patel`), team payments (`team-payments`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -853,7 +829,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S8-02
 
 | eid | type | src name → dst name | valid_from |
@@ -864,7 +839,7 @@ REASON:
 
 - `T-S8`; type `ticket` (authority `2`); author_id=`person-leo-vance`, author_handle=`lvance`, author_email=`leo.vance@company.internal` → Leo Vance (`person-leo-vance`), team commerce (`team-commerce`); src_conf=`0.75`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -879,7 +854,6 @@ REASON:
 LABEL:
 
 REASON:
-
 
 ### EID-S8-03
 
@@ -891,7 +865,7 @@ REASON:
 
 - `T-S8`; type `ticket` (authority `2`); author_id=`person-leo-vance`, author_handle=`lvance`, author_email=`leo.vance@company.internal` → Leo Vance (`person-leo-vance`), team commerce (`team-commerce`); src_conf=`0.75`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -907,8 +881,7 @@ LABEL:
 
 REASON:
 
-
-## S9a
+## S9A
 
 ### EID-S9A-01
 
@@ -920,7 +893,7 @@ REASON:
 
 - `DOC-S9A-1`; type `chat` (authority `1`); author_id=`None`, author_handle=`achen`, author_email=`None` → Alex Chen (`person-alex-chen`), team growth (`team-growth`); src_conf=`0.6`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -935,7 +908,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S9A-02
 
 | eid | type | src name → dst name | valid_from |
@@ -946,7 +918,7 @@ REASON:
 
 - `DOC-S9A-2`; type `chat` (authority `1`); author_id=`None`, author_handle=`None`, author_email=`alex.chen@company.internal` → Alex Chen (`person-alex-chen`), team growth (`team-growth`); src_conf=`0.6`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -961,7 +933,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S9A-03
 
 | eid | type | src name → dst name | valid_from |
@@ -972,7 +943,7 @@ REASON:
 
 - `DOC-S9A-3`; type `chat` (authority `1`); author_id=`None`, author_handle=`Alex C.`, author_email=`None` → Alex Chen (`person-alex-chen`), team growth (`team-growth`); src_conf=`0.6`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -987,8 +958,7 @@ LABEL:
 
 REASON:
 
-
-## S9b
+## S9B
 
 ### EID-S9B-01
 
@@ -1000,7 +970,7 @@ REASON:
 
 - `DOC-S9B-1`; type `ticket` (authority `2`); author_id=`None`, author_handle=`staylor`, author_email=`None` → Sophia Taylor (`person-sophia-taylor`), team payments (`team-payments`); src_conf=`0.6`
 
-**Catalog owner of destination service:** payments (`team-payments`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -1015,7 +985,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S9B-02
 
 | eid | type | src name → dst name | valid_from |
@@ -1026,7 +995,7 @@ REASON:
 
 - `DOC-S9B-2`; type `ticket` (authority `2`); author_id=`None`, author_handle=`None`, author_email=`sophia.taylor@company.internal` → Sophia Taylor (`person-sophia-taylor`), team payments (`team-payments`); src_conf=`0.6`
 
-**Catalog owner of destination service:** payments (`team-payments`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -1041,7 +1010,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S9B-03
 
 | eid | type | src name → dst name | valid_from |
@@ -1052,7 +1020,7 @@ REASON:
 
 - `DOC-S9B-3`; type `ticket` (authority `2`); author_id=`None`, author_handle=`S. Taylor`, author_email=`None` → Sophia Taylor (`person-sophia-taylor`), team payments (`team-payments`); src_conf=`0.6`
 
-**Catalog owner of destination service:** payments (`team-payments`)
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -1067,7 +1035,6 @@ LABEL:
 
 REASON:
 
-
 ## S10
 
 ### EID-S10-01
@@ -1080,7 +1047,7 @@ REASON:
 
 - `DOC-ADR-NOTIFIER-COMMERCE`; type `adr` (authority `3`); author_id=`person-rachel-green`, author_handle=`rgreen`, author_email=`rachel.green@company.internal` → Rachel Green (`person-rachel-green`), team commerce (`team-commerce`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1095,7 +1062,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-S10-02
 
 | eid | type | src name → dst name | valid_from |
@@ -1106,7 +1072,7 @@ REASON:
 
 - `DOC-ADR-NOTIFIER-PLATFORM`; type `adr` (authority `3`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1121,7 +1087,6 @@ LABEL:
 
 REASON:
 
-
 ## M1
 
 ### EID-M1-01
@@ -1134,7 +1099,9 @@ REASON:
 
 - `DOC-RUNBOOK-M1`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1149,7 +1116,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M1-02
 
 | eid | type | src name → dst name | valid_from |
@@ -1160,7 +1126,9 @@ REASON:
 
 - `DOC-RUNBOOK-M1`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1175,7 +1143,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M1-03
 
 | eid | type | src name → dst name | valid_from |
@@ -1186,7 +1153,9 @@ REASON:
 
 - `DOC-RUNBOOK-M1`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1201,7 +1170,6 @@ LABEL:
 
 REASON:
 
-
 ## M2
 
 ### EID-M2-01
@@ -1214,7 +1182,9 @@ REASON:
 
 - `DOC-RUNBOOK-M2`; type `runbook` (authority `2`); author_id=`person-dev-patel`, author_handle=`dpatel`, author_email=`dev.patel@company.internal` → Dev Patel (`person-dev-patel`), team payments (`team-payments`); src_conf=`1.0`
 
-**Catalog owner of destination service:** payments (`team-payments`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -1229,7 +1199,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M2-02
 
 | eid | type | src name → dst name | valid_from |
@@ -1240,7 +1209,9 @@ REASON:
 
 - `DOC-RUNBOOK-M2`; type `runbook` (authority `2`); author_id=`person-dev-patel`, author_handle=`dpatel`, author_email=`dev.patel@company.internal` → Dev Patel (`person-dev-patel`), team payments (`team-payments`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** payments (`team-payments`)
+
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -1255,7 +1226,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M2-03
 
 | eid | type | src name → dst name | valid_from |
@@ -1266,7 +1236,9 @@ REASON:
 
 - `DOC-RUNBOOK-M2`; type `runbook` (authority `2`); author_id=`person-dev-patel`, author_handle=`dpatel`, author_email=`dev.patel@company.internal` → Dev Patel (`person-dev-patel`), team payments (`team-payments`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of src service:** payments (`team-payments`)
+
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -1281,7 +1253,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M2-04
 
 | eid | type | src name → dst name | valid_from |
@@ -1292,7 +1263,9 @@ REASON:
 
 - `DOC-RUNBOOK-M2`; type `runbook` (authority `2`); author_id=`person-dev-patel`, author_handle=`dpatel`, author_email=`dev.patel@company.internal` → Dev Patel (`person-dev-patel`), team payments (`team-payments`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** payments (`team-payments`)
+
+**Catalog owner of dst service:** commerce (`team-commerce`)
 
 **Span (verbatim)**
 
@@ -1307,7 +1280,6 @@ LABEL:
 
 REASON:
 
-
 ## M3
 
 ### EID-M3-01
@@ -1320,7 +1292,9 @@ REASON:
 
 - `DOC-RUNBOOK-M3`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of src service:** growth (`team-growth`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1335,7 +1309,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M3-02
 
 | eid | type | src name → dst name | valid_from |
@@ -1346,7 +1319,9 @@ REASON:
 
 - `DOC-RUNBOOK-M3`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1361,7 +1336,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M3-03
 
 | eid | type | src name → dst name | valid_from |
@@ -1372,7 +1346,9 @@ REASON:
 
 - `DOC-RUNBOOK-M3`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** payments (`team-payments`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** payments (`team-payments`)
 
 **Span (verbatim)**
 
@@ -1387,7 +1363,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M3-04
 
 | eid | type | src name → dst name | valid_from |
@@ -1398,7 +1373,9 @@ REASON:
 
 - `DOC-RUNBOOK-M3`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** payments (`team-payments`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1413,7 +1390,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M3-05
 
 | eid | type | src name → dst name | valid_from |
@@ -1424,7 +1400,9 @@ REASON:
 
 - `DOC-RUNBOOK-M3`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** growth (`team-growth`)
 
 **Span (verbatim)**
 
@@ -1439,7 +1417,6 @@ LABEL:
 
 REASON:
 
-
 ## M4
 
 ### EID-M4-01
@@ -1452,7 +1429,9 @@ REASON:
 
 - `DOC-RUNBOOK-M4`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1467,7 +1446,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M4-02
 
 | eid | type | src name → dst name | valid_from |
@@ -1478,7 +1456,9 @@ REASON:
 
 - `DOC-RUNBOOK-M4`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** payments (`team-payments`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1493,7 +1473,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M4-03
 
 | eid | type | src name → dst name | valid_from |
@@ -1504,7 +1483,9 @@ REASON:
 
 - `DOC-RUNBOOK-M4`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** commerce (`team-commerce`)
 
 **Span (verbatim)**
 
@@ -1519,7 +1500,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M4-04
 
 | eid | type | src name → dst name | valid_from |
@@ -1530,7 +1510,9 @@ REASON:
 
 - `DOC-RUNBOOK-M4`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of src service:** commerce (`team-commerce`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1545,7 +1527,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M4-05
 
 | eid | type | src name → dst name | valid_from |
@@ -1556,7 +1537,9 @@ REASON:
 
 - `DOC-RUNBOOK-M4`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** growth (`team-growth`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** growth (`team-growth`)
 
 **Span (verbatim)**
 
@@ -1571,7 +1554,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-M4-06
 
 | eid | type | src name → dst name | valid_from |
@@ -1582,7 +1564,9 @@ REASON:
 
 - `DOC-RUNBOOK-M4`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** platform (`team-platform`)
+**Catalog owner of src service:** growth (`team-growth`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1597,7 +1581,6 @@ LABEL:
 
 REASON:
 
-
 ## P1
 
 ### EID-P1-01
@@ -1610,7 +1593,9 @@ REASON:
 
 - `DOC-ARCH-P1`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 
@@ -1625,7 +1610,6 @@ LABEL:
 
 REASON:
 
-
 ### EID-P1-02
 
 | eid | type | src name → dst name | valid_from |
@@ -1636,7 +1620,9 @@ REASON:
 
 - `DOC-ARCH-P1`; type `runbook` (authority `2`); author_id=`person-platform-lead`, author_handle=`erostova`, author_email=`elena.rostova@company.internal` → Elena Rostova (`person-platform-lead`), team platform (`team-platform`); src_conf=`1.0`
 
-**Catalog owner of destination service:** commerce (`team-commerce`)
+**Catalog owner of src service:** platform (`team-platform`)
+
+**Catalog owner of dst service:** platform (`team-platform`)
 
 **Span (verbatim)**
 

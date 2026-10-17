@@ -192,11 +192,23 @@ def build_curated_data():
     # and ON_CALL edges sourced from system catalog doc (src_auth 2, src_conf 0.90)
     # with status 'unverified'.
     # ------------------------------------------------------------------------
+    catalog_owners = {
+        "checkout-api": "payments", "ledger": "payments",
+        "rate-limiter": "platform", "notifier": "platform",
+        "auth-gateway": "platform", "api-gateway": "platform",
+        "catalog-db": "platform", "template-renderer": "platform",
+        "core-auth-service": "platform",
+        "web-frontend": "platform", "redis-cluster": "platform",
+        "api-hub-service": "platform",
+    }
+    catalog_owners.update({s["name"]: catalog_owners.get(s["name"],
+        ("platform", "payments", "commerce", "growth")[idx % 4])
+        for idx, s in enumerate(curated_services)})
     catalog_lines = ["Service Catalog Master Index (System Generated):"]
     for idx, s in enumerate(curated_services):
         if s["name"] == "legacy-reports":
             continue
-        assigned_team = "platform" if idx % 4 == 0 else ("payments" if idx % 4 == 1 else ("commerce" if idx % 4 == 2 else "growth"))
+        assigned_team = catalog_owners[s["name"]]
         assigned_lead = curated_people[idx % len(curated_people)]["handle"]
         catalog_lines.append(f"Catalog Record: Service {s['name']} is officially registered under team {assigned_team}. Designated primary on-call engineer handle is {assigned_lead}.")
 
@@ -825,7 +837,7 @@ def build_curated_data():
     for idx, s in enumerate(curated_services):
         if s["name"] == "legacy-reports":
             continue
-        assigned_team_id = f"team-{'platform' if idx % 4 == 0 else ('payments' if idx % 4 == 1 else ('commerce' if idx % 4 == 2 else 'growth'))}"
+        assigned_team_id = f"team-{catalog_owners[s['name']]}"
         assigned_lead_p = curated_people[idx % len(curated_people)]
         span_owns = f"Catalog Record: Service {s['name']} is officially registered under team {assigned_team_id.replace('team-', '')}."
         span_oncall = f"Designated primary on-call engineer handle is {assigned_lead_p['handle']}."
@@ -900,10 +912,19 @@ def build_curated_data():
     }
     docs.append(arch_doc)
 
+    payments_arch_doc = dict(arch_doc, id="DOC-ARCH-CORE-PAYMENTS",
+        author_id="person-dev-patel", author_handle="dpatel",
+        author_email="dev.patel@company.internal")
+    docs.append(payments_arch_doc)
     core_decision_edges = []
     for idx in range(needed_curated):
         dec_id = f"DEC-ARCH-CORE-{idx:02d}"
         target_svc = curated_services[idx % len(curated_services)]
+        # Keep S4 ownerless; its unrelated filler baseline belongs on session-cache.
+        if target_svc["name"] == "legacy-reports":
+            target_svc = curated_services[0]
+        baseline_doc = (payments_arch_doc if catalog_owners[target_svc["name"]] == "payments"
+                        else arch_doc)
         nodes.append({
             "id": dec_id,
             "label": "Decision",
@@ -915,7 +936,7 @@ def build_curated_data():
             "type": "CONCERNS",
             "src": dec_id,
             "dst": target_svc["id"],
-            "src_ids": ["DOC-ARCH-CORE"],
+            "src_ids": [baseline_doc["id"]],
             "src_conf": [1.0],
             "src_auth": [3],
             "spans": ["Core architectural standards dictate modular services, isolated datastores, and standardized API contracts across all engineering tiers."],
@@ -1202,7 +1223,7 @@ def generate_background_data(curated, seed=42):
         })
 
     # Priority D: keep operational background relationships without adding dependency paths.
-    for i in range(3000):
+    for i in range(15055 - len(bg_edges)):
         if i % 2:
             p = rng.choice(all_people)
             s = rng.choice(service_ids)

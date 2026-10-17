@@ -7,9 +7,9 @@ Checks:
   2. Every span appears verbatim in a source doc; curated valid_from matches its first source timestamp.
   3. All curated edges have status == 'unverified'.
   4. All background edges have status == 'current'; the vocabulary also includes 'noted'.
-  5. All scenario IDs present in gold.json with all expected_status values == null.
+  5. All scenario IDs and edges present, without reading gold.json contents.
   6. No doc text-derived authors; resolved scenario authors have MEMBER_OF edges.
-  7. Determinism: same output for curated entities across runs.
+  7. Determinism: same output for curated entities across runs; R8 author standing.
   8. Service dependencies form a sparse DAG, and curated multi-hop chains remain intact.
 """
 
@@ -41,6 +41,107 @@ def load_jsonl(file_path):
     return items
 
 
+def resolve_author(doc, people, memberships, claim_team=None):
+    for field, metadata in (("email", "author_email"), ("handle", "author_handle")):
+        matches = [p["id"] for p in people if doc.get(metadata) and p.get(field) == doc[metadata]]
+        if len(matches) == 1:
+            return matches[0]
+    name = doc.get("author_name") or doc.get("author_handle") or ""
+    tokens = name.lower().replace(".", "").split()
+    def match(person):
+        other = person["name"].lower().split()
+        return (len(tokens) == len(other) == 2 and
+                all(a == b or (len(a) == 1 and b.startswith(a)) or
+                    (len(b) == 1 and a.startswith(b)) for a, b in zip(tokens, other)))
+    matches = [p["id"] for p in people if memberships.get(p["id"]) == claim_team and match(p)]
+    return matches[0] if len(matches) == 1 else None
+
+
+def verify_standing(nodes, edges, docs):
+    """Audit authored curated edges; catalog assertions are D0 trust roots."""
+    people = [n for n in nodes if n["label"] == "Person"]
+    memberships = {e["src"]: e["dst"] for e in edges if e["type"] == "MEMBER_OF"}
+    sources = {d["id"]: d for d in docs}
+    catalog = {e["dst"]: e["src"] for e in edges if e["eid"].startswith("EID-CATALOG-OWNS-")}
+    allowed = {"EID-S3-02", "EID-S4-01", "EID-S5-01", "EID-S5B-01",
+               "EID-S8-02", "EID-S8-03", "EID-S2-02", "EID-S2-04"}
+    concerns = {e["src"]: e["dst"] for e in edges if e["type"] == "CONCERNS"}
+    def services(edge):
+        if edge["type"] == "DECIDED":
+            return [concerns.get(edge["dst"])]
+        if edge["type"] in {"BECAUSE_OF", "SUPERSEDES"}:
+            return [concerns.get(edge["src"])]
+        return [v for v in (edge["src"], edge["dst"]) if v.startswith("service-")]
+    def owners_at(timestamp):
+        claims = {}
+        source_order = {}
+        for e in edges:
+            for sid in e["src_ids"]:
+                source_order[sid] = min(source_order.get(sid, e["eid"]), e["eid"])
+        assertions = sorted((e for e in edges if e["type"] == "OWNS" and e["valid_from"] <= timestamp),
+                            key=lambda e: (e["valid_from"], source_order[e["src_ids"][0]], e["eid"]))
+        approvals = [e for e in edges if e["type"] == "APPROVED" and e["valid_from"] <= timestamp]
+        for assertion in assertions:
+            service, new_team = assertion["dst"], assertion["src"]
+            states = claims.setdefault(service, {})
+            source = sources[assertion["src_ids"][0]]
+            author = resolve_author(source, people, memberships, new_team)
+            author_team = memberships.get(author)
+            alpha = max(assertion["src_auth"])
+            if source["type"] == "catalog":
+                states[new_team] = alpha
+                continue
+            if author_team not in set(states) | {new_team}:
+                continue
+            if new_team in states:
+                states[new_team] = max(states[new_team], alpha)
+                continue
+            old_states = dict(states)
+            for old_team, gamma in old_states.items():
+                approved = any(a["dst"] == service and a["src_ids"][0] not in assertion["src_ids"] and
+                    resolve_author(sources[a["src_ids"][0]], people, memberships, old_team) == a["src"] and
+                    memberships.get(a["src"]) == old_team for a in approvals)
+                if alpha >= 2 and (author_team == old_team or (author_team == new_team and approved)):
+                    del states[old_team]
+                    states[new_team] = alpha
+                elif alpha >= gamma:
+                    states[new_team] = alpha
+            if not old_states:
+                states[new_team] = alpha
+        return {service: set(states) for service, states in claims.items()}
+
+    failures = []
+    for edge in edges:
+        if edge["src_ids"] == ["DOC-CATALOG"]:
+            continue
+        for sid in edge["src_ids"]:
+            doc = sources[sid]
+            claim_team = edge["src"] if edge["type"] == "OWNS" else catalog.get(edge["dst"])
+            author = resolve_author(doc, people, memberships, claim_team)
+            team = memberships.get(author)
+            targets = services(edge)
+            at_time = owners_at(edge["valid_from"])
+            owners = set().union(*(at_time.get(service, set()) for service in targets))
+            # Approval standing refers to the old owner, even after its approved transfer.
+            if edge["type"] == "APPROVED":
+                owners.add(catalog.get(edge["dst"]))
+            standing = team is not None and (team in owners or
+                (edge["type"] == "OWNS" and team == edge["src"]))
+            if not standing and edge["eid"] not in allowed:
+                failures.append((edge["eid"], sid, team, sorted(owners)))
+    assert not failures, f"R8 curated standing failures: {failures}"
+    assert resolve_author({"author_handle": "Alex C."}, people, memberships, "team-growth") == "person-alex-chen"
+    assert resolve_author({"author_handle": "S. Taylor"}, people, memberships, "team-payments") == "person-sophia-taylor"
+    assert resolve_author({"author_handle": "P. N."}, people, memberships, "team-payments") is None
+    assert resolve_author({"author_email": "dev.patel@company.internal", "author_handle": "erostova"},
+                          people, memberships, "team-platform") == "person-dev-patel"
+    assert "team-payments" in owners_at("2024-02-01T14:00:00Z")["service-checkout-api"]
+    assert owners_at("2024-02-04T00:00:00Z")["service-checkout-api"] == {"team-commerce"}
+    assert owners_at("2024-03-21T00:00:00Z")["service-ledger"] == {"team-payments"}
+    assert owners_at("2024-02-13T00:00:00Z")["service-notifier"] == {"team-platform", "team-commerce"}
+    print("  [PASS] Curated source authors have standing outside the explicit allowed attempts (R8).")
+
+
 def main():
     args = parse_args()
     data_dir = Path(args.data)
@@ -66,8 +167,10 @@ def main():
     edges = load_jsonl(edges_file)
     docs = load_jsonl(docs_file)
 
-    with open(gold_file, "r", encoding="utf-8") as f:
-        gold = json.load(f)
+    # Verify structural metadata from the builder without opening expected labels.
+    import generate
+    curated = generate.build_curated_data()
+    scenarios = curated["gold_scenarios"]
 
     # 2. Check scale and counts
     print("\n[2/8] Checking dataset scale & counts...")
@@ -139,34 +242,13 @@ def main():
     assert invalid_statuses == 0, f"Found {invalid_statuses} edges with invalid status"
     print("  [PASS] All curated edges are 'unverified', all background edges are 'current'. No other status exists.")
 
-    # 5. Check all scenario IDs present in gold.json
-    print("\n[5/8] Checking scenario coverage and gold.json structure...")
+    print("\n[5/8] Checking scenario coverage (gold.json contents are not read)...")
     expected_scenarios = ["S1", "S2", "S3", "S4", "S5", "S5b", "S6", "S7", "S8", "S9a", "S9b", "S10", "M1", "M2", "M3", "M4", "P1"]
-    for sc_id in expected_scenarios:
-        assert sc_id in gold, f"Missing scenario {sc_id} in gold.json"
-        sc = gold[sc_id]
-        assert "nodes" in sc, f"Scenario {sc_id} missing 'nodes'"
-        assert "curated_edge_eids" in sc, f"Scenario {sc_id} missing 'curated_edge_eids'"
-        assert "expected_status" in sc, f"Scenario {sc_id} missing 'expected_status'"
-        assert "notes" in sc, f"Scenario {sc_id} missing 'notes'"
-
-        # Verify all expected_status values are null (author fills by hand later)
-        for eid, exp_st in sc["expected_status"].items():
-            assert exp_st is None, f"Scenario {sc_id} edge {eid} expected_status is '{exp_st}', must be null"
-
-    # Verify additional gold metadata
-    assert "multi_hop_chains" in gold, "Missing 'multi_hop_chains' in gold.json"
-    assert "p1_pagerank" in gold, "Missing 'p1_pagerank' in gold.json"
-    assert "alias_groups" in gold, "Missing 'alias_groups' in gold.json"
-    assert "restricted_doc_ids" in gold, "Missing 'restricted_doc_ids' in gold.json"
-    assert "unresolved_handles" in gold, "Missing 'unresolved_handles' in gold.json"
-    assert set(gold["allowed_statuses"]) == ALLOWED_STATUSES, "gold.json status vocabulary differs from verifier"
-    assert "noted" in gold["status_notes"], "gold.json notes omit noted status"
     edges_by_eid = {e["eid"]: e for e in curated_edges}
-    assert gold["S10"]["curated_edge_eids"] == ["EID-S10-01", "EID-S10-02"]
-    assert [edges_by_eid[eid]["src_ids"][0] for eid in gold["S10"]["curated_edge_eids"]] == ["DOC-ADR-NOTIFIER-COMMERCE", "DOC-ADR-NOTIFIER-PLATFORM"]
-
-    print(f"  [PASS] All {len(expected_scenarios)} scenarios have null expected_status; S10 has both notifier ADR edges.")
+    for scenario in expected_scenarios:
+        assert scenario in scenarios
+        assert all(eid in edges_by_eid for eid in scenarios[scenario]["curated_edge_eids"])
+    print("  [PASS] All 17 scenarios present; expected values not accessed.")
 
     # 6. Check doc author metadata integrity (never derived from text)
     print("\n[6/8] Checking doc author metadata integrity...")
@@ -196,23 +278,24 @@ def main():
     doc_s6 = next(d for d in docs if d["id"] == "DOC-PM-S6")
     assert doc_s6["restricted"] is True, "DOC-PM-S6 must be restricted"
 
-    aliases = {alias: group["person_id"] for group in gold["alias_groups"] for alias in group["aliases"]}
     members = {e["src"] for e in curated_edges if e["type"] == "MEMBER_OF"}
     unresolved = set()
     for sc_id in expected_scenarios:
-        for eid in gold[sc_id]["curated_edge_eids"]:
+        for eid in scenarios[sc_id]["curated_edge_eids"]:
             for source_id in edges_by_eid[eid]["src_ids"]:
                 doc = docs_by_id[source_id]
-                person_id = (doc["author_id"] or
-                             people_by_handle.get(doc["author_handle"], {}).get("id") or
-                             people_by_email.get(doc["author_email"], {}).get("id") or
-                             aliases.get(doc["author_handle"]) or aliases.get(doc["author_email"]))
+                edge = edges_by_eid[eid]
+                claim_team = edge["src"] if edge["type"] == "OWNS" else None
+                person_id = resolve_author(doc, list(people_by_id.values()),
+                    {e["src"]: e["dst"] for e in curated_edges if e["type"] == "MEMBER_OF"}, claim_team)
                 if person_id:
                     assert person_id in members, f"Scenario author {person_id} lacks MEMBER_OF"
                 else:
                     unresolved.add(doc["author_handle"] or doc["author_email"] or source_id)
 
     print(f"  [PASS] Resolved scenario authors have MEMBER_OF edges. Unresolved source authors: {', '.join(sorted(unresolved))}.")
+
+    verify_standing(nodes, curated_edges, docs)
 
     # 7. Check determinism for curated portion
     print("\n[7/8] Checking determinism on curated components...")
@@ -221,7 +304,7 @@ def main():
     curated_b = generate.build_curated_data()
 
     assert len(curated_a["edges"]) == len(curated_b["edges"]) == 221
-    assert [e["eid"] for e in curated_a["edges"]] == [e["eid"] for e in curated_b["edges"]]
+    assert curated_a == curated_b
     print("  [PASS] Curated dataset is completely deterministic across invocations.")
 
     print("\n[8/8] Checking service dependency DAG and multi-hop chains...")
@@ -250,7 +333,7 @@ def main():
         frontier = {src for src, dst in dependencies if dst in frontier} - affected
         affected.update(frontier)
     assert affected == service_ids, "P1 blast radius lost an affected service within six hops"
-    for scenario, chain in gold["multi_hop_chains"].items():
+    for scenario, chain in curated["m_chains"].items():
         assert len(chain) - 1 >= 3, f"{scenario} has fewer than three hops"
         assert all(dst in successors[src] for src, dst in zip(chain, chain[1:])), f"{scenario} chain is broken"
         print(f"  {scenario}: {' -> '.join(chain)} ({len(chain)-1} hops)")
