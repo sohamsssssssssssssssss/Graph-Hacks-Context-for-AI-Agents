@@ -1,0 +1,1107 @@
+{
+  "EID-CATALOG-ONCALL-00": {
+    "reason": "current; concurrent Jitendra assignment is permitted (R9).",
+    "rule": "R9",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-01": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-02": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-03": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-04": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-06": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-07": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-08": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-09": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-10": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-11": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-12": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-13": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-14": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-15": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-16": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-17": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-18": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-19": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-20": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-21": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-22": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-23": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-24": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-25": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-26": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-27": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-28": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-29": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-30": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-31": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-32": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-33": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-34": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-35": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-36": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-37": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-38": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-39": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-40": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-41": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-42": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-43": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-44": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-45": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-46": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-47": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-48": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-49": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-50": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-51": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-52": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-53": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-54": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-55": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-56": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-57": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-58": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-ONCALL-59": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-00": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-01": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-02": {
+    "reason": "retired with the same-pair Payments ADR after the approved Commerce transfer (R4, D2).",
+    "rule": "R4 / D2",
+    "status": "retired"
+  },
+  "EID-CATALOG-OWNS-03": {
+    "reason": "current; merged gamma 3 exceeds the Commerce ticket’s authority 2 (D1.3).",
+    "rule": "D1.3",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-04": {
+    "reason": "current; merged gamma 3 exceeds Growth’s chat authority 1 (D1.3).",
+    "rule": "D1.3",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-06": {
+    "reason": "contested with the Platform ADR as one claim, against Commerce (R4, D1.4).",
+    "rule": "R4 / D1.4",
+    "status": "contested"
+  },
+  "EID-CATALOG-OWNS-07": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-08": {
+    "reason": "current; gamma 2 exceeds the repeated Growth chat claim’s gamma 1 (D1.3).",
+    "rule": "D1.3",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-09": {
+    "reason": "current; Sophia’s three sources repeat the same claim (R4).",
+    "rule": "R4",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-10": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-11": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-12": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-13": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-14": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-15": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-16": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-17": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-18": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-19": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-20": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-21": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-22": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-23": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-24": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-25": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-26": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-27": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-28": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-29": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-30": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-31": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-32": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-33": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-34": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-35": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-36": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-37": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-38": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-39": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-40": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-41": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-42": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-43": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-44": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-45": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-46": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-47": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-48": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-49": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-50": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-51": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-52": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-53": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-54": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-55": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-56": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-57": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-58": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CATALOG-OWNS-59": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-00": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-01": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-02": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-03": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-04": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-05": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-06": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-07": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-08": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-09": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-10": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-11": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-12": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-13": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-14": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-15": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-16": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-ARCH-17": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-00": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-01": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-02": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-03": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-04": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-05": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-06": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-07": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-08": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-09": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-10": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-11": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-12": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-13": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-14": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-15": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-16": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-17": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-18": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-19": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-20": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-21": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-22": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-23": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-24": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-25": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-26": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-27": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-28": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-CUR-MEMBER-29": {
+    "reason": "untouched baseline",
+    "rule": "D0/D0b",
+    "status": "current"
+  },
+  "EID-M1-01": {
+    "reason": "Platform author resolves by email and owns web-frontend and api-gateway at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M1-02": {
+    "reason": "Platform author resolves by email and owns api-gateway and session-cache at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M1-03": {
+    "reason": "Platform author resolves by email and owns session-cache and redis-cluster at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M2-01": {
+    "reason": "Payments author resolves by email and owns order-service at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M2-02": {
+    "reason": "Payments author resolves by email and owns order-service and checkout-api at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M2-03": {
+    "reason": "Payments author resolves by email and owns checkout-api and ledger at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M2-04": {
+    "reason": "Payments author resolves by email and owns ledger at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M3-01": {
+    "reason": "Platform author resolves by email and owns event-stream at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M3-02": {
+    "reason": "Platform author resolves by email and owns event-stream and search-index at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M3-03": {
+    "reason": "Platform author resolves by email and owns search-index at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M3-04": {
+    "reason": "Platform author resolves by email and owns catalog-db at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M3-05": {
+    "reason": "Platform author resolves by email and owns catalog-db at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M4-01": {
+    "reason": "Platform author resolves by email and owns notification-dispatcher and notifier at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M4-02": {
+    "reason": "Platform author resolves by email and owns notifier and template-renderer at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M4-03": {
+    "reason": "Platform author resolves by email and owns template-renderer at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M4-04": {
+    "reason": "Platform author resolves by email and owns auth-gateway at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M4-05": {
+    "reason": "Platform author resolves by email and owns auth-gateway at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-M4-06": {
+    "reason": "Platform author resolves by email and owns ldap-directory at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-P1-01": {
+    "reason": "Platform author resolves by email and owns api-hub and core-auth at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-P1-02": {
+    "reason": "Platform author resolves by email and owns batch-exporter and core-auth at valid_from; either endpoint supplies standing and no dependency attempt targets this edge.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-S1-01": {
+    "reason": "ADR-7 explicitly supersedes ADR-3 with authority 3 and Platform standing; only the old CONCERNS is retired.",
+    "rule": "D1.2 / D3",
+    "status": "retired"
+  },
+  "EID-S1-02": {
+    "reason": "Elena has Platform standing for session-cache; retiring ADR-3 preserves DECIDED provenance.",
+    "rule": "D3 / D0b",
+    "status": "current"
+  },
+  "EID-S1-03": {
+    "reason": "Elena has Platform standing and authority 3; ADR-7 is the valid replacement storage decision.",
+    "rule": "D1.2 / D3",
+    "status": "current"
+  },
+  "EID-S1-04": {
+    "reason": "Elena has Platform standing for session-cache; replacement decision authorship is untouched.",
+    "rule": "D0b",
+    "status": "current"
+  },
+  "EID-S1-05": {
+    "reason": "Explicit targeting, authority 3 and affected-service Platform standing validate the non-ownership supersession.",
+    "rule": "D1.2 / D3",
+    "status": "current"
+  },
+  "EID-S1-06": {
+    "reason": "Platform authors the session-cache incident rationale; BECAUSE_OF provenance remains current.",
+    "rule": "D0b / D3",
+    "status": "current"
+  },
+  "EID-S1-07": {
+    "reason": "Elena resolves by email and Platform owns the affected service session-cache.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-S1-08": {
+    "reason": "Platform owns rate-limiter; Elena resolves by email and this unrelated decision is untouched by the session-cache supersession.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-S1-09": {
+    "reason": "Platform owns rate-limiter; Elena resolves by email and this unrelated decision is untouched by the session-cache supersession.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-S10-01": {
+    "reason": "Rachel has claimant-Commerce standing and authority 3; no Platform approval validates transfer, so the Commerce and Platform claims are contested.",
+    "rule": "D1.4 / D2 / R3",
+    "status": "contested"
+  },
+  "EID-S10-02": {
+    "reason": "Elena’s Platform ADR merges with Platform catalog ownership at gamma 3; competing Commerce gamma 3 has no valid supersession in either direction.",
+    "rule": "D1.4 / R4 / R5",
+    "status": "contested"
+  },
+  "EID-S2-01": {
+    "reason": "Payments ADR and catalog merge at gamma 3; the Commerce transfer succeeds with later authentic old-team approval, retiring the Payments claim.",
+    "rule": "D1.2 / D2 / R4 / R6",
+    "status": "retired"
+  },
+  "EID-S2-02": {
+    "reason": "Chloe belongs to claimant Commerce; authority 2 plus Dev’s distinct-source Payments approval validates transfer on final-state evaluation.",
+    "rule": "D1.2 / D2 / R6",
+    "status": "current"
+  },
+  "EID-S2-03": {
+    "reason": "The source author is named approver Dev, a member of old owning team Payments; its later arrival counts under R6.",
+    "rule": "R7",
+    "status": "current"
+  },
+  "EID-S2-04": {
+    "reason": "Samira is a Platform member supporting Payments as the correct checkout-api owner; she belongs to neither claimant Payments nor owning Commerce, so has no standing.",
+    "rule": "R10 / R12",
+    "status": "rejected"
+  },
+  "EID-S3-01": {
+    "reason": "The Platform ADR merges with catalog ownership at gamma 3; the weaker Growth chat changes no existing claim.",
+    "rule": "D1.3 / R4",
+    "status": "current"
+  },
+  "EID-S3-02": {
+    "reason": "Marcus has claimant-Growth standing, but chat authority 1 is below Platform gamma 3 and cannot supersede.",
+    "rule": "D1.3",
+    "status": "noted"
+  },
+  "EID-S4-01": {
+    "reason": "ghost_coder_99 has no email, handle or unique name resolution; no author standing is established for ownerless legacy-reports.",
+    "rule": "D1.1 / R1 / R10",
+    "status": "rejected"
+  },
+  "EID-S5-01": {
+    "reason": "phantom_ops is unresolved; the body’s Dev approval text supplies neither metadata authorship nor standing, even though Commerce already owns checkout.",
+    "rule": "D1.1 / R10",
+    "status": "rejected"
+  },
+  "EID-S5B-01": {
+    "reason": "shadow_actor is unresolved and is not named approver Dev; the forged approval is rejected.",
+    "rule": "D2 / R7",
+    "status": "rejected"
+  },
+  "EID-S6-01": {
+    "reason": "Elena resolves by email and Platform owns affected auth-gateway; restricted access controls retrieval, not the derived edge status.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-S6-02": {
+    "reason": "Elena resolves by email and Platform owns affected auth-gateway; restricted access controls retrieval, not the derived edge status.",
+    "rule": "D0b / R8",
+    "status": "current"
+  },
+  "EID-S7-01": {
+    "reason": "Unopposed system-catalog MEMBER_OF is a trusted initialization assertion; Priya Nair and Priya Nayar remain distinct People.",
+    "rule": "D0",
+    "status": "current"
+  },
+  "EID-S7-02": {
+    "reason": "Unopposed system-catalog MEMBER_OF is a trusted initialization assertion; Priya Nair and Priya Nayar remain distinct People.",
+    "rule": "D0",
+    "status": "current"
+  },
+  "EID-S7-03": {
+    "reason": "Unopposed system-catalog MEMBER_OF is a trusted initialization assertion; Priya Nair and Priya Nayar remain distinct People.",
+    "rule": "D0",
+    "status": "current"
+  },
+  "EID-S7-04": {
+    "reason": "The source email resolves to Jitendra Rao of Platform, owner of session-cache; concurrent catalog on-call assignment is compatible.",
+    "rule": "D0b / R1 / R9",
+    "status": "current"
+  },
+  "EID-S8-01": {
+    "reason": "Payments ADR merges with Payments catalog ownership at gamma 3; the lower-authority Commerce ticket does not change it.",
+    "rule": "D1.3 / R4",
+    "status": "current"
+  },
+  "EID-S8-02": {
+    "reason": "Leo has claimant-Commerce standing; self-approval fails D2, and ticket authority 2 is below Payments gamma 3.",
+    "rule": "D1.3 / D2",
+    "status": "noted"
+  },
+  "EID-S8-03": {
+    "reason": "Leo authentically authors his own approval but is not a member of old owning team Payments; same-source approval also cannot enable D2.",
+    "rule": "R7",
+    "status": "rejected"
+  },
+  "EID-S9A-01": {
+    "reason": "Alex resolves by exact handle; claimant-Growth standing holds, but merged chat authority 1 is below Platform catalog gamma 2; aliases count as one Person.",
+    "rule": "D1.3 / R1 / R4",
+    "status": "noted"
+  },
+  "EID-S9A-02": {
+    "reason": "Alex resolves by exact email; claimant-Growth standing holds, but merged chat authority 1 is below Platform catalog gamma 2; aliases count as one Person.",
+    "rule": "D1.3 / R1 / R4",
+    "status": "noted"
+  },
+  "EID-S9A-03": {
+    "reason": "Alex resolves by unique Growth first/last name-initial match; claimant-Growth standing holds, but merged chat authority 1 is below Platform catalog gamma 2; aliases count as one Person.",
+    "rule": "D1.3 / R1 / R4",
+    "status": "noted"
+  },
+  "EID-S9B-01": {
+    "reason": "Sophia resolves by exact handle; Payments membership backs the existing same-pair billing-worker claim; repeated sources count as one Person.",
+    "rule": "D0b / R1 / R4",
+    "status": "current"
+  },
+  "EID-S9B-02": {
+    "reason": "Sophia resolves by exact email; Payments membership backs the existing same-pair billing-worker claim; repeated sources count as one Person.",
+    "rule": "D0b / R1 / R4",
+    "status": "current"
+  },
+  "EID-S9B-03": {
+    "reason": "Sophia resolves by unique Payments first/last name-initial match; Payments membership backs the existing same-pair billing-worker claim; repeated sources count as one Person.",
+    "rule": "D0b / R1 / R4",
+    "status": "current"
+  }
+}

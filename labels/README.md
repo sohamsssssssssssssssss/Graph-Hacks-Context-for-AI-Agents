@@ -1,0 +1,1 @@
+Labels are frozen at tag `labels-v1`; they were drafted by an AI agent from `docs/RULES.md`, reviewed and corrected by the author. Later changes require a new version file, never edits to this frozen version. The evaluation harness reads `labels/labels_v1.json`; generator `gold.json` retains null `expected_status` values. The author creates the commit and tag.

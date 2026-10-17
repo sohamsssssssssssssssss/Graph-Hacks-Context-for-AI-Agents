@@ -18,7 +18,7 @@ Resolve exact email, then handle, then unique team-scoped first/last initial mat
 | EID-S2-01 | retired | D1.2 / D2 / R4 / R6 | Payments ADR and catalog merge at gamma 3; the Commerce transfer succeeds with later authentic old-team approval, retiring the Payments claim. |
 | EID-S2-02 | current | D1.2 / D2 / R6 | Chloe belongs to claimant Commerce; authority 2 plus Dev’s distinct-source Payments approval validates transfer on final-state evaluation. |
 | EID-S2-03 | current | R7 | The source author is named approver Dev, a member of old owning team Payments; its later arrival counts under R6. |
-| EID-S2-04 | noted | D1.3 / R12 | Samira resolves to Platform, her own claimant team, so has dispute standing; chat authority 1 is below Commerce gamma 2. |
+| EID-S2-04 | rejected | R10 / R12 | Samira is a Platform member supporting Payments as the correct checkout-api owner; she belongs to neither claimant Payments nor owning Commerce, so has no standing. |
 | EID-S3-01 | current | D1.3 / R4 | The Platform ADR merges with catalog ownership at gamma 3; the weaker Growth chat changes no existing claim. |
 | EID-S3-02 | noted | D1.3 | Marcus has claimant-Growth standing, but chat authority 1 is below Platform gamma 3 and cannot supersede. |
 | EID-S4-01 | rejected | D1.1 / R1 / R10 | ghost_coder_99 has no email, handle or unique name resolution; no author standing is established for ownerless legacy-reports. |
@@ -62,7 +62,7 @@ Resolve exact email, then handle, then unique team-scoped first/last initial mat
 | EID-P1-01 | current | D0b / R8 | Platform author resolves by email and owns api-hub and core-auth at valid_from; either endpoint supplies standing and no dependency attempt targets this edge. |
 | EID-P1-02 | current | D0b / R8 | Platform author resolves by email and owns batch-exporter and core-auth at valid_from; either endpoint supplies standing and no dependency attempt targets this edge. |
 
-## Supporting catalog state
+## Catalog edges touched
 
 These annotations are not additional sheet rows.
 
@@ -78,4 +78,4 @@ These annotations are not additional sheet rows.
 
 None for these 55 edge statuses. AMBIGUOUS count: **0**. R1–R12 settle the prior draft’s twelve status gaps. The prior catalog-only confidence question and gate delivery/contact configuration remain outside this edge-labeling pass; no ACT outcome is claimed.
 
-Validation: **55 rows, 55 unique EIDs**, exact match to sheet; contested: 2, current: 41, noted: 6, rejected: 4, retired: 2; AMBIGUOUS: 0.
+Validation: **55 rows, 55 unique EIDs**, exact match to sheet; contested: 2, current: 41, noted: 5, rejected: 5, retired: 2; AMBIGUOUS: 0.

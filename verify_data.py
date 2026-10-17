@@ -6,7 +6,7 @@ Checks:
   1. Counts (nodes 6,243, edges 15,276, docs 98, curated edges 221, background edges 15,055).
   2. Every span appears verbatim in a source doc; curated valid_from matches its first source timestamp.
   3. All curated edges have status == 'unverified'.
-  4. All background edges have status == 'current'; the vocabulary also includes 'noted'.
+  4. Background edges are current; frozen labels cover all curated EIDs with valid derived statuses.
   5. All scenario IDs and edges present, without reading gold.json contents.
   6. No doc text-derived authors; resolved scenario authors have MEMBER_OF edges.
   7. Determinism: same output for curated entities across runs; R8 author standing.
@@ -241,6 +241,14 @@ def main():
                 invalid_statuses += 1
     assert invalid_statuses == 0, f"Found {invalid_statuses} edges with invalid status"
     print("  [PASS] All curated edges are 'unverified', all background edges are 'current'. No other status exists.")
+
+    labels_file = Path(__file__).resolve().parent / "labels" / "labels_v1.json"
+    with labels_file.open(encoding="utf-8") as f:
+        labels = json.load(f)
+    assert set(labels) == {e["eid"] for e in curated_edges}, "labels_v1 keys differ from curated EIDs"
+    assert all(label["status"] in {"current", "retired", "contested", "rejected", "noted"}
+               for label in labels.values()), "labels_v1 contains an invalid derived status"
+    print(f"  [PASS] Frozen labels_v1 covers all {len(labels)} curated EIDs with valid derived statuses.")
 
     print("\n[5/8] Checking scenario coverage (gold.json contents are not read)...")
     expected_scenarios = ["S1", "S2", "S3", "S4", "S5", "S5b", "S6", "S7", "S8", "S9a", "S9b", "S10", "M1", "M2", "M3", "M4", "P1"]

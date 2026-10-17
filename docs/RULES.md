@@ -15,7 +15,7 @@ R8 Standing for DEPENDS_ON: author is member of team owning EITHER endpoint. For
 R9 ON_CALL: multiple concurrent on-call people allowed; no competition among them.
 R10 No standing => rejected (not unverified). unverified is only for edges the engine has not derived.
 R11 Default: untouched edge backed by standing author => current (call it step D0b).
-R12 DISPUTES: claimant team = author's own team.
+R12 DISPUTES: claimant team = the team named in the dispute as the correct owner (the team whose claim it supports). Standing = author is member of that team or of a team owning S.
 
 ## Derivation step names
 
