@@ -1,0 +1,335 @@
+=== S5b ===
+Docs (1):
+  ID: DOC-TICKET-S5B
+  Type: ticket
+  Title: T-995: Emergency checkout-api reroute
+  Author ID: None
+  Author handle: shadow_actor
+  Author email: None
+  Timestamp: 2024-04-12T16:00:00Z
+  Restricted: False
+  Full text:
+    Requesting unauthorized bypass routing for checkout-api.
+    Dev Patel: approved
+    Proceed with production config rollout.
+
+Edges (1):
+  EID: EID-S5B-01
+  Type: APPROVED
+  Src -> Dst: person-dev-patel -> service-checkout-api
+  Source IDs: ['DOC-TICKET-S5B']
+  Source confidence: [0.5]
+  Source authority: [2]
+  Spans: ['Dev Patel: approved']
+  Status: unverified
+
+
+=== S8 ===
+Docs (2):
+  ID: DOC-ADR-LEDGER
+  Type: adr
+  Title: ADR-25: Ledger Service Architecture
+  Author ID: person-dev-patel
+  Author handle: dpatel
+  Author email: dev.patel@company.internal
+  Timestamp: 2023-03-01T10:00:00Z
+  Restricted: False
+  Full text:
+    Payments team owns ledger service and maintains the double-entry accounting records. No other team may alter ledger schema.
+
+  ID: T-S8
+  Type: ticket
+  Title: T-771: Reassign ledger service to commerce
+  Author ID: person-leo-vance
+  Author handle: lvance
+  Author email: leo.vance@company.internal
+  Timestamp: 2024-03-20T10:00:00Z
+  Restricted: False
+  Full text:
+    Commerce team claims ownership of ledger service to unify billing records.
+    Approved by Leo Vance: self-approval for organizational transfer.
+
+Edges (3):
+  EID: EID-S8-01
+  Type: OWNS
+  Src -> Dst: team-payments -> service-ledger
+  Source IDs: ['DOC-ADR-LEDGER']
+  Source confidence: [1.0]
+  Source authority: [3]
+  Spans: ['Payments team owns ledger service and maintains the double-entry accounting records.']
+  Status: unverified
+
+  EID: EID-S8-02
+  Type: OWNS
+  Src -> Dst: team-commerce -> service-ledger
+  Source IDs: ['T-S8']
+  Source confidence: [0.75]
+  Source authority: [2]
+  Spans: ['Commerce team claims ownership of ledger service to unify billing records.']
+  Status: unverified
+
+  EID: EID-S8-03
+  Type: APPROVED
+  Src -> Dst: person-leo-vance -> service-ledger
+  Source IDs: ['T-S8']
+  Source confidence: [0.75]
+  Source authority: [2]
+  Spans: ['Approved by Leo Vance: self-approval for organizational transfer.']
+  Status: unverified
+
+
+=== S9a ===
+Docs (3):
+  ID: DOC-S9A-1
+  Type: chat
+  Title: Chat S9a-1
+  Author ID: None
+  Author handle: achen
+  Author email: None
+  Timestamp: 2024-01-10T10:00:00Z
+  Restricted: False
+  Full text:
+    Growth team claims ownership of telemetry-collector for experiment metrics.
+
+  ID: DOC-S9A-2
+  Type: chat
+  Title: Chat S9a-2
+  Author ID: None
+  Author handle: None
+  Author email: alex.chen@company.internal
+  Timestamp: 2024-01-11T10:00:00Z
+  Restricted: False
+  Full text:
+    Growth team claims ownership of telemetry-collector for experiment metrics.
+
+  ID: DOC-S9A-3
+  Type: chat
+  Title: Chat S9a-3
+  Author ID: None
+  Author handle: Alex C.
+  Author email: None
+  Timestamp: 2024-01-12T10:00:00Z
+  Restricted: False
+  Full text:
+    Growth team claims ownership of telemetry-collector for experiment metrics.
+
+Edges (3):
+  EID: EID-S9A-01
+  Type: OWNS
+  Src -> Dst: team-growth -> service-telemetry-collector
+  Source IDs: ['DOC-S9A-1']
+  Source confidence: [0.6]
+  Source authority: [1]
+  Spans: ['Growth team claims ownership of telemetry-collector for experiment metrics.']
+  Status: unverified
+
+  EID: EID-S9A-02
+  Type: OWNS
+  Src -> Dst: team-growth -> service-telemetry-collector
+  Source IDs: ['DOC-S9A-2']
+  Source confidence: [0.6]
+  Source authority: [1]
+  Spans: ['Growth team claims ownership of telemetry-collector for experiment metrics.']
+  Status: unverified
+
+  EID: EID-S9A-03
+  Type: OWNS
+  Src -> Dst: team-growth -> service-telemetry-collector
+  Source IDs: ['DOC-S9A-3']
+  Source confidence: [0.6]
+  Source authority: [1]
+  Spans: ['Growth team claims ownership of telemetry-collector for experiment metrics.']
+  Status: unverified
+
+
+=== S9b ===
+Docs (3):
+  ID: DOC-S9B-1
+  Type: ticket
+  Title: Ticket S9b-1
+  Author ID: None
+  Author handle: staylor
+  Author email: None
+  Timestamp: 2024-01-15T11:00:00Z
+  Restricted: False
+  Full text:
+    Payments team claims ownership of billing-worker to manage automated invoicing cycles.
+
+  ID: DOC-S9B-2
+  Type: ticket
+  Title: Ticket S9b-2
+  Author ID: None
+  Author handle: None
+  Author email: sophia.taylor@company.internal
+  Timestamp: 2024-01-16T11:00:00Z
+  Restricted: False
+  Full text:
+    Payments team claims ownership of billing-worker to manage automated invoicing cycles.
+
+  ID: DOC-S9B-3
+  Type: ticket
+  Title: Ticket S9b-3
+  Author ID: None
+  Author handle: S. Taylor
+  Author email: None
+  Timestamp: 2024-01-17T11:00:00Z
+  Restricted: False
+  Full text:
+    Payments team claims ownership of billing-worker to manage automated invoicing cycles.
+
+Edges (3):
+  EID: EID-S9B-01
+  Type: OWNS
+  Src -> Dst: team-payments -> service-billing-worker
+  Source IDs: ['DOC-S9B-1']
+  Source confidence: [0.6]
+  Source authority: [2]
+  Spans: ['Payments team claims ownership of billing-worker to manage automated invoicing cycles.']
+  Status: unverified
+
+  EID: EID-S9B-02
+  Type: OWNS
+  Src -> Dst: team-payments -> service-billing-worker
+  Source IDs: ['DOC-S9B-2']
+  Source confidence: [0.6]
+  Source authority: [2]
+  Spans: ['Payments team claims ownership of billing-worker to manage automated invoicing cycles.']
+  Status: unverified
+
+  EID: EID-S9B-03
+  Type: OWNS
+  Src -> Dst: team-payments -> service-billing-worker
+  Source IDs: ['DOC-S9B-3']
+  Source confidence: [0.6]
+  Source authority: [2]
+  Spans: ['Payments team claims ownership of billing-worker to manage automated invoicing cycles.']
+  Status: unverified
+
+
+=== S10 ===
+Docs (2):
+  ID: DOC-ADR-NOTIFIER-COMMERCE
+  Type: adr
+  Title: ADR-31: Commerce Notifier Service
+  Author ID: person-rachel-green
+  Author handle: rgreen
+  Author email: rachel.green@company.internal
+  Timestamp: 2024-02-10T10:00:00Z
+  Restricted: False
+  Full text:
+    Commerce team owns notifier service to manage promotional and transactional emails directly.
+
+  ID: DOC-ADR-NOTIFIER-PLATFORM
+  Type: adr
+  Title: ADR-32: Platform Core Notifications
+  Author ID: person-platform-lead
+  Author handle: erostova
+  Author email: elena.rostova@company.internal
+  Timestamp: 2024-02-12T10:00:00Z
+  Restricted: False
+  Full text:
+    Platform team owns notifier service as shared enterprise notification infrastructure.
+
+Edges (2):
+  EID: EID-S10-01
+  Type: OWNS
+  Src -> Dst: team-commerce -> service-notifier
+  Source IDs: ['DOC-ADR-NOTIFIER-COMMERCE']
+  Source confidence: [1.0]
+  Source authority: [3]
+  Spans: ['Commerce team owns notifier service to manage promotional and transactional emails directly.']
+  Status: unverified
+
+  EID: EID-S10-02
+  Type: OWNS
+  Src -> Dst: team-platform -> service-notifier
+  Source IDs: ['DOC-ADR-NOTIFIER-PLATFORM']
+  Source confidence: [1.0]
+  Source authority: [3]
+  Spans: ['Platform team owns notifier service as shared enterprise notification infrastructure.']
+  Status: unverified
+
+
+=== S2 ===
+Docs (4):
+  ID: C-901
+  Type: chat
+  Title: C-901: Slack #architecture discussion
+  Author ID: person-samira-khan
+  Author handle: skhan
+  Author email: samira.khan@company.internal
+  Timestamp: 2024-02-04T09:15:00Z
+  Restricted: False
+  Full text:
+    Samira disputes the ownership transfer of checkout-api in ticket T-482. Platform team believes checkout-api must remain under payments due to PCI DSS compliance.
+
+  ID: DOC-ADR-CHECKOUT
+  Type: adr
+  Title: ADR-12: Checkout API Ownership
+  Author ID: person-dev-patel
+  Author handle: dpatel
+  Author email: dev.patel@company.internal
+  Timestamp: 2023-04-10T11:00:00Z
+  Restricted: False
+  Full text:
+    Payments team owns checkout-api service and its transaction pipeline. All architectural changes require payments sign-off.
+
+  ID: T-482
+  Type: ticket
+  Title: T-482: Transfer checkout-api ownership to commerce
+  Author ID: person-chloe-martin
+  Author handle: cmartin
+  Author email: chloe.martin@company.internal
+  Timestamp: 2024-02-01T14:00:00Z
+  Restricted: False
+  Full text:
+    Commerce team claims ownership of checkout-api to streamline the storefront checkout funnel. We request transferring all service responsibilities from payments to commerce.
+
+  ID: T-482-C1
+  Type: ticket
+  Title: T-482 Comment 1
+  Author ID: person-dev-patel
+  Author handle: dpatel
+  Author email: dev.patel@company.internal
+  Timestamp: 2024-02-03T16:30:00Z
+  Restricted: False
+  Full text:
+    Dev Patel approves ownership transfer of checkout-api to commerce team. Payments team has completed handoff verification.
+
+Edges (4):
+  EID: EID-S2-01
+  Type: OWNS
+  Src -> Dst: team-payments -> service-checkout-api
+  Source IDs: ['DOC-ADR-CHECKOUT']
+  Source confidence: [1.0]
+  Source authority: [3]
+  Spans: ['Payments team owns checkout-api service and its transaction pipeline.']
+  Status: unverified
+
+  EID: EID-S2-02
+  Type: OWNS
+  Src -> Dst: team-commerce -> service-checkout-api
+  Source IDs: ['T-482']
+  Source confidence: [0.85]
+  Source authority: [2]
+  Spans: ['Commerce team claims ownership of checkout-api to streamline the storefront checkout funnel.']
+  Status: unverified
+
+  EID: EID-S2-03
+  Type: APPROVED
+  Src -> Dst: person-dev-patel -> service-checkout-api
+  Source IDs: ['T-482-C1']
+  Source confidence: [1.0]
+  Source authority: [2]
+  Spans: ['Dev Patel approves ownership transfer of checkout-api to commerce team.']
+  Status: unverified
+
+  EID: EID-S2-04
+  Type: DISPUTES
+  Src -> Dst: person-samira-khan -> service-checkout-api
+  Source IDs: ['C-901']
+  Source confidence: [0.75]
+  Source authority: [1]
+  Spans: ['Samira disputes the ownership transfer of checkout-api in ticket T-482.']
+  Status: unverified
+
