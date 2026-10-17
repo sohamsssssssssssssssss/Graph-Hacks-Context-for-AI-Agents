@@ -249,7 +249,7 @@ def build_curated_data():
         "timestamp": "2024-03-15T09:00:00Z",
         "restricted": False,
         "title": "ADR-7: Session Cache Storage Migration",
-        "text": "Following incident INC-2291, ADR-7 supersedes ADR-3. We migrate session-cache storage to Memcached with active replication to avoid Redis cluster memory failure modes."
+        "text": "Following incident INC-2291, ADR-7 supersedes ADR-3. INC-2291 was a Redis cluster memory failure on session-cache. We migrate session-cache storage to Memcached with active replication to avoid Redis cluster memory failure modes."
     }
     doc_adr5 = {
         "id": "DOC-ADR-5",
@@ -271,7 +271,7 @@ def build_curated_data():
         {"eid": "EID-S1-04", "type": "DECIDED", "src": "person-platform-lead", "dst": "DEC-ADR-7", "src_ids": ["DOC-ADR-7"], "src_conf": [1.0], "src_auth": [3], "spans": ["Following incident INC-2291, ADR-7 supersedes ADR-3."]},
         {"eid": "EID-S1-05", "type": "SUPERSEDES", "src": "DEC-ADR-7", "dst": "DEC-ADR-3", "src_ids": ["DOC-ADR-7"], "src_conf": [1.0], "src_auth": [3], "spans": ["Following incident INC-2291, ADR-7 supersedes ADR-3."]},
         {"eid": "EID-S1-06", "type": "BECAUSE_OF", "src": "DEC-ADR-7", "dst": "INC-2291", "src_ids": ["DOC-ADR-7"], "src_conf": [1.0], "src_auth": [3], "spans": ["Following incident INC-2291, ADR-7 supersedes ADR-3."]},
-        {"eid": "EID-S1-07", "type": "CAUSED_BY", "src": "INC-2291", "dst": "service-session-cache", "src_ids": ["DOC-ADR-7"], "src_conf": [1.0], "src_auth": [3], "spans": ["Following incident INC-2291, ADR-7 supersedes ADR-3."]},
+        {"eid": "EID-S1-07", "type": "CAUSED_BY", "src": "INC-2291", "dst": "service-session-cache", "src_ids": ["DOC-ADR-7"], "src_conf": [1.0], "src_auth": [3], "spans": ["INC-2291 was a Redis cluster memory failure on session-cache."]},
         {"eid": "EID-S1-08", "type": "CONCERNS", "src": "DEC-ADR-5", "dst": "service-rate-limiter", "src_ids": ["DOC-ADR-5"], "src_conf": [1.0], "src_auth": [3], "spans": ["The rate-limiter service will use Redis sliding window counters for per-tenant traffic throttling."]},
         {"eid": "EID-S1-09", "type": "DECIDED", "src": "person-platform-lead", "dst": "DEC-ADR-5", "src_ids": ["DOC-ADR-5"], "src_conf": [1.0], "src_auth": [3], "spans": ["The rate-limiter service will use Redis sliding window counters for per-tenant traffic throttling."]},
     ]
@@ -926,6 +926,11 @@ def build_curated_data():
         })
     edges.extend(core_decision_edges)
 
+    # Each curated claim begins when its first source document was published.
+    docs_by_id = {doc["id"]: doc for doc in docs}
+    for edge in edges:
+        edge["valid_from"] = docs_by_id[edge["src_ids"][0]]["timestamp"]
+
     # Quick assert to ensure curated edge count is exactly 221
     assert len(edges) == 221, f"Expected 221 curated edges, got {len(edges)}"
 
@@ -1304,6 +1309,8 @@ def main():
     ]
     gold_data["restricted_doc_ids"] = ["DOC-PM-S6"]
     gold_data["unresolved_handles"] = ["ghost_coder_99", "phantom_ops", "shadow_actor"]
+    gold_data["allowed_statuses"] = ["unverified", "current", "noted"]
+    gold_data["status_notes"] = "Allowed status vocabulary includes unverified, current, and noted. expected_status values are left null for manual labeling."
 
     gold_file = out_dir / "gold.json"
     with open(gold_file, "w", encoding="utf-8") as f:

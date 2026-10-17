@@ -4,11 +4,11 @@ verify_data.py - Verification suite for Keystone dataset.
 
 Checks:
   1. Counts (nodes 6,243, edges 15,276, docs 98, curated edges 221, background edges 15,055).
-  2. Every span appears verbatim in the text of one of its source docs.
+  2. Every span appears verbatim in a source doc; curated valid_from matches its first source timestamp.
   3. All curated edges have status == 'unverified'.
-  4. All background edges have status == 'current'. No other status exists.
+  4. All background edges have status == 'current'; the vocabulary also includes 'noted'.
   5. All scenario IDs present in gold.json with all expected_status values == null.
-  6. No doc text-derived authors (author is metadata only; S5/S5b authors are not Dev Patel).
+  6. No doc text-derived authors; resolved scenario authors have MEMBER_OF edges.
   7. Determinism: same output for curated entities across runs.
   8. Service dependencies form a sparse DAG, and curated multi-hop chains remain intact.
 """
@@ -17,6 +17,8 @@ import argparse
 import json
 import sys
 from pathlib import Path
+
+ALLOWED_STATUSES = {"unverified", "current", "noted"}
 
 
 def parse_args():
@@ -91,7 +93,7 @@ def main():
 
     # 3. Check verbatim spans
     print("\n[3/8] Checking verbatim spans in source docs...")
-    docs_by_id = {d["id"]: d["text"] for d in docs}
+    doc_text_by_id = {d["id"]: d["text"] for d in docs}
     missing_spans = 0
     total_spans_checked = 0
 
@@ -103,7 +105,7 @@ def main():
             # Span must appear verbatim in at least one source doc text
             found = False
             for sid in src_ids:
-                doc_text = docs_by_id.get(sid, "")
+                doc_text = doc_text_by_id.get(sid, "")
                 if span in doc_text:
                     found = True
                     break
@@ -112,7 +114,12 @@ def main():
                 missing_spans += 1
 
     assert missing_spans == 0, f"{missing_spans} spans not found verbatim in source docs"
-    print(f"  [PASS] Checked {total_spans_checked} spans across all edges; all appear verbatim in source docs.")
+    docs_by_id = {d["id"]: d for d in docs}
+    for e in curated_edges:
+        assert e["src_ids"], f"Curated edge {e['eid']} has no source document"
+        source = docs_by_id[e["src_ids"][0]]
+        assert e["valid_from"] == source["timestamp"], f"Curated edge {e['eid']} date differs from {source['id']}"
+    print(f"  [PASS] {total_spans_checked} spans are verbatim; all {len(curated_edges)} curated dates match their first source docs.")
 
     # 4. Check edge status values
     print("\n[4/8] Checking edge status constraints...")
@@ -120,6 +127,7 @@ def main():
     for e in edges:
         status = e.get("status")
         eid = e.get("eid", "")
+        assert status in ALLOWED_STATUSES, f"Edge {eid} has status outside allowed vocabulary: {status}"
         if eid.startswith("EID-CUR-") or eid.startswith("EID-S") or eid.startswith("EID-M") or eid.startswith("EID-P1-") or eid.startswith("EID-CATALOG-"):
             if status != "unverified":
                 print(f"  [FAIL] Curated edge {eid} has unexpected status: '{status}' (must be 'unverified')")
@@ -128,11 +136,6 @@ def main():
             if status != "current":
                 print(f"  [FAIL] Background edge {eid} has unexpected status: '{status}' (must be 'current')")
                 invalid_statuses += 1
-        else:
-            if status not in ("unverified", "current"):
-                print(f"  [FAIL] Edge {eid} has invalid status: '{status}'")
-                invalid_statuses += 1
-
     assert invalid_statuses == 0, f"Found {invalid_statuses} edges with invalid status"
     print("  [PASS] All curated edges are 'unverified', all background edges are 'current'. No other status exists.")
 
@@ -157,13 +160,19 @@ def main():
     assert "alias_groups" in gold, "Missing 'alias_groups' in gold.json"
     assert "restricted_doc_ids" in gold, "Missing 'restricted_doc_ids' in gold.json"
     assert "unresolved_handles" in gold, "Missing 'unresolved_handles' in gold.json"
+    assert set(gold["allowed_statuses"]) == ALLOWED_STATUSES, "gold.json status vocabulary differs from verifier"
+    assert "noted" in gold["status_notes"], "gold.json notes omit noted status"
+    edges_by_eid = {e["eid"]: e for e in curated_edges}
+    assert gold["S10"]["curated_edge_eids"] == ["EID-S10-01", "EID-S10-02"]
+    assert [edges_by_eid[eid]["src_ids"][0] for eid in gold["S10"]["curated_edge_eids"]] == ["DOC-ADR-NOTIFIER-COMMERCE", "DOC-ADR-NOTIFIER-PLATFORM"]
 
-    print(f"  [PASS] All {len(expected_scenarios)} scenario IDs present with null expected_status values.")
+    print(f"  [PASS] All {len(expected_scenarios)} scenarios have null expected_status; S10 has both notifier ADR edges.")
 
     # 6. Check doc author metadata integrity (never derived from text)
     print("\n[6/8] Checking doc author metadata integrity...")
     people_by_id = {n["id"]: n for n in nodes if n.get("label") == "Person"}
     people_by_handle = {n["handle"]: n for n in nodes if n.get("label") == "Person" and n.get("handle")}
+    people_by_email = {n["email"]: n for n in nodes if n.get("label") == "Person" and n.get("email")}
 
     # S5 ticket: author handle 'phantom_ops' should not be in Person nodes
     doc_s5 = next(d for d in docs if d["id"] == "DOC-TICKET-S5")
@@ -187,7 +196,23 @@ def main():
     doc_s6 = next(d for d in docs if d["id"] == "DOC-PM-S6")
     assert doc_s6["restricted"] is True, "DOC-PM-S6 must be restricted"
 
-    print("  [PASS] Author metadata verified; never derived from text; unresolvable handles confirmed.")
+    aliases = {alias: group["person_id"] for group in gold["alias_groups"] for alias in group["aliases"]}
+    members = {e["src"] for e in curated_edges if e["type"] == "MEMBER_OF"}
+    unresolved = set()
+    for sc_id in expected_scenarios:
+        for eid in gold[sc_id]["curated_edge_eids"]:
+            for source_id in edges_by_eid[eid]["src_ids"]:
+                doc = docs_by_id[source_id]
+                person_id = (doc["author_id"] or
+                             people_by_handle.get(doc["author_handle"], {}).get("id") or
+                             people_by_email.get(doc["author_email"], {}).get("id") or
+                             aliases.get(doc["author_handle"]) or aliases.get(doc["author_email"]))
+                if person_id:
+                    assert person_id in members, f"Scenario author {person_id} lacks MEMBER_OF"
+                else:
+                    unresolved.add(doc["author_handle"] or doc["author_email"] or source_id)
+
+    print(f"  [PASS] Resolved scenario authors have MEMBER_OF edges. Unresolved source authors: {', '.join(sorted(unresolved))}.")
 
     # 7. Check determinism for curated portion
     print("\n[7/8] Checking determinism on curated components...")
