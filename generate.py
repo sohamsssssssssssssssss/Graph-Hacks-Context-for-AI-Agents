@@ -10,7 +10,7 @@ Outputs:
 
 Scale (seed 42):
   Total nodes: 6,243
-  Total edges: 16,477 (221 curated 'unverified', 16,256 background 'current')
+  Total edges: 15,276 (221 curated 'unverified', 15,055 background 'current')
   Total corpus docs: 98
 """
 
@@ -946,9 +946,8 @@ def build_curated_data():
 
 def generate_background_data(curated, seed=42):
     """
-    Generates background nodes, filler docs, and background edges to reach target scale:
+    Generates background nodes, filler docs, and background edges:
       Target Total Nodes: 6,243
-      Target Total Edges: 16,477 (221 curated + 16,256 background)
       Target Corpus Docs: 98
     """
     rng = random.Random(seed)
@@ -1076,23 +1075,61 @@ def generate_background_data(curated, seed=42):
         commit_nodes.append(c)
         all_nodes.append(c)
 
-    # 6. Generate background edges to reach target scale:
-    # Target: 16,477 total edges (221 curated + 16,256 background edges)
-    needed_bg_edges = 16477 - len(all_edges)
+    # 6. Generate background edges.
     bg_edges = []
 
-    # Priority A: P1 PageRank Hub inbound DEPENDS_ON edges
-    # Connect 25 random background services to api-hub-service to make it a distinct hub
+    # Priority A: sparse layered dependency DAG, including 25 inbound edges to the P1 hub.
     hub_svc_id = "service-api-hub"
-    non_hub_svcs = [s["id"] for s in curated_services if s["id"] not in [hub_svc_id, "service-core-auth", "service-batch-exporter"]]
-    hub_inbound_count = 25
-    for i in range(hub_inbound_count):
-        src_svc = non_hub_svcs[i % len(non_hub_svcs)]
+    service_ids = [s["id"] for s in curated_services]
+    curated_deps = [(e["src"], e["dst"]) for e in all_edges if e["type"] == "DEPENDS_ON"]
+    connected = {service for pair in curated_deps for service in pair}
+    layers = {service: 0 for service in service_ids}
+    for i, service in enumerate(s for s in service_ids if s not in connected):
+        layers[service] = i % 7
+    layers[hub_svc_id] = 7
+    layers["service-core-auth"] = 8
+    for _ in service_ids:
+        changed = False
+        for src, dst in curated_deps:
+            if layers[dst] <= layers[src]:
+                layers[dst] = layers[src] + 1
+                changed = True
+        if not changed:
+            break
+    assert max(layers.values()) <= 8, "Curated dependency chain exceeds eight layers"
+
+    hub_sources = sorted((s for s in service_ids if layers[s] < layers[hub_svc_id] and s != "service-batch-exporter"),
+                         key=lambda s: (layers[s], s), reverse=True)[:25]
+    dep_pairs = set(curated_deps)
+    new_deps = [(src, hub_svc_id) for src in hub_sources]
+    dep_pairs.update(new_deps)
+    for src in service_ids:
+        if src not in hub_sources and src not in (hub_svc_id, "service-core-auth", "service-batch-exporter"):
+            targets = [dst for dst in hub_sources if layers[src] < layers[dst]]
+            assert targets, f"No downstream hub path for {src}"
+            pair = (src, rng.choice(targets))
+            if pair not in dep_pairs:
+                new_deps.append(pair)
+                dep_pairs.add(pair)
+    outdegree = {s: sum(src == s for src, _ in dep_pairs) for s in service_ids}
+    candidates = [(src, dst) for src in service_ids for dst in service_ids
+                  if layers[src] < layers[dst] and dst not in (hub_svc_id, "service-core-auth", "service-batch-exporter")
+                  and (src, dst) not in dep_pairs]
+    rng.shuffle(candidates)
+    for src, dst in candidates:
+        if len(dep_pairs) == 210:
+            break
+        if outdegree[src] < 5:
+            new_deps.append((src, dst))
+            dep_pairs.add((src, dst))
+            outdegree[src] += 1
+    assert len(dep_pairs) == 210, "Not enough layered service dependencies"
+    for src_svc, dst_svc in new_deps:
         bg_edges.append({
             "eid": f"EID-BG-{len(bg_edges):05d}",
             "type": "DEPENDS_ON",
             "src": src_svc,
-            "dst": hub_svc_id,
+            "dst": dst_svc,
             "src_ids": [],
             "src_conf": [1.0],
             "src_auth": [2],
@@ -1106,8 +1143,6 @@ def generate_background_data(curated, seed=42):
     # Priority B: COMMITTED edges (Person -> Commit) and CONCERNS edges (Commit -> Service)
     # Distribute commits among engineers and services
     for i, c in enumerate(commit_nodes):
-        if len(bg_edges) >= needed_bg_edges:
-            break
         p = rng.choice(all_people)
         bg_edges.append({
             "eid": f"EID-BG-{len(bg_edges):05d}",
@@ -1124,27 +1159,24 @@ def generate_background_data(curated, seed=42):
             "derived_reason": None
         })
 
-        if len(bg_edges) < needed_bg_edges:
-            svc = rng.choice(curated_services)
-            bg_edges.append({
-                "eid": f"EID-BG-{len(bg_edges):05d}",
-                "type": "CONCERNS",
-                "src": c["id"],
-                "dst": svc["id"],
-                "src_ids": [],
-                "src_conf": [1.0],
-                "src_auth": [2],
-                "spans": [],
-                "valid_from": c["timestamp"],
-                "valid_to": None,
-                "status": "current",
-                "derived_reason": None
-            })
+        svc = rng.choice(curated_services)
+        bg_edges.append({
+            "eid": f"EID-BG-{len(bg_edges):05d}",
+            "type": "CONCERNS",
+            "src": c["id"],
+            "dst": svc["id"],
+            "src_ids": [],
+            "src_conf": [1.0],
+            "src_auth": [2],
+            "spans": [],
+            "valid_from": c["timestamp"],
+            "valid_to": None,
+            "status": "current",
+            "derived_reason": None
+        })
 
     # Priority C: Sourced filler edges from filler docs (with verbatim spans)
     for i, doc in enumerate(filler_docs):
-        if len(bg_edges) >= needed_bg_edges:
-            break
         # Extract verbatim span from doc text
         lines = [line.strip() for line in doc["text"].split("\n") if "maintains operational readiness" in line]
         span = lines[0] if lines else "Routine runbook document for service maintenance."
@@ -1164,30 +1196,9 @@ def generate_background_data(curated, seed=42):
             "derived_reason": None
         })
 
-    # Priority D: Random background service dependencies and on-call rotations to hit exact count
-    service_ids = [s["id"] for s in curated_services]
-    while len(bg_edges) < needed_bg_edges:
-        edge_type = rng.choice(["DEPENDS_ON", "ON_CALL", "COMMITTED"])
-        if edge_type == "DEPENDS_ON":
-            s1 = rng.choice(service_ids)
-            s2 = rng.choice(service_ids)
-            if s1 == s2:
-                continue
-            bg_edges.append({
-                "eid": f"EID-BG-{len(bg_edges):05d}",
-                "type": "DEPENDS_ON",
-                "src": s1,
-                "dst": s2,
-                "src_ids": [],
-                "src_conf": [1.0],
-                "src_auth": [2],
-                "spans": [],
-                "valid_from": "2023-01-01T00:00:00Z",
-                "valid_to": None,
-                "status": "current",
-                "derived_reason": None
-            })
-        elif edge_type == "ON_CALL":
+    # Priority D: keep operational background relationships without adding dependency paths.
+    for i in range(3000):
+        if i % 2:
             p = rng.choice(all_people)
             s = rng.choice(service_ids)
             bg_edges.append({

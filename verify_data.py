@@ -3,13 +3,14 @@
 verify_data.py - Verification suite for Keystone dataset.
 
 Checks:
-  1. Counts (nodes ~6,243, edges ~16,477, docs 98, curated edges 221, background edges ~16,250).
+  1. Counts (nodes 6,243, edges 15,276, docs 98, curated edges 221, background edges 15,055).
   2. Every span appears verbatim in the text of one of its source docs.
   3. All curated edges have status == 'unverified'.
   4. All background edges have status == 'current'. No other status exists.
   5. All scenario IDs present in gold.json with all expected_status values == null.
   6. No doc text-derived authors (author is metadata only; S5/S5b authors are not Dev Patel).
   7. Determinism: same output for curated entities across runs.
+  8. Service dependencies form a sparse DAG, and curated multi-hop chains remain intact.
 """
 
 import argparse
@@ -52,7 +53,7 @@ def main():
     print("=" * 60)
 
     # 1. Check file existence
-    print("\n[1/7] Checking file existence...")
+    print("\n[1/8] Checking file existence...")
     for f in [nodes_file, edges_file, docs_file, gold_file]:
         if not f.exists():
             print(f"  [FAIL] Missing required file: {f}", file=sys.stderr)
@@ -67,7 +68,7 @@ def main():
         gold = json.load(f)
 
     # 2. Check scale and counts
-    print("\n[2/7] Checking dataset scale & counts...")
+    print("\n[2/8] Checking dataset scale & counts...")
     num_nodes = len(nodes)
     num_edges = len(edges)
     num_docs = len(docs)
@@ -76,20 +77,20 @@ def main():
     background_edges = [e for e in edges if e.get("status") == "current"]
 
     print(f"  Nodes count           : {num_nodes:,} (Target ~6,243)")
-    print(f"  Edges count           : {num_edges:,} (Target ~16,477)")
+    print(f"  Edges count           : {num_edges:,} (Expected 15,276)")
     print(f"  Docs count            : {num_docs:,} (Target 98)")
     print(f"  Curated edges count   : {len(curated_edges):,} (Target 221)")
-    print(f"  Background edges count: {len(background_edges):,} (Target ~16,250)")
+    print(f"  Background edges count: {len(background_edges):,} (Expected 15,055)")
 
     assert 6000 <= num_nodes <= 6500, f"Node count {num_nodes} out of expected range (~6,243)"
-    assert 16000 <= num_edges <= 17000, f"Edge count {num_edges} out of expected range (~16,477)"
+    assert num_edges == 15276, f"Edge count {num_edges} != 15,276"
     assert num_docs == 98, f"Doc count {num_docs} != 98"
     assert len(curated_edges) == 221, f"Curated edge count {len(curated_edges)} != 221"
-    assert len(background_edges) == 16256, f"Background edge count {len(background_edges)} != 16,256"
+    assert len(background_edges) == 15055, f"Background edge count {len(background_edges)} != 15,055"
     print("  [PASS] All scale and count checks passed.")
 
     # 3. Check verbatim spans
-    print("\n[3/7] Checking verbatim spans in source docs...")
+    print("\n[3/8] Checking verbatim spans in source docs...")
     docs_by_id = {d["id"]: d["text"] for d in docs}
     missing_spans = 0
     total_spans_checked = 0
@@ -114,7 +115,7 @@ def main():
     print(f"  [PASS] Checked {total_spans_checked} spans across all edges; all appear verbatim in source docs.")
 
     # 4. Check edge status values
-    print("\n[4/7] Checking edge status constraints...")
+    print("\n[4/8] Checking edge status constraints...")
     invalid_statuses = 0
     for e in edges:
         status = e.get("status")
@@ -136,7 +137,7 @@ def main():
     print("  [PASS] All curated edges are 'unverified', all background edges are 'current'. No other status exists.")
 
     # 5. Check all scenario IDs present in gold.json
-    print("\n[5/7] Checking scenario coverage and gold.json structure...")
+    print("\n[5/8] Checking scenario coverage and gold.json structure...")
     expected_scenarios = ["S1", "S2", "S3", "S4", "S5", "S5b", "S6", "S7", "S8", "S9a", "S9b", "S10", "M1", "M2", "M3", "M4", "P1"]
     for sc_id in expected_scenarios:
         assert sc_id in gold, f"Missing scenario {sc_id} in gold.json"
@@ -160,7 +161,7 @@ def main():
     print(f"  [PASS] All {len(expected_scenarios)} scenario IDs present with null expected_status values.")
 
     # 6. Check doc author metadata integrity (never derived from text)
-    print("\n[6/7] Checking doc author metadata integrity...")
+    print("\n[6/8] Checking doc author metadata integrity...")
     people_by_id = {n["id"]: n for n in nodes if n.get("label") == "Person"}
     people_by_handle = {n["handle"]: n for n in nodes if n.get("label") == "Person" and n.get("handle")}
 
@@ -189,7 +190,7 @@ def main():
     print("  [PASS] Author metadata verified; never derived from text; unresolvable handles confirmed.")
 
     # 7. Check determinism for curated portion
-    print("\n[7/7] Checking determinism on curated components...")
+    print("\n[7/8] Checking determinism on curated components...")
     import generate
     curated_a = generate.build_curated_data()
     curated_b = generate.build_curated_data()
@@ -198,8 +199,40 @@ def main():
     assert [e["eid"] for e in curated_a["edges"]] == [e["eid"] for e in curated_b["edges"]]
     print("  [PASS] Curated dataset is completely deterministic across invocations.")
 
+    print("\n[8/8] Checking service dependency DAG and multi-hop chains...")
+    service_ids = {n["id"] for n in nodes if n["label"] == "Service"}
+    dependencies = [(e["src"], e["dst"]) for e in edges if e["type"] == "DEPENDS_ON"]
+    assert 200 <= len(dependencies) <= 250, f"Expected 200-250 service dependencies, got {len(dependencies)}"
+    successors = {service: [] for service in service_ids}
+    for src, dst in dependencies:
+        assert src in service_ids and dst in service_ids, f"Non-service dependency: {src} -> {dst}"
+        successors[src].append(dst)
+    assert max(map(len, successors.values())) <= 5, "A service has more than five outgoing dependencies"
+    visiting, visited = set(), set()
+    def visit(service):
+        assert service not in visiting, f"Dependency cycle through {service}"
+        if service in visited:
+            return
+        visiting.add(service)
+        for target in successors[service]:
+            visit(target)
+        visiting.remove(service)
+        visited.add(service)
+    for service in service_ids:
+        visit(service)
+    affected, frontier = {"service-core-auth"}, {"service-core-auth"}
+    for _ in range(6):
+        frontier = {src for src, dst in dependencies if dst in frontier} - affected
+        affected.update(frontier)
+    assert affected == service_ids, "P1 blast radius lost an affected service within six hops"
+    for scenario, chain in gold["multi_hop_chains"].items():
+        assert len(chain) - 1 >= 3, f"{scenario} has fewer than three hops"
+        assert all(dst in successors[src] for src, dst in zip(chain, chain[1:])), f"{scenario} chain is broken"
+        print(f"  {scenario}: {' -> '.join(chain)} ({len(chain)-1} hops)")
+    print(f"  [PASS] {len(dependencies)} DEPENDS_ON edges form a DAG; max outdegree is {max(map(len, successors.values()))}; P1 reaches {len(affected)-1} affected services.")
+
     print("\n" + "=" * 60)
-    print("ALL VERIFICATION CHECKS PASSED SUCCESSFULLY (7/7)")
+    print("ALL VERIFICATION CHECKS PASSED SUCCESSFULLY (8/8)")
     print("=" * 60)
 
 
