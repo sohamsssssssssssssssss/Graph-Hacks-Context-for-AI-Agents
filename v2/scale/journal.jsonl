@@ -1,0 +1,12 @@
+{"at": "2026-10-18T16:36:06.736252+00:00", "event": "graph_loaded", "size": "10k", "falkordb_seconds": 0.664711499994155}
+{"at": "2026-10-18T16:36:06.877561+00:00", "event": "both_loaded", "size": "10k", "falkordb_seconds": 0.664711499994155, "sqlite_seconds": 0.1410285829915665}
+{"at": "2026-10-18T16:36:12.275294+00:00", "event": "graph_loaded", "size": "100k", "falkordb_seconds": 4.146094791009091}
+{"at": "2026-10-18T16:36:13.607808+00:00", "event": "both_loaded", "size": "100k", "falkordb_seconds": 4.146094791009091, "sqlite_seconds": 1.3321964160422795}
+{"at": "2026-10-18T16:36:28.627066+00:00", "event": "correctness_passed", "size": "10k", "inputs": 80}
+{"at": "2026-10-18T16:40:27.888656+00:00", "event": "query_timed", "size": "10k", "query": "Q1", "samples": 1600}
+{"at": "2026-10-18T16:46:12.766757+00:00", "event": "query_timed", "size": "10k", "query": "Q3", "samples": 1600}
+{"at": "2026-10-18T16:46:21.861071+00:00", "event": "query_timed", "size": "10k", "query": "Q6", "samples": 1600}
+{"at": "2026-10-18T16:46:22.761729+00:00", "event": "query_timed", "size": "10k", "query": "Q9", "samples": 1600}
+{"at": "2026-10-18T16:46:22.762099+00:00", "event": "timings_complete", "size": "10k"}
+{"at": "2026-10-18T16:50:28.361596+00:00", "event": "correctness_passed", "size": "100k", "inputs": 80}
+{"at": "2026-10-18T16:58:04.642051+00:00", "event": "time_cap", "message": "Stop: Hard deadline/reporting reserve"}

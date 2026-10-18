@@ -1,0 +1,41 @@
+{
+  "10k": {
+    "exact_correctness_checks": 80,
+    "mismatches": 0,
+    "timing_samples": 6400,
+    "planned_timing_samples": 6400,
+    "unique_samples": 6400,
+    "samples_per_group": {
+      "Q1/cold/falkordb": 400,
+      "Q1/cold/sqlite": 400,
+      "Q1/warm/falkordb": 400,
+      "Q1/warm/sqlite": 400,
+      "Q3/cold/falkordb": 400,
+      "Q3/cold/sqlite": 400,
+      "Q3/warm/falkordb": 400,
+      "Q3/warm/sqlite": 400,
+      "Q6/cold/falkordb": 400,
+      "Q6/cold/sqlite": 400,
+      "Q6/warm/falkordb": 400,
+      "Q6/warm/sqlite": 400,
+      "Q9/cold/falkordb": 400,
+      "Q9/cold/sqlite": 400,
+      "Q9/warm/falkordb": 400,
+      "Q9/warm/sqlite": 400
+    }
+  },
+  "100k": {
+    "exact_correctness_checks": 80,
+    "mismatches": 0,
+    "timing_samples": 192,
+    "planned_timing_samples": 6400,
+    "unique_samples": 192,
+    "samples_per_group": {
+      "Q1/cold/falkordb": 48,
+      "Q1/cold/sqlite": 48,
+      "Q1/warm/falkordb": 48,
+      "Q1/warm/sqlite": 48
+    }
+  },
+  "infrastructure_resumes": 0
+}

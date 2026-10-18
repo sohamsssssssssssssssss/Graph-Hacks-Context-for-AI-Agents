@@ -255,6 +255,12 @@ def report(manifest):
                         if v:per_input.append({'query':q,'input':index,'engine':engine,'mode':mode,**summary(v)})
         save(HERE/(size+'_summary.json'),{'aggregate':details,'per_input':per_input,'observed_samples':len(samples),'planned_samples':6400})
         lines += [f'Timed samples: {len(samples)}/6400 planned. Raw timings, correctness rows, and per-input summaries are saved alongside this report.','']
+        coverage=Counter((r['query'],r['input']) for r in samples)
+        for q in inputs_global:
+            full=sum(coverage[(q,i)]==80 for i in range(20))
+            partial=sum(0<coverage[(q,i)]<80 for i in range(20))
+            lines += [f'- {q} timing coverage: {full}/20 input slots complete, {partial}/20 partial, {20-full-partial}/20 unmeasured.']
+        lines += ['']
     lines += ['## Limits and interpretation','',
               'The generator scales mostly filler commits and COMMITTED/CONCERNS noise; Service and Decision counts and the query-relevant curated topology stay fixed. Sparse decision queries and empty paths are retained. This is a background-noise benchmark, not 100k connected services. No ACL, standing, confidence, evidence verification or model cost is measured.',
               '', 'In Keystone, graph representation supports status-filtered path proof, connected decision chains, and PageRank severity. Those capabilities do not imply a raw traversal-speed advantage. Where SQLite has lower measured median traversal latency, SQLite is faster for this workload; graph value must be justified by the connected evidence model rather than these traversal timings.',
@@ -262,6 +268,7 @@ def report(manifest):
     lines += ['## Post-hoc configuration diagnosis','',
               'Saved SQLite EXPLAIN QUERY PLAN output in sqlite_plans.json shows Q1, Q3, and Q6 choosing edge_status(status) instead of the available adjacency indexes. ANALYZE was not run. The low-selectivity current-status scan is an important limitation: these timings compare the preregistered configuration, not a tuned SQLite baseline. Queries and indexes were not changed after observing this behavior.',
               '', 'The corpus has 60 Services, 45 Decisions, 210 DEPENDS_ON edges, one SUPERSEDES edge, and one BECAUSE_OF edge at both sizes. Q6 therefore does not test growing or long decision chains. Partial timing medians cover only the recorded input prefix and must not be used as complete size-to-size scaling estimates.',
+              '', 'Extra generated commits consume random draws before background dependency wiring is generated. Seed 42 therefore keeps curated scenarios fixed but can produce different background dependency wiring between sizes; this further limits causal size-to-size comparisons. Engine correctness comparisons use identical data within each size.',
               '', 'Load-time durability is not normalized: SQLite uses its default DELETE journal/FULL synchronous mode; FalkorDB has appendonly disabled and periodic snapshots. See environment.json for versions, hardware, defaults, and generator/derivation hashes. No exclusive-machine or flushed-cache claim is made.']
     all_samples=[]
     for size,_ in SIZES:

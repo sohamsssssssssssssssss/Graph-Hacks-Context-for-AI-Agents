@@ -1,0 +1,108 @@
+{
+  "registration": "f99ac9a579477377ecadd9d55bbc5253d45d7107",
+  "started_at": "2026-10-18T16:36:05.940575+00:00",
+  "status": "partial",
+  "sizes": {
+    "10k": {
+      "nodes": 10000,
+      "edges": 24469,
+      "generation_seconds": 0.10775741701945662,
+      "node_types": {
+        "Team": 10,
+        "Service": 60,
+        "Person": 85,
+        "Incident": 45,
+        "Decision": 45,
+        "Doc": 98,
+        "Commit": 9657
+      },
+      "edge_types": {
+        "CONCERNS": 9743,
+        "DECIDED": 3,
+        "SUPERSEDES": 1,
+        "BECAUSE_OF": 1,
+        "CAUSED_BY": 2,
+        "OWNS": 75,
+        "APPROVED": 3,
+        "DISPUTES": 1,
+        "MEMBER_OF": 33,
+        "ON_CALL": 2400,
+        "DEPENDS_ON": 210,
+        "COMMITTED": 11997
+      },
+      "status_counts": {
+        "retired": 3,
+        "current": 24453,
+        "rejected": 5,
+        "noted": 5,
+        "contested": 3
+      },
+      "data_sha256": {
+        "docs.jsonl": "4563a0cea048589e8c2421e616551e8ea4da625a4630676bc4e69d56a9edefe7",
+        "edges.jsonl": "9686648c0fe19cb3852031c286d687f194cf3767a9fd4dd8df2b60d209d61542",
+        "nodes.jsonl": "031f53879ff893706d32a5b55c5bd9937afea151da26cc45652fedfe49cf85bb"
+      },
+      "loads": {
+        "falkordb_seconds": 0.664711499994155,
+        "sqlite_seconds": 0.1410285829915665
+      },
+      "falkordb_loaded_at": "2026-10-18T16:36:06.735776+00:00",
+      "both_loaded_at": "2026-10-18T16:36:06.877325+00:00"
+    },
+    "100k": {
+      "nodes": 100000,
+      "edges": 244690,
+      "generation_seconds": 1.1622680830187164,
+      "node_types": {
+        "Team": 10,
+        "Service": 60,
+        "Person": 85,
+        "Incident": 45,
+        "Decision": 45,
+        "Doc": 98,
+        "Commit": 99657
+      },
+      "edge_types": {
+        "CONCERNS": 99743,
+        "DECIDED": 3,
+        "SUPERSEDES": 1,
+        "BECAUSE_OF": 1,
+        "CAUSED_BY": 2,
+        "OWNS": 75,
+        "APPROVED": 3,
+        "DISPUTES": 1,
+        "MEMBER_OF": 33,
+        "ON_CALL": 22510,
+        "DEPENDS_ON": 210,
+        "COMMITTED": 122108
+      },
+      "status_counts": {
+        "retired": 3,
+        "current": 244674,
+        "rejected": 5,
+        "noted": 5,
+        "contested": 3
+      },
+      "data_sha256": {
+        "docs.jsonl": "4563a0cea048589e8c2421e616551e8ea4da625a4630676bc4e69d56a9edefe7",
+        "edges.jsonl": "0852e293c9f5edb704c4868b653c6bf78bc609d134fabd429a28ead2c7fd770b",
+        "nodes.jsonl": "f3d54ff84f4c37ab8b33ec395a2702e13f74a491030ab5d1507236b91ac65404"
+      },
+      "loads": {
+        "falkordb_seconds": 4.146094791009091,
+        "sqlite_seconds": 1.3321964160422795
+      },
+      "falkordb_loaded_at": "2026-10-18T16:36:12.274801+00:00",
+      "both_loaded_at": "2026-10-18T16:36:13.607527+00:00"
+    }
+  },
+  "machine": {
+    "platform": "macOS-27.0.1-arm64-arm-64bit",
+    "python": "3.11.15",
+    "sqlite": "3.54.1",
+    "cpu_count": 10,
+    "redis": "8.10.2"
+  },
+  "error": "Stop: Hard deadline/reporting reserve",
+  "saved_at": "2026-10-18T16:58:04.644506+00:00"
+}

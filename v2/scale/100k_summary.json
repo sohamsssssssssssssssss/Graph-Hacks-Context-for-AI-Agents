@@ -1,0 +1,148 @@
+{
+  "aggregate": {
+    "Q1_sqlite": {
+      "cold": {
+        "n": 48,
+        "median_ms": 4916.446478484431,
+        "p95_ms": 8664.101791975554
+      },
+      "warm": {
+        "n": 48,
+        "median_ms": 4891.755999997258,
+        "p95_ms": 8279.298458015546
+      }
+    },
+    "Q1_falkordb": {
+      "cold": {
+        "n": 48,
+        "median_ms": 6.5134374890476465,
+        "p95_ms": 9.764374990481883
+      },
+      "warm": {
+        "n": 48,
+        "median_ms": 2.676561998669058,
+        "p95_ms": 4.899082996416837
+      }
+    },
+    "Q1_cold_faster": "FalkorDB",
+    "Q1_warm_faster": "FalkorDB",
+    "Q3_sqlite": {},
+    "Q3_falkordb": {},
+    "Q6_sqlite": {},
+    "Q6_falkordb": {},
+    "Q9_sqlite": {},
+    "Q9_falkordb": {}
+  },
+  "per_input": [
+    {
+      "query": "Q1",
+      "input": 0,
+      "engine": "sqlite",
+      "mode": "cold",
+      "n": 20,
+      "median_ms": 2720.1759585295804,
+      "p95_ms": 3031.6610420122743
+    },
+    {
+      "query": "Q1",
+      "input": 0,
+      "engine": "sqlite",
+      "mode": "warm",
+      "n": 20,
+      "median_ms": 2626.1308124812786,
+      "p95_ms": 3022.456542006694
+    },
+    {
+      "query": "Q1",
+      "input": 0,
+      "engine": "falkordb",
+      "mode": "cold",
+      "n": 20,
+      "median_ms": 5.778666498372331,
+      "p95_ms": 6.964625034015626
+    },
+    {
+      "query": "Q1",
+      "input": 0,
+      "engine": "falkordb",
+      "mode": "warm",
+      "n": 20,
+      "median_ms": 2.207896497566253,
+      "p95_ms": 3.7048329832032323
+    },
+    {
+      "query": "Q1",
+      "input": 1,
+      "engine": "sqlite",
+      "mode": "cold",
+      "n": 20,
+      "median_ms": 5064.876645512413,
+      "p95_ms": 5473.773457983043
+    },
+    {
+      "query": "Q1",
+      "input": 1,
+      "engine": "sqlite",
+      "mode": "warm",
+      "n": 20,
+      "median_ms": 5015.387395978905,
+      "p95_ms": 5823.704583977815
+    },
+    {
+      "query": "Q1",
+      "input": 1,
+      "engine": "falkordb",
+      "mode": "cold",
+      "n": 20,
+      "median_ms": 7.116957975085825,
+      "p95_ms": 9.149082994554192
+    },
+    {
+      "query": "Q1",
+      "input": 1,
+      "engine": "falkordb",
+      "mode": "warm",
+      "n": 20,
+      "median_ms": 3.3923749870155007,
+      "p95_ms": 4.944833985064179
+    },
+    {
+      "query": "Q1",
+      "input": 2,
+      "engine": "sqlite",
+      "mode": "cold",
+      "n": 8,
+      "median_ms": 8485.097333497833,
+      "p95_ms": 8852.992208034266
+    },
+    {
+      "query": "Q1",
+      "input": 2,
+      "engine": "sqlite",
+      "mode": "warm",
+      "n": 8,
+      "median_ms": 8210.477978980634,
+      "p95_ms": 8426.477209024597
+    },
+    {
+      "query": "Q1",
+      "input": 2,
+      "engine": "falkordb",
+      "mode": "cold",
+      "n": 8,
+      "median_ms": 7.893437490565702,
+      "p95_ms": 10.723167040850967
+    },
+    {
+      "query": "Q1",
+      "input": 2,
+      "engine": "falkordb",
+      "mode": "warm",
+      "n": 8,
+      "median_ms": 3.3679585030768067,
+      "p95_ms": 4.715916002169251
+    }
+  ],
+  "observed_samples": 192,
+  "planned_samples": 6400
+}
