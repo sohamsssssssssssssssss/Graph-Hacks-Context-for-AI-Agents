@@ -64,7 +64,7 @@ def check_fields(obj, spec, where, required=True):
 
 def validate_run(run, where):
     check(isinstance(run, dict), f"{where}: not an object")
-    check(set(run) == set(TOP_KEYS), f"{where}: top-level keys {sorted(run)} != exact schema keys")
+    check(set(run) - {"alert_service"} == set(TOP_KEYS), f"{where}: top-level keys {sorted(run)} != exact schema keys")
     for key, type_ in TOP_KEYS.items():
         if type_ is str:
             check(isinstance(run[key], str), f"{where}.{key} must be str, got {type(run[key])}")
@@ -92,6 +92,9 @@ def validate_run(run, where):
     if run["system"] == "B1":
         check(gate["decision"] == "NO_GATE", f"{where}: B1 gate decision must be NO_GATE")
         check(gate["pass_used"] is False, f"{where}: B1 pass_used must be false")
+
+    check(run.get("alert_service") is None or isinstance(run["alert_service"], str),
+          f"{where}: alert_service must be str or null")
 
     graph = run["graph"]
     check(isinstance(graph, dict) and set(graph) == {"nodes", "edges"}, f"{where}.graph shape")
@@ -124,7 +127,7 @@ def validate_run(run, where):
 
     indices = set()
     for step in run["steps"]:
-        check(set(step) == set(STEP_TYPES), f"{where} step keys {sorted(step)}")
+        check(set(step) - {"verification"} == set(STEP_TYPES), f"{where} step keys {sorted(step)}")
         for key in STEP_TYPES:
             value = step[key]
             expected = STEP_TYPES[key]
@@ -135,6 +138,18 @@ def validate_run(run, where):
         step.setdefault("i", -1)
         check(step["i"] not in indices, f"{where}: duplicate step index {step['i']}")
         indices.add(step["i"])
+        verification = step.get("verification")
+        if verification is not None:
+            check(step["tool"] == "verify_path", f"{where}: verification on non-verifier step")
+            check_fields(verification, {"passed": bool, "gate_disabled": bool,
+                         "edge_ids": list, "target": (str, type(None)), "sources": list}, where)
+            check(not verification["passed"] or not verification["gate_disabled"],
+                  f"{where}: bypassed gate cannot verify a path")
+            check(all(eid in edge_ids for eid in verification["edge_ids"]),
+                  f"{where}: verified edge missing from graph")
+            for source in verification["sources"]:
+                check_fields(source, {"edge_id": str, "doc_id": str}, where)
+
         check(len(step["summary"]) <= MAX_SUMMARY, f"{where} step {step['i']}: summary {len(step['summary'])} > {MAX_SUMMARY}")
         check(len(step["args"]) <= 400, f"{where} step {step['i']}: args string too long")
         check(isinstance(step["node_ids"], list) and all(isinstance(x, str) for x in step["node_ids"]),

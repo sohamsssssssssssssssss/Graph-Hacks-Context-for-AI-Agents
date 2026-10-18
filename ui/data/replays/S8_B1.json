@@ -33,7 +33,8 @@
     "EID-CATALOG-ONCALL-03",
     "EID-CATALOG-OWNS-03",
     "EID-S8-01"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 1,
@@ -47,7 +48,14 @@
    "edge_ids": [
     "EID-CATALOG-OWNS-03",
     "EID-S8-01"
-   ]
+   ],
+   "verification": {
+    "passed": false,
+    "gate_disabled": true,
+    "edge_ids": [],
+    "target": "service-ledger",
+    "sources": []
+   }
   },
   {
    "i": 2,
@@ -58,7 +66,8 @@
     "service-ledger",
     "team-payments"
    ],
-   "edge_ids": []
+   "edge_ids": [],
+   "verification": null
   }
  ],
  "graph": {
@@ -2723,5 +2732,6 @@
    "pass_id": "pass_1"
   }
  ],
- "final_answer": "Invalid model output; escalate to fixed contact."
+ "final_answer": "Invalid model output; escalate to fixed contact.",
+ "alert_service": "service-ledger"
 }

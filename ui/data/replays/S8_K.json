@@ -33,7 +33,8 @@
     "EID-CATALOG-ONCALL-03",
     "EID-CATALOG-OWNS-03",
     "EID-S8-01"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 1,
@@ -47,7 +48,14 @@
    "edge_ids": [
     "EID-CATALOG-OWNS-03",
     "EID-S8-01"
-   ]
+   ],
+   "verification": {
+    "passed": false,
+    "gate_disabled": false,
+    "edge_ids": [],
+    "target": "service-ledger",
+    "sources": []
+   }
   },
   {
    "i": 2,
@@ -58,7 +66,8 @@
     "service-ledger",
     "team-payments"
    ],
-   "edge_ids": []
+   "edge_ids": [],
+   "verification": null
   },
   {
    "i": 3,
@@ -66,7 +75,8 @@
    "args": "{\"action\": {\"kind\": \"PAGE\", \"target\": \"keystone-fixed-contact\"}, \"execute\": true, \"pass_id\": null}",
    "summary": "Executed PAGE on keystone-fixed-contact (mode: audit_only)",
    "node_ids": [],
-   "edge_ids": []
+   "edge_ids": [],
+   "verification": null
   }
  ],
  "graph": {
@@ -2737,5 +2747,6 @@
    "pass_id": null
   }
  ],
- "final_answer": "The current owner of the `service-ledger` is `team-payments`. The on-call engineer for this service is Samira Khan (`person-samira-khan`) with a confidence of 0.9 and authority level of 2. The evidence is sourced from the catalog and an ADR document. However, the path verification failed, and the proposal to escalate to `team-payments` was not successful due to the tool being unavailable or the request being rejected. Gate requires escalation to keystone-fixed-contact."
+ "final_answer": "The current owner of the `service-ledger` is `team-payments`. The on-call engineer for this service is Samira Khan (`person-samira-khan`) with a confidence of 0.9 and authority level of 2. The evidence is sourced from the catalog and an ADR document. However, the path verification failed, and the proposal to escalate to `team-payments` was not successful due to the tool being unavailable or the request being rejected. Gate requires escalation to keystone-fixed-contact.",
+ "alert_service": "service-ledger"
 }

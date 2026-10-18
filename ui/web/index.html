@@ -38,6 +38,12 @@
   #src-tag { color: var(--muted); font-size: 15px; }
   #step-pos { color: var(--muted); font-size: 15px; min-width: 9ch; }
 
+  #story-strip { flex: 0 0 auto; padding: 10px 16px; background: var(--bg2);
+    border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+  .story-row + .story-row { margin-top: 6px; }
+  .story-system { color: var(--muted); margin-right: 10px; }
+  .graph-scope { position: absolute; bottom: 10px; left: 12px; z-index: 5;
+    color: var(--muted); font-size: 14px; max-width: 60%; background: var(--bg); }
   /* ---- layout ---- */
   #main { flex: 1 1 auto; display: flex; min-height: 0; min-width: 0; }
   .col { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
@@ -156,6 +162,7 @@
   <label for="speed">Speed</label>
   <select id="speed"><option value="1" selected>1x</option><option value="2">2x</option></select>
   <span id="step-pos"></span>
+  <label><input type="checkbox" id="full-graph"> Show full graph</label>
   <div id="mode-switch">
     <button data-mode="single" class="active">Single</button>
     <button data-mode="compare">Compare K&#8202;|&#8202;B1</button>
@@ -163,6 +170,7 @@
   <span id="src-tag"></span>
 </div>
 
+<div id="story-strip" role="status" aria-live="polite"></div>
 <div id="main" class="single">
   <div class="col" id="col-graph-a"></div>
   <div class="col side-col" id="col-side"></div>
@@ -225,7 +233,7 @@ function esc(s) {
 /* ---------------- Data loading: ../data/replays then ./fixture ----- */
 var DATA_BASES = ["../data/replays/", "./fixture/"];
 var state = { base: null, entries: [], selected: 0, runsByCase: {},
-              compare: false, cursor: -1, playing: false, timer: null, speed: 1 };
+              compare: false, fullGraph: false, cursor: -1, playing: false, timer: null, speed: 1 };
 
 function fetchJson(url) {
   return fetch(url).then(function (r) {
@@ -279,35 +287,95 @@ function hideTip() { tooltip.style.display = "none"; }
 function anyEvent(evt) { return evt || (typeof window !== "undefined" ? window.event : null) ||
   { clientX: window.innerWidth / 3, clientY: window.innerHeight / 3 }; }
 
-/* ---------------- Readability: reachable subgraph filter ------------ *
- * Visible = nodes touched by any step (node_ids) + 1-hop neighbors via
- * graph.edges. Nodes with no visible edge are dropped unless stepped on. */
-function reachFilter(run) {
-  var rawNodes = (gp(run, "graph", {}) || {}).nodes || [];
-  var rawEdges = (gp(run, "graph", {}) || {}).edges || [];
-  var steps = gp(run, "steps", []) || [];
-  var touched = new Set(), stepEdgeIds = new Set();
-  steps.forEach(function (s) {
-    (gp(s, "node_ids", []) || []).forEach(function (n) { if (n) touched.add(n); });
-    (gp(s, "edge_ids", []) || []).forEach(function (e) { if (e) stepEdgeIds.add(e); });
+/* Focus only on evidence actually accepted by the saved verifier. */
+function alertId(run) {
+  if (run.alert_service) return run.alert_service;
+  var steps = run.steps || [];
+  for (var i = 0; i < steps.length; i++) {
+    try { var args = JSON.parse(steps[i].args); if (args.service) return args.service; } catch (e) {}
+  }
+  return null;
+}
+function replayProgress(run, cursor) {
+  var seen = new Set(), verification = null, checked = false;
+  (run.steps || []).slice(0, cursor + 1).forEach(function (step) {
+    checked = true;
+    (step.edge_ids || []).forEach(function (id) { seen.add(id); });
+    if (step.verification && step.verification.passed) verification = step.verification;
   });
-  var visEdges = rawEdges.filter(function (e) {
-    return touched.has(gp(e, "source", "")) || touched.has(gp(e, "target", "")) || stepEdgeIds.has(gp(e, "id", ""));
+  var edges = (run.graph.edges || []).filter(function (e) {
+    return verification && verification.edge_ids.indexOf(e.id) >= 0;
   });
-  var degree = {};
-  visEdges.forEach(function (e) {
-    var s = gp(e, "source", ""), t = gp(e, "target", "");
-    degree[s] = (degree[s] || 0) + 1; degree[t] = (degree[t] || 0) + 1;
+  var ownerEdge = edges.find(function (e) { return e.type === "OWNS"; });
+  return { checked: checked, count: seen.size, verification: verification, edges: edges,
+    owner: ownerEdge ? ownerEdge.source : null };
+}
+function nodeName(run, id) {
+  var node = (run.graph.nodes || []).find(function (n) { return n.id === id; });
+  return node ? node.label : (id || "unknown service");
+}
+function storyText(run, cursor) {
+  var id = alertId(run), progress = replayProgress(run, cursor);
+  var text = id ? "Alert on " + nodeName(run, id) : "Question: " + (run.question || run.title);
+  if (progress.checked) text += " → checked " + progress.count + " trust edges";
+  if (progress.owner) {
+    text += " → verified path to " + nodeName(run, progress.owner);
+    if (progress.verification.target && progress.verification.target !== id)
+      text += " (for " + nodeName(run, progress.verification.target) + ")";
+  }
+  if (cursor >= 0 && cursor >= (run.steps || []).length - 1) {
+    if (!progress.owner) text += run.system === "B1" ? " → verification bypassed (no gate)" : " → no verified owner path";
+    text += " → decision: " + run.outcome;
+  }
+  return text;
+}
+function focusedGraph(run, cursor, full) {
+  var progress = replayProgress(run, cursor), alert = alertId(run);
+  var edges = full ? run.graph.edges.slice() : progress.edges.slice();
+  var ids = new Set(alert ? [alert] : []);
+  edges.forEach(function (e) { ids.add(e.source); ids.add(e.target); });
+  var nodes = run.graph.nodes.filter(function (n) { return full || ids.has(n.id); });
+  if (alert && !nodes.some(function (n) { return n.id === alert; }))
+    nodes.unshift({id: alert, label: alert.replace(/^service-/, ""), type: "Service"});
+  if (!full) {
+    var docs = new Set();
+    edges.forEach(function (e) {
+      (progress.verification ? progress.verification.sources || [] : []).filter(function (s) {
+        return s.edge_id === e.id;
+      }).forEach(function (source) {
+        var id = source.doc_id;
+        docs.add(id);
+        edges.push({id: "source:" + e.id + ":" + id, source: id, target: e.target,
+          status: "other", reason: "Source document for " + e.id, sourceLink: true});
+      });
+    });
+    docs.forEach(function (id) {
+      if (!nodes.some(function (n) { return n.id === id; })) nodes.push({id: id, label: id, type: "Doc"});
+    });
+  }
+  return {nodes: nodes, edges: edges};
+}
+function updateGraph(col) {
+  var data = focusedGraph(col.run, state.cursor, state.fullGraph);
+  var signature = JSON.stringify([state.fullGraph, data.nodes.map(function(n) { return n.id; }), data.edges.map(function(e) { return e.id; })]);
+  if (signature === col.signature) return;
+  col.signature = signature;
+  var columns = state.fullGraph ? 8 : 2;
+  col.gdata.nodes = data.nodes.map(function (n, i) {
+    return {id: n.id, label: n.label, type: n.type, touched: true,
+      x: (i % columns) * 270, y: Math.floor(i / columns) * 95,
+      fx: (i % columns) * 270, fy: Math.floor(i / columns) * 95};
   });
-  var keep = new Set(touched);
-  visEdges.forEach(function (e) { keep.add(gp(e, "source", "")); keep.add(gp(e, "target", "")); });
-  var nodes = rawNodes.filter(function (n) {
-    var id = gp(n, "id", "");
-    return keep.has(id) && (touched.has(id) || (degree[id] || 0) > 0);
+  col.gdata.links = data.edges.map(function (e) {
+    return Object.assign({}, e, {style: statusOf(e)});
   });
-  var edges = visEdges;
-  window.__reportBoot("reach", "nodes " + nodes.length + "/" + rawNodes.length + " edges " + edges.length + "/" + rawEdges.length);
-  return { nodes: nodes, edges: edges, touched: touched };
+  col.scope.textContent = state.fullGraph ? "Full saved graph" :
+    replayProgress(col.run, state.cursor).verification ? "Verified path and source docs" : "No verified path yet";
+  if (col.fg) {
+    col.fg.graphData(col.gdata);
+    resizeFg(col);
+    fitGraph(col);
+  }
 }
 
 /* ---------------- Column (graph + panels) rendering ---------------- */
@@ -363,24 +431,15 @@ function mountGraph(el, run, suffix) {
      and the column shows only the evidence panel. */
   el.appendChild(graphWrap);
 
-  var fg = null, gdata = null;
+  var scope = document.createElement("div");
+  scope.className = "graph-scope";
+  graphWrap.appendChild(scope);
+  var gdata = {nodes: [], links: [], highlight: {active: false, nodeIds: new Set(), edgeIds: new Set(), rejectEnds: new Set()}}, fg = null;
   try {
     if (typeof ForceGraph !== "function") throw new Error("force-graph library missing");
-    var reach = reachFilter(run);
-    gdata = {
-      nodes: reach.nodes.map(function (n) {
-        return { id: gp(n, "id", ""), label: gp(n, "label", gp(n, "id", "(unlabeled)")),
-                 type: gp(n, "type", "?"), touched: reach.touched.has(gp(n, "id", "")) };
-      }),
-      links: reach.edges.map(function (e) {
-        return { id: gp(e, "id", ""), source: gp(e, "source", ""), target: gp(e, "target", ""),
-                 status: gp(e, "status", "other"), authority: gp(e, "authority", null),
-                 reason: gp(e, "reason", ""), style: statusOf(e) };
-      }),
-      highlight: { active: false, nodeIds: new Set(), edgeIds: new Set(), rejectEnds: new Set() }
-    };
     fg = ForceGraph()(libTarget)
       .backgroundColor("#0e1116")
+      .cooldownTicks(0)
       .nodeCanvasObject(function (node, ctx, gs) { drawNode(node, ctx, gs, gdata); })
       .linkCanvasObject(function (link, ctx, gs) { drawLink(link, ctx, gs, gdata); })
       .onNodeHover(function (node, evt) {
@@ -397,17 +456,13 @@ function mountGraph(el, run, suffix) {
           "<br>edge: <code>" + esc(link.id || "") + "</code>");
       })
       .graphData(gdata);
-    /* spread, not clumped */
-    var linkF = fg.d3Force("link"); if (linkF && linkF.distance) linkF.distance(60);
-    var charge = fg.d3Force("charge"); if (charge) charge.strength(-120);
-    fg.onEngineStop(function () { fg.zoomToFit(400, 60); });
   } catch (err) {
     window.__reportBoot("graph_" + suffix, err.message);
     graphWrap.insertAdjacentHTML("beforeend",
       '<div style="padding:16px;color:#9aa7b5">Graph unavailable: ' + esc(err.message) + "</div>");
   }
   var col = { graphWrap: graphWrap, fg: fg, gdata: gdata, run: run, notice: notice,
-           suffix: suffix, sys: sys, caseId: caseId };
+           suffix: suffix, sys: sys, caseId: caseId, scope: scope };
   /* Keep the canvas sized from its parent before any zoomToFit. */
   if (window.ResizeObserver && col.fg) {
     var pending = null;
@@ -415,7 +470,7 @@ function mountGraph(el, run, suffix) {
       if (pending) clearTimeout(pending);
       pending = setTimeout(function () {
         resizeFg(col);
-        try { col.fg.zoomToFit(400, 60); } catch (e) {}
+        try { fitGraph(col); } catch (e) {}
       }, 150);
     });
     ro.observe(graphWrap);
@@ -477,10 +532,22 @@ function resizeFg(col) {
       .height(Math.max(col.graphWrap.clientHeight || 400, 240));
   } catch (e) {}
 }
+function fitGraph(col) {
+  if (!col || !col.fg || !col.gdata.nodes.length) return;
+  var xs = col.gdata.nodes.map(function (n) { return n.fx; });
+  var ys = col.gdata.nodes.map(function (n) { return n.fy; });
+  var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+  var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+  // Include label bounds; zoomToFit considers node centres only.
+  var zoom = Math.min(1.2, col.graphWrap.clientWidth / (maxX - minX + 440),
+    col.graphWrap.clientHeight / (maxY - minY + 210));
+  col.fg.centerAt((minX + maxX) / 2, (minY + maxY) / 2, 0);
+  col.fg.zoom(zoom, 0);
+}
 function refitAll() {
   Object.keys(cols).forEach(function (k) {
     var c = cols[k];
-    if (c && c.fg) { resizeFg(c); try { c.fg.zoomToFit(400, 60); } catch (e) {} }
+    if (c && c.fg) { resizeFg(c); try { fitGraph(c); } catch (e) {} }
   });
 }
 
@@ -495,9 +562,8 @@ function drawNode(node, ctx, gs, gdata) {
   if (node.x == null) return;
   var hl = gdata.highlight;
   var hot = hl.active && hl.nodeIds.has(node.id);
-  var dim = hl.active && !hot && !hl.rejectEnds.has(node.id);
-  var labeled = hl.active ? (hl.nodeIds.has(node.id) || hl.rejectEnds.has(node.id))
-                          : !!node.touched;    // pre-replay: full touched subgraph, labeled lightly
+  var dim = state.fullGraph && hl.active && !hot && !hl.rejectEnds.has(node.id);
+  var labeled = true;
   var fontWeight = hot ? "bold " : "";
   ctx.font = fontWeight + "14px sans-serif";
   var r = labeled ? Math.max(3, 4.4 / gs) : Math.max(1.8, 2.2 / gs);
@@ -510,18 +576,15 @@ function drawNode(node, ctx, gs, gdata) {
   ctx.shadowBlur = 0;
   ctx.globalAlpha = 1;
   if (labeled) {
-    var text = node.label || node.id;
-    var ly = node.y - r - 6;                     // label above node
-    ctx.fillStyle = "#e8edf3";
-    if (hl.active) {
-      drawBackground(ctx, node.x, ly, text, 14); // dark text-background for legibility
-      ctx.globalAlpha = 1;
-    } else {
-      ctx.globalAlpha = 0.55;                    // lightly before Replay
-    }
+    var words = (node.label || node.id).match(/.{1,28}/g) || [node.id];
     ctx.textAlign = "center";
-    ctx.fillText(text, node.x, ly);
-    ctx.globalAlpha = 1;
+    words.forEach(function (text, i) {
+      var ly = node.y - r - 10 - (words.length - 1 - i) * 17;
+      drawBackground(ctx, node.x, ly, text, 14);
+      ctx.fillStyle = "#e8edf3";
+      ctx.globalAlpha = 1;
+      ctx.fillText(text, node.x, ly);
+    });
   }
 }
 function labColor(node) {                          // node fill: keep grey but honor highlighted reject-ends
@@ -534,7 +597,7 @@ function drawLink(link, ctx, gs, gdata) {
   if (!s || !t || s.x == null || t.x == null) return;
   var hl = gdata.highlight;
   var hot = hl.active && hl.edgeIds.has(link.id);
-  var dim = hl.active && !hot;
+  var dim = state.fullGraph && hl.active && !hot;
   var st = link.style || statusOf(link);
   if (hot) {                                       // glow underlay
     ctx.globalAlpha = .27; ctx.strokeStyle = st.color; ctx.lineWidth = 8;
@@ -653,10 +716,15 @@ function stepsOf(col) { return (gp(col.run, "steps", []) || []); }
 function applyCursor() {
   var pos = document.getElementById("step-pos");
   var total = maxSteps();
+  document.getElementById("story-strip").innerHTML = Object.keys(cols).map(function (key) {
+    var col = cols[key];
+    return '<div class="story-row">' + (state.compare ? '<b class="story-system">' + esc(col.sys) + '</b>' : '') + esc(storyText(col.run, state.cursor)) + '</div>';
+  }).join("");
   pos.textContent = "step " + (state.cursor + 1 < 0 ? "—" : Math.min(state.cursor + 1, total)) + " / " + total;
   Object.keys(cols).forEach(function (key) {
     var col = cols[key];
     if (!col) return;
+    updateGraph(col);
     var steps = stepsOf(col);
     var clamped = state.cursor < 0 ? -1 : Math.min(state.cursor, steps.length - 1);
     var atEnd = clamped >= 0 && clamped >= steps.length - 1;
@@ -679,8 +747,8 @@ function applyCursor() {
         (col.gdata.links || []).forEach(function (lk) {
           if (lk.id === id && lk.status === "rejected") {
             var s = gp(lk, "source", ""), t = gp(lk, "target", "");
-            if (s) rejectEnds.add(s);
-            if (t) rejectEnds.add(t);
+            if (s) rejectEnds.add(typeof s === "object" ? s.id : s);
+            if (t) rejectEnds.add(typeof t === "object" ? t.id : t);
           }
         });
       });
@@ -727,6 +795,7 @@ function onReplay() { state.cursor = -1; state.playing = true; applyCursor(); st
 
 /* ---------------- Wiring -------------------------------------------- */
 function buildColumns(entry) {
+  stopTimer();
   var runs = state.runsByCase[gp(entry, "case_id", "")] || {};
   var aRun = runs.K || runs.B1 || null;
   var bRun = state.compare ? (runs.B1 || runs.K) : null;
@@ -803,6 +872,10 @@ function boot() {
       return '<option value="' + i + '">' + esc(gp(e, "case_id", "case-" + i)) + "</option>";
     }).join("");
     sel.addEventListener("change", function () { selectCase(parseInt(sel.value, 10) || 0); });
+    document.getElementById("full-graph").addEventListener("change", function (event) {
+      state.fullGraph = event.target.checked;
+      applyCursor();
+    });
     document.getElementById("replay-btn").addEventListener("click", onReplay);
     document.getElementById("speed").addEventListener("change", function (e) {
       state.speed = parseInt(e.target.value, 10) || 1;

@@ -46,7 +46,8 @@
     "EID-S1-05",
     "EID-S1-06",
     "EID-S1-07"
-   ]
+   ],
+   "verification": null
   }
  ],
  "graph": {
@@ -2269,5 +2270,6 @@
   }
  ],
  "audit": [],
- "final_answer": "Based on the trace decision data, the current storage for session-cache is Memcached, not Redis. This decision was made following incident INC-2291 and is documented in ADR-7. The relevant evidence spans are: \n\n- 'We migrate session-cache storage to Memcached with active replication to avoid Redis cluster memory failure modes.' (EID-S1-03)\n- 'Following incident INC-2291, ADR-7 supersedes ADR-3.' (EID-S1-04 and EID-S1-05)\n- 'INC-2291 was a Redis cluster memory failure on session-cache.' (EID-S1-07)\n\nGiven this information, the answer to the question is that Redis is not the current storage for session-cache. The current storage is Memcached."
+ "final_answer": "Based on the trace decision data, the current storage for session-cache is Memcached, not Redis. This decision was made following incident INC-2291 and is documented in ADR-7. The relevant evidence spans are: \n\n- 'We migrate session-cache storage to Memcached with active replication to avoid Redis cluster memory failure modes.' (EID-S1-03)\n- 'Following incident INC-2291, ADR-7 supersedes ADR-3.' (EID-S1-04 and EID-S1-05)\n- 'INC-2291 was a Redis cluster memory failure on session-cache.' (EID-S1-07)\n\nGiven this information, the answer to the question is that Redis is not the current storage for session-cache. The current storage is Memcached.",
+ "alert_service": "session-cache"
 }

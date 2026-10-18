@@ -46,7 +46,8 @@
     "EID-M1-01",
     "EID-M1-02",
     "EID-M1-03"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 1,
@@ -333,7 +334,8 @@
     "EID-M4-06",
     "EID-P1-01",
     "EID-P1-02"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 2,
@@ -352,7 +354,8 @@
     "EID-CATALOG-ONCALL-00",
     "EID-CATALOG-OWNS-00",
     "EID-S7-04"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 3,
@@ -365,7 +368,14 @@
    ],
    "edge_ids": [
     "EID-CATALOG-OWNS-00"
-   ]
+   ],
+   "verification": {
+    "passed": false,
+    "gate_disabled": true,
+    "edge_ids": [],
+    "target": "service-session-cache",
+    "sources": []
+   }
   },
   {
    "i": 4,
@@ -376,7 +386,8 @@
     "service-session-cache",
     "team-platform"
    ],
-   "edge_ids": []
+   "edge_ids": [],
+   "verification": null
   }
  ],
  "graph": {
@@ -4736,5 +4747,6 @@
    "pass_id": "pass_1"
   }
  ],
- "final_answer": "The alert related to the failure of `service-redis-cluster` has been escalated to the owning team `team-platform`. The action was executed in the local dry-run environment."
+ "final_answer": "The alert related to the failure of `service-redis-cluster` has been escalated to the owning team `team-platform`. The action was executed in the local dry-run environment.",
+ "alert_service": "service-redis-cluster"
 }

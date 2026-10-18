@@ -275,6 +275,15 @@ def export_run(case, trace, status_map, nodes_by_id, edges_by_eid, docs_by_id, g
             "summary": step_summary(tc.get("name") or "", tc.get("arguments") or {}, result),
             "node_ids": sorted(n for n in ids if n in nodes_by_id),
             "edge_ids": sorted(e for e in ids if e in edges_by_eid),
+            "verification": ({
+                "passed": bool(result.get("ok") and result.get("pass_id")
+                               and not result.get("gate_disabled")),
+                "gate_disabled": bool(result.get("gate_disabled")),
+                "edge_ids": [e["eid"] for e in result.get("evidence", []) if e.get("eid")],
+                "target": result.get("target") or (tc.get("arguments") or {}).get("target"),
+                "sources": [{"edge_id": eid, "doc_id": source["doc_id"]}
+                            for eid, source in iter_evidence(tc) if eid and source.get("doc_id")],
+            } if tc.get("name") == "verify_path" else None),
         })
     final = trace.get("final") or {}
     for eid in final.get("cited_edge_ids") or []:
@@ -320,6 +329,7 @@ def export_run(case, trace, status_map, nodes_by_id, edges_by_eid, docs_by_id, g
     outward = {
         "case_id": trace.get("case_id", case["id"]),
         "system": trace.get("system", "K"),
+        "alert_service": trace.get("input", {}).get("service"),
         "title": (case.get("input", {}).get("text") or "").strip(),
         "question": (case.get("input", {}).get("text") or "").strip(),
         "outcome": final.get("outcome"),

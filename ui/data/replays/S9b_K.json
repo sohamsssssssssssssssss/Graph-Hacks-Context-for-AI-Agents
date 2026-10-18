@@ -36,7 +36,8 @@
     "EID-S9B-01",
     "EID-S9B-02",
     "EID-S9B-03"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 1,
@@ -52,7 +53,14 @@
     "EID-S9B-01",
     "EID-S9B-02",
     "EID-S9B-03"
-   ]
+   ],
+   "verification": {
+    "passed": false,
+    "gate_disabled": false,
+    "edge_ids": [],
+    "target": "service-billing-worker",
+    "sources": []
+   }
   },
   {
    "i": 2,
@@ -63,7 +71,8 @@
     "service-billing-worker",
     "team-payments"
    ],
-   "edge_ids": []
+   "edge_ids": [],
+   "verification": null
   },
   {
    "i": 3,
@@ -71,7 +80,8 @@
    "args": "{\"action\": {\"kind\": \"PAGE\", \"target\": \"keystone-fixed-contact\"}, \"execute\": true, \"pass_id\": null}",
    "summary": "Executed PAGE on keystone-fixed-contact (mode: audit_only)",
    "node_ids": [],
-   "edge_ids": []
+   "edge_ids": [],
+   "verification": null
   }
  ],
  "graph": {
@@ -2475,5 +2485,6 @@
    "pass_id": null
   }
  ],
- "final_answer": "The service billing-worker is officially registered under the team-payments according to the catalog record. The repeated claims from staylor, Sophia’s email, and S. Taylor are consistent with the catalog registration, but the evidence does not form a connected path to the target service. Therefore, the action cannot be verified and must be escalated for further review. Gate requires escalation to keystone-fixed-contact."
+ "final_answer": "The service billing-worker is officially registered under the team-payments according to the catalog record. The repeated claims from staylor, Sophia’s email, and S. Taylor are consistent with the catalog registration, but the evidence does not form a connected path to the target service. Therefore, the action cannot be verified and must be escalated for further review. Gate requires escalation to keystone-fixed-contact.",
+ "alert_service": "service-billing-worker"
 }

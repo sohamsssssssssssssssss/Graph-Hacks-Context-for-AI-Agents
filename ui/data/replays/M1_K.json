@@ -46,7 +46,8 @@
     "EID-M1-01",
     "EID-M1-02",
     "EID-M1-03"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 1,
@@ -333,7 +334,8 @@
     "EID-M4-06",
     "EID-P1-01",
     "EID-P1-02"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 2,
@@ -352,7 +354,8 @@
     "EID-CATALOG-ONCALL-00",
     "EID-CATALOG-OWNS-00",
     "EID-S7-04"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 3,
@@ -366,7 +369,21 @@
    ],
    "edge_ids": [
     "EID-CATALOG-OWNS-00"
-   ]
+   ],
+   "verification": {
+    "passed": true,
+    "gate_disabled": false,
+    "edge_ids": [
+     "EID-CATALOG-OWNS-00"
+    ],
+    "target": "service-session-cache",
+    "sources": [
+     {
+      "edge_id": "EID-CATALOG-OWNS-00",
+      "doc_id": "DOC-CATALOG"
+     }
+    ]
+   }
   },
   {
    "i": 4,
@@ -380,7 +397,8 @@
    ],
    "edge_ids": [
     "EID-CATALOG-OWNS-00"
-   ]
+   ],
+   "verification": null
   }
  ],
  "graph": {
@@ -4740,5 +4758,6 @@
    "pass_id": "pass_1"
   }
  ],
- "final_answer": "The alert has been escalated to the owning team `team-platform` for `service-session-cache`. The action was executed in the local dry-run with a confidence of 0.9. The owning team is `team-platform` and the action was executed in the local dry-run."
+ "final_answer": "The alert has been escalated to the owning team `team-platform` for `service-session-cache`. The action was executed in the local dry-run with a confidence of 0.9. The owning team is `team-platform` and the action was executed in the local dry-run.",
+ "alert_service": "service-redis-cluster"
 }

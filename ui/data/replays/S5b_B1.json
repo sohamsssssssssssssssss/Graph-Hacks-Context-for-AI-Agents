@@ -44,7 +44,8 @@
     "EID-S2-04",
     "EID-S5-01",
     "EID-S5B-01"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 1,
@@ -74,7 +75,8 @@
     "EID-S2-04",
     "EID-S5-01",
     "EID-S5B-01"
-   ]
+   ],
+   "verification": null
   }
  ],
  "graph": {
@@ -2393,5 +2395,6 @@
   }
  ],
  "audit": [],
- "final_answer": "DOC-TICKET-S5B does not authorize an emergency production bypass because the approval is rejected due to the author being unverified and not an old owner. The current owning team is team-commerce."
+ "final_answer": "DOC-TICKET-S5B does not authorize an emergency production bypass because the approval is rejected due to the author being unverified and not an old owner. The current owning team is team-commerce.",
+ "alert_service": "checkout-api"
 }

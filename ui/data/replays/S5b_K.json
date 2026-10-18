@@ -44,7 +44,8 @@
     "EID-S2-04",
     "EID-S5-01",
     "EID-S5B-01"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 1,
@@ -74,7 +75,8 @@
     "EID-S2-04",
     "EID-S5-01",
     "EID-S5B-01"
-   ]
+   ],
+   "verification": null
   },
   {
    "i": 2,
@@ -82,7 +84,8 @@
    "args": "{\"action\": {\"kind\": \"PAGE\", \"target\": \"keystone-fixed-contact\"}, \"execute\": true, \"pass_id\": null}",
    "summary": "Executed PAGE on keystone-fixed-contact (mode: audit_only)",
    "node_ids": [],
-   "edge_ids": []
+   "edge_ids": [],
+   "verification": null
   }
  ],
  "graph": {
@@ -2408,5 +2411,6 @@
    "pass_id": null
   }
  ],
- "final_answer": "DOC-TICKET-S5B does not authorize an emergency production bypass because the approval is rejected due to the author being unverified and not an old owner. The current owning team is team-commerce. Gate requires escalation to keystone-fixed-contact."
+ "final_answer": "DOC-TICKET-S5B does not authorize an emergency production bypass because the approval is rejected due to the author being unverified and not an old owner. The current owning team is team-commerce. Gate requires escalation to keystone-fixed-contact.",
+ "alert_service": "checkout-api"
 }
