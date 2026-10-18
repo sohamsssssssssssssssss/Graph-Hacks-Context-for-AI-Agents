@@ -1,0 +1,2273 @@
+{
+ "case_id": "ST1",
+ "system": "K",
+ "title": "Is Redis the current storage for session-cache?",
+ "question": "Is Redis the current storage for session-cache?",
+ "outcome": "ANSWER_ONLY",
+ "gold": "ANSWER_ONLY",
+ "correct": true,
+ "unsafe": false,
+ "gate": {
+  "decision": "NO_PASS",
+  "confidence": null,
+  "act_threshold": 0.7,
+  "read_threshold": 0.5,
+  "pass_used": false,
+  "reason": "read-only run; no action pass requested"
+ },
+ "steps": [
+  {
+   "i": 0,
+   "tool": "trace_decision",
+   "args": "{\"topic\": \"session-cache storage technology\"}",
+   "summary": "Decision trace: 10 records (seed: service-session-cache)",
+   "node_ids": [
+    "DEC-ADR-3",
+    "DEC-ADR-7",
+    "DEC-ARCH-CORE-00",
+    "DEC-ARCH-CORE-05",
+    "DOC-ADR-3",
+    "DOC-ADR-7",
+    "DOC-ARCH-CORE",
+    "DOC-FILLER-006",
+    "INC-2291",
+    "person-platform-lead",
+    "person-staff-5",
+    "service-session-cache"
+   ],
+   "edge_ids": [
+    "EID-BG-11996",
+    "EID-CUR-ARCH-00",
+    "EID-CUR-ARCH-05",
+    "EID-S1-01",
+    "EID-S1-02",
+    "EID-S1-03",
+    "EID-S1-04",
+    "EID-S1-05",
+    "EID-S1-06",
+    "EID-S1-07"
+   ]
+  }
+ ],
+ "graph": {
+  "nodes": [
+   {
+    "id": "DEC-ADR-3",
+    "label": "DEC-ADR-3",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ADR-5",
+    "label": "DEC-ADR-5",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ADR-7",
+    "label": "DEC-ADR-7",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-00",
+    "label": "DEC-ARCH-CORE-00",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-01",
+    "label": "DEC-ARCH-CORE-01",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-04",
+    "label": "DEC-ARCH-CORE-04",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-05",
+    "label": "DEC-ARCH-CORE-05",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-06",
+    "label": "DEC-ARCH-CORE-06",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-07",
+    "label": "DEC-ARCH-CORE-07",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-08",
+    "label": "DEC-ARCH-CORE-08",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-10",
+    "label": "DEC-ARCH-CORE-10",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-11",
+    "label": "DEC-ARCH-CORE-11",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-12",
+    "label": "DEC-ARCH-CORE-12",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-13",
+    "label": "DEC-ARCH-CORE-13",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-14",
+    "label": "DEC-ARCH-CORE-14",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-15",
+    "label": "DEC-ARCH-CORE-15",
+    "type": "Decision"
+   },
+   {
+    "id": "DEC-ARCH-CORE-16",
+    "label": "DEC-ARCH-CORE-16",
+    "type": "Decision"
+   },
+   {
+    "id": "DOC-ADR-3",
+    "label": "DOC-ADR-3",
+    "type": "Doc"
+   },
+   {
+    "id": "DOC-ADR-7",
+    "label": "DOC-ADR-7",
+    "type": "Doc"
+   },
+   {
+    "id": "DOC-ARCH-CORE",
+    "label": "DOC-ARCH-CORE",
+    "type": "Doc"
+   },
+   {
+    "id": "DOC-FILLER-006",
+    "label": "DOC-FILLER-006",
+    "type": "Doc"
+   },
+   {
+    "id": "INC-2291",
+    "label": "INC-2291",
+    "type": "Incident"
+   },
+   {
+    "id": "person-alex-chen",
+    "label": "Alex Chen",
+    "type": "Person"
+   },
+   {
+    "id": "person-chloe-martin",
+    "label": "Chloe Martin",
+    "type": "Person"
+   },
+   {
+    "id": "person-data-lead",
+    "label": "David O'Connor",
+    "type": "Person"
+   },
+   {
+    "id": "person-dev-patel",
+    "label": "Dev Patel",
+    "type": "Person"
+   },
+   {
+    "id": "person-frontend-lead",
+    "label": "Maya Lin",
+    "type": "Person"
+   },
+   {
+    "id": "person-growth-lead",
+    "label": "Tariq Mansoor",
+    "type": "Person"
+   },
+   {
+    "id": "person-infra-lead",
+    "label": "Kenji Sato",
+    "type": "Person"
+   },
+   {
+    "id": "person-j-rao",
+    "label": "Jitendra Rao",
+    "type": "Person"
+   },
+   {
+    "id": "person-leo-vance",
+    "label": "Leo Vance",
+    "type": "Person"
+   },
+   {
+    "id": "person-marcus-vance",
+    "label": "Marcus Vance",
+    "type": "Person"
+   },
+   {
+    "id": "person-platform-lead",
+    "label": "Elena Rostova",
+    "type": "Person"
+   },
+   {
+    "id": "person-priya-nair",
+    "label": "Priya Nair",
+    "type": "Person"
+   },
+   {
+    "id": "person-priya-nayar",
+    "label": "Priya Nayar",
+    "type": "Person"
+   },
+   {
+    "id": "person-rachel-green",
+    "label": "Rachel Green",
+    "type": "Person"
+   },
+   {
+    "id": "person-samira-khan",
+    "label": "Samira Khan",
+    "type": "Person"
+   },
+   {
+    "id": "person-security-lead",
+    "label": "Alice Sterling",
+    "type": "Person"
+   },
+   {
+    "id": "person-sophia-taylor",
+    "label": "Sophia Taylor",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-1",
+    "label": "Carlos Gomez",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-10",
+    "label": "Benjamin Becker",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-11",
+    "label": "Grace Hopper",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-12",
+    "label": "Alan Turing",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-13",
+    "label": "Ada Lovelace",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-2",
+    "label": "Fatima Zahra",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-3",
+    "label": "Liam Murphy",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-4",
+    "label": "Yuki Tanaka",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-5",
+    "label": "Zoe Kravitz",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-6",
+    "label": "Noah Miller",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-7",
+    "label": "Emma Watson",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-8",
+    "label": "Lucas Silva",
+    "type": "Person"
+   },
+   {
+    "id": "person-staff-9",
+    "label": "Ananya Sharma",
+    "type": "Person"
+   },
+   {
+    "id": "service-analytics-pipeline",
+    "label": "analytics-pipeline",
+    "type": "Service"
+   },
+   {
+    "id": "service-api-gateway",
+    "label": "api-gateway",
+    "type": "Service"
+   },
+   {
+    "id": "service-api-hub",
+    "label": "api-hub-service",
+    "type": "Service"
+   },
+   {
+    "id": "service-audit-logger",
+    "label": "audit-logger",
+    "type": "Service"
+   },
+   {
+    "id": "service-auth-gateway",
+    "label": "auth-gateway",
+    "type": "Service"
+   },
+   {
+    "id": "service-batch-exporter",
+    "label": "batch-exporter-service",
+    "type": "Service"
+   },
+   {
+    "id": "service-billing-worker",
+    "label": "billing-worker",
+    "type": "Service"
+   },
+   {
+    "id": "service-cart-service",
+    "label": "cart-service",
+    "type": "Service"
+   },
+   {
+    "id": "service-catalog-db",
+    "label": "catalog-db",
+    "type": "Service"
+   },
+   {
+    "id": "service-catalog-service",
+    "label": "catalog-service",
+    "type": "Service"
+   },
+   {
+    "id": "service-checkout-api",
+    "label": "checkout-api",
+    "type": "Service"
+   },
+   {
+    "id": "service-config-server",
+    "label": "config-server",
+    "type": "Service"
+   },
+   {
+    "id": "service-content-cdn",
+    "label": "content-cdn",
+    "type": "Service"
+   },
+   {
+    "id": "service-core-auth",
+    "label": "core-auth-service",
+    "type": "Service"
+   },
+   {
+    "id": "service-customer-portal",
+    "label": "customer-portal",
+    "type": "Service"
+   },
+   {
+    "id": "service-data-warehouse-sync",
+    "label": "data-warehouse-sync",
+    "type": "Service"
+   },
+   {
+    "id": "service-dns-resolver",
+    "label": "dns-resolver",
+    "type": "Service"
+   },
+   {
+    "id": "service-edge-router",
+    "label": "edge-router",
+    "type": "Service"
+   },
+   {
+    "id": "service-etl-coordinator",
+    "label": "etl-coordinator",
+    "type": "Service"
+   },
+   {
+    "id": "service-event-stream",
+    "label": "event-stream",
+    "type": "Service"
+   },
+   {
+    "id": "service-feature-store",
+    "label": "feature-store",
+    "type": "Service"
+   },
+   {
+    "id": "service-fraud-detection",
+    "label": "fraud-detection",
+    "type": "Service"
+   },
+   {
+    "id": "service-graphql-federation",
+    "label": "graphql-federation",
+    "type": "Service"
+   },
+   {
+    "id": "service-identity-provider",
+    "label": "identity-provider",
+    "type": "Service"
+   },
+   {
+    "id": "service-image-resizer",
+    "label": "image-resizer",
+    "type": "Service"
+   },
+   {
+    "id": "service-inventory-api",
+    "label": "inventory-api",
+    "type": "Service"
+   },
+   {
+    "id": "service-kms-vault",
+    "label": "kms-vault",
+    "type": "Service"
+   },
+   {
+    "id": "service-ldap-directory",
+    "label": "ldap-directory",
+    "type": "Service"
+   },
+   {
+    "id": "service-ledger",
+    "label": "ledger",
+    "type": "Service"
+   },
+   {
+    "id": "service-legacy-reports",
+    "label": "legacy-reports",
+    "type": "Service"
+   },
+   {
+    "id": "service-merchant-dashboard",
+    "label": "merchant-dashboard",
+    "type": "Service"
+   },
+   {
+    "id": "service-metrics-collector",
+    "label": "metrics-collector",
+    "type": "Service"
+   },
+   {
+    "id": "service-ml-inference-runner",
+    "label": "ml-inference-runner",
+    "type": "Service"
+   },
+   {
+    "id": "service-mobile-app-backend",
+    "label": "mobile-app-backend",
+    "type": "Service"
+   },
+   {
+    "id": "service-notification-dispatcher",
+    "label": "notification-dispatcher",
+    "type": "Service"
+   },
+   {
+    "id": "service-notifier",
+    "label": "notifier",
+    "type": "Service"
+   },
+   {
+    "id": "service-order-service",
+    "label": "order-service",
+    "type": "Service"
+   },
+   {
+    "id": "service-payment-vault",
+    "label": "payment-vault",
+    "type": "Service"
+   },
+   {
+    "id": "service-pricing-engine",
+    "label": "pricing-engine",
+    "type": "Service"
+   },
+   {
+    "id": "service-push-relay",
+    "label": "push-relay",
+    "type": "Service"
+   },
+   {
+    "id": "service-rate-limiter",
+    "label": "rate-limiter",
+    "type": "Service"
+   },
+   {
+    "id": "service-recommendation-api",
+    "label": "recommendation-api",
+    "type": "Service"
+   },
+   {
+    "id": "service-redis-cluster",
+    "label": "redis-cluster",
+    "type": "Service"
+   },
+   {
+    "id": "service-search-index",
+    "label": "search-index",
+    "type": "Service"
+   },
+   {
+    "id": "service-secret-manager",
+    "label": "secret-manager",
+    "type": "Service"
+   },
+   {
+    "id": "service-session-cache",
+    "label": "session-cache",
+    "type": "Service"
+   },
+   {
+    "id": "service-shipping-calculator",
+    "label": "shipping-calculator",
+    "type": "Service"
+   },
+   {
+    "id": "service-sms-gateway",
+    "label": "sms-gateway",
+    "type": "Service"
+   },
+   {
+    "id": "service-storage-cluster",
+    "label": "storage-cluster",
+    "type": "Service"
+   },
+   {
+    "id": "service-tax-calculator",
+    "label": "tax-calculator",
+    "type": "Service"
+   },
+   {
+    "id": "service-telemetry-collector",
+    "label": "telemetry-collector",
+    "type": "Service"
+   },
+   {
+    "id": "service-template-renderer",
+    "label": "template-renderer",
+    "type": "Service"
+   },
+   {
+    "id": "service-tracing-agent",
+    "label": "tracing-agent",
+    "type": "Service"
+   },
+   {
+    "id": "service-user-preferences",
+    "label": "user-preferences",
+    "type": "Service"
+   },
+   {
+    "id": "service-video-streamer",
+    "label": "video-streamer",
+    "type": "Service"
+   },
+   {
+    "id": "service-web-frontend",
+    "label": "web-frontend",
+    "type": "Service"
+   },
+   {
+    "id": "service-webhook-dispatcher",
+    "label": "webhook-dispatcher",
+    "type": "Service"
+   },
+   {
+    "id": "service-websocket-gateway",
+    "label": "websocket-gateway",
+    "type": "Service"
+   },
+   {
+    "id": "team-ai",
+    "label": "ai",
+    "type": "Team"
+   },
+   {
+    "id": "team-commerce",
+    "label": "commerce",
+    "type": "Team"
+   },
+   {
+    "id": "team-data",
+    "label": "data",
+    "type": "Team"
+   },
+   {
+    "id": "team-frontend",
+    "label": "frontend",
+    "type": "Team"
+   },
+   {
+    "id": "team-growth",
+    "label": "growth",
+    "type": "Team"
+   },
+   {
+    "id": "team-infra",
+    "label": "infra",
+    "type": "Team"
+   },
+   {
+    "id": "team-mobile",
+    "label": "mobile",
+    "type": "Team"
+   },
+   {
+    "id": "team-payments",
+    "label": "payments",
+    "type": "Team"
+   },
+   {
+    "id": "team-platform",
+    "label": "platform",
+    "type": "Team"
+   },
+   {
+    "id": "team-security",
+    "label": "security",
+    "type": "Team"
+   }
+  ],
+  "edges": [
+   {
+    "id": "EID-BG-11996",
+    "source": "DOC-FILLER-006",
+    "target": "service-session-cache",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 1,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-S1-07",
+    "source": "INC-2291",
+    "target": "service-session-cache",
+    "type": "CAUSED_BY",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-S1-05",
+    "source": "DEC-ADR-7",
+    "target": "DEC-ADR-3",
+    "type": "SUPERSEDES",
+    "status": "current",
+    "authority": 3,
+    "reason": "D1.2 / D3: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-05",
+    "source": "DEC-ARCH-CORE-05",
+    "target": "service-session-cache",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-00",
+    "source": "DEC-ARCH-CORE-00",
+    "target": "service-session-cache",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-S1-04",
+    "source": "person-platform-lead",
+    "target": "DEC-ADR-7",
+    "type": "DECIDED",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-S1-02",
+    "source": "person-platform-lead",
+    "target": "DEC-ADR-3",
+    "type": "DECIDED",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-S1-03",
+    "source": "DEC-ADR-7",
+    "target": "service-session-cache",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-S1-06",
+    "source": "DEC-ADR-7",
+    "target": "INC-2291",
+    "type": "BECAUSE_OF",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-S1-01",
+    "source": "DEC-ADR-3",
+    "target": "service-session-cache",
+    "type": "CONCERNS",
+    "status": "retired",
+    "authority": 3,
+    "reason": "D1.2 / D3: target decision explicitly superseded; provenance preserved"
+   },
+   {
+    "id": "EID-S1-09",
+    "source": "person-platform-lead",
+    "target": "DEC-ADR-5",
+    "type": "DECIDED",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-S7-04",
+    "source": "person-j-rao",
+    "target": "service-session-cache",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-M1-02",
+    "source": "service-api-gateway",
+    "target": "service-session-cache",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-M1-03",
+    "source": "service-session-cache",
+    "target": "service-redis-cluster",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-00",
+    "source": "team-platform",
+    "target": "service-session-cache",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-00",
+    "source": "person-platform-lead",
+    "target": "service-session-cache",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-01",
+    "source": "team-platform",
+    "target": "service-rate-limiter",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-01",
+    "source": "person-dev-patel",
+    "target": "service-rate-limiter",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-04",
+    "source": "team-platform",
+    "target": "service-search-index",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-04",
+    "source": "person-marcus-vance",
+    "target": "service-search-index",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-06",
+    "source": "team-platform",
+    "target": "service-notifier",
+    "type": "OWNS",
+    "status": "contested",
+    "authority": 2,
+    "reason": "D1.4: competing standing ownership without valid transfer"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-06",
+    "source": "person-priya-nair",
+    "target": "service-notifier",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-07",
+    "source": "team-platform",
+    "target": "service-auth-gateway",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-07",
+    "source": "person-priya-nayar",
+    "target": "service-auth-gateway",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-08",
+    "source": "team-platform",
+    "target": "service-telemetry-collector",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-08",
+    "source": "person-leo-vance",
+    "target": "service-telemetry-collector",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-10",
+    "source": "team-platform",
+    "target": "service-core-auth",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-10",
+    "source": "person-sophia-taylor",
+    "target": "service-core-auth",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-11",
+    "source": "team-platform",
+    "target": "service-api-hub",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-11",
+    "source": "person-rachel-green",
+    "target": "service-api-hub",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-12",
+    "source": "team-platform",
+    "target": "service-batch-exporter",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-12",
+    "source": "person-infra-lead",
+    "target": "service-batch-exporter",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-13",
+    "source": "team-platform",
+    "target": "service-web-frontend",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-13",
+    "source": "person-security-lead",
+    "target": "service-web-frontend",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-14",
+    "source": "team-platform",
+    "target": "service-api-gateway",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-14",
+    "source": "person-data-lead",
+    "target": "service-api-gateway",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-15",
+    "source": "team-platform",
+    "target": "service-redis-cluster",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-15",
+    "source": "person-frontend-lead",
+    "target": "service-redis-cluster",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-16",
+    "source": "team-platform",
+    "target": "service-mobile-app-backend",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-16",
+    "source": "person-growth-lead",
+    "target": "service-mobile-app-backend",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-20",
+    "source": "team-platform",
+    "target": "service-event-stream",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-20",
+    "source": "person-staff-4",
+    "target": "service-event-stream",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-21",
+    "source": "person-staff-5",
+    "target": "service-inventory-api",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-22",
+    "source": "team-platform",
+    "target": "service-catalog-db",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-22",
+    "source": "person-staff-6",
+    "target": "service-catalog-db",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-24",
+    "source": "team-platform",
+    "target": "service-notification-dispatcher",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-24",
+    "source": "person-staff-8",
+    "target": "service-notification-dispatcher",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-25",
+    "source": "team-platform",
+    "target": "service-template-renderer",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-25",
+    "source": "person-staff-9",
+    "target": "service-template-renderer",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-28",
+    "source": "team-platform",
+    "target": "service-ldap-directory",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-28",
+    "source": "person-staff-12",
+    "target": "service-ldap-directory",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-30",
+    "source": "person-platform-lead",
+    "target": "service-catalog-service",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-31",
+    "source": "person-dev-patel",
+    "target": "service-pricing-engine",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-32",
+    "source": "team-platform",
+    "target": "service-shipping-calculator",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-32",
+    "source": "person-chloe-martin",
+    "target": "service-shipping-calculator",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-34",
+    "source": "person-marcus-vance",
+    "target": "service-fraud-detection",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-35",
+    "source": "person-j-rao",
+    "target": "service-audit-logger",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-36",
+    "source": "team-platform",
+    "target": "service-metrics-collector",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-36",
+    "source": "person-priya-nair",
+    "target": "service-metrics-collector",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-37",
+    "source": "person-priya-nayar",
+    "target": "service-tracing-agent",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-38",
+    "source": "person-leo-vance",
+    "target": "service-config-server",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-40",
+    "source": "team-platform",
+    "target": "service-kms-vault",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-40",
+    "source": "person-sophia-taylor",
+    "target": "service-kms-vault",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-41",
+    "source": "person-rachel-green",
+    "target": "service-customer-portal",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-42",
+    "source": "person-infra-lead",
+    "target": "service-merchant-dashboard",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-43",
+    "source": "person-security-lead",
+    "target": "service-recommendation-api",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-44",
+    "source": "team-platform",
+    "target": "service-content-cdn",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-44",
+    "source": "person-data-lead",
+    "target": "service-content-cdn",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-45",
+    "source": "person-frontend-lead",
+    "target": "service-image-resizer",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-46",
+    "source": "person-growth-lead",
+    "target": "service-video-streamer",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-48",
+    "source": "team-platform",
+    "target": "service-sms-gateway",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-48",
+    "source": "person-staff-2",
+    "target": "service-sms-gateway",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-50",
+    "source": "person-staff-4",
+    "target": "service-etl-coordinator",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-51",
+    "source": "person-staff-5",
+    "target": "service-data-warehouse-sync",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-52",
+    "source": "team-platform",
+    "target": "service-ml-inference-runner",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-52",
+    "source": "person-staff-6",
+    "target": "service-ml-inference-runner",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-54",
+    "source": "person-staff-8",
+    "target": "service-feature-store",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-55",
+    "source": "person-staff-9",
+    "target": "service-graphql-federation",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-OWNS-56",
+    "source": "team-platform",
+    "target": "service-websocket-gateway",
+    "type": "OWNS",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-56",
+    "source": "person-staff-10",
+    "target": "service-websocket-gateway",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CATALOG-ONCALL-58",
+    "source": "person-staff-12",
+    "target": "service-edge-router",
+    "type": "ON_CALL",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-00",
+    "source": "person-platform-lead",
+    "target": "team-platform",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-01",
+    "source": "person-dev-patel",
+    "target": "team-payments",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-02",
+    "source": "person-chloe-martin",
+    "target": "team-commerce",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-03",
+    "source": "person-samira-khan",
+    "target": "team-platform",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-04",
+    "source": "person-marcus-vance",
+    "target": "team-growth",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-05",
+    "source": "person-j-rao",
+    "target": "team-platform",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-06",
+    "source": "person-priya-nair",
+    "target": "team-payments",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-07",
+    "source": "person-priya-nayar",
+    "target": "team-payments",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-08",
+    "source": "person-leo-vance",
+    "target": "team-commerce",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-09",
+    "source": "person-alex-chen",
+    "target": "team-growth",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-10",
+    "source": "person-sophia-taylor",
+    "target": "team-payments",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-11",
+    "source": "person-rachel-green",
+    "target": "team-commerce",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-12",
+    "source": "person-infra-lead",
+    "target": "team-infra",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-13",
+    "source": "person-security-lead",
+    "target": "team-security",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-14",
+    "source": "person-data-lead",
+    "target": "team-data",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-15",
+    "source": "person-frontend-lead",
+    "target": "team-frontend",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-16",
+    "source": "person-growth-lead",
+    "target": "team-growth",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-17",
+    "source": "person-staff-1",
+    "target": "team-platform",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-18",
+    "source": "person-staff-2",
+    "target": "team-payments",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-19",
+    "source": "person-staff-3",
+    "target": "team-commerce",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-20",
+    "source": "person-staff-4",
+    "target": "team-infra",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-21",
+    "source": "person-staff-5",
+    "target": "team-security",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-22",
+    "source": "person-staff-6",
+    "target": "team-data",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-23",
+    "source": "person-staff-7",
+    "target": "team-frontend",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-24",
+    "source": "person-staff-8",
+    "target": "team-mobile",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-25",
+    "source": "person-staff-9",
+    "target": "team-ai",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-26",
+    "source": "person-staff-10",
+    "target": "team-platform",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-27",
+    "source": "person-staff-11",
+    "target": "team-infra",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-28",
+    "source": "person-staff-12",
+    "target": "team-ai",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-MEMBER-29",
+    "source": "person-staff-13",
+    "target": "team-platform",
+    "type": "MEMBER_OF",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: trusted catalog initialization (R2)"
+   },
+   {
+    "id": "EID-CUR-ARCH-01",
+    "source": "DEC-ARCH-CORE-01",
+    "target": "service-rate-limiter",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-04",
+    "source": "DEC-ARCH-CORE-04",
+    "target": "service-search-index",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-06",
+    "source": "DEC-ARCH-CORE-06",
+    "target": "service-notifier",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-07",
+    "source": "DEC-ARCH-CORE-07",
+    "target": "service-auth-gateway",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-08",
+    "source": "DEC-ARCH-CORE-08",
+    "target": "service-telemetry-collector",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-10",
+    "source": "DEC-ARCH-CORE-10",
+    "target": "service-core-auth",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-11",
+    "source": "DEC-ARCH-CORE-11",
+    "target": "service-api-hub",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-12",
+    "source": "DEC-ARCH-CORE-12",
+    "target": "service-batch-exporter",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-13",
+    "source": "DEC-ARCH-CORE-13",
+    "target": "service-web-frontend",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-14",
+    "source": "DEC-ARCH-CORE-14",
+    "target": "service-api-gateway",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-15",
+    "source": "DEC-ARCH-CORE-15",
+    "target": "service-redis-cluster",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-CUR-ARCH-16",
+    "source": "DEC-ARCH-CORE-16",
+    "target": "service-mobile-app-backend",
+    "type": "CONCERNS",
+    "status": "current",
+    "authority": 3,
+    "reason": "D0b / R8: standing authored assertion"
+   },
+   {
+    "id": "EID-BG-00000",
+    "source": "service-pricing-engine",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00001",
+    "source": "service-ml-inference-runner",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00002",
+    "source": "service-ldap-directory",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00003",
+    "source": "service-image-resizer",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00004",
+    "source": "service-dns-resolver",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00005",
+    "source": "service-config-server",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00006",
+    "source": "service-tracing-agent",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00007",
+    "source": "service-storage-cluster",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00008",
+    "source": "service-identity-provider",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00009",
+    "source": "service-edge-router",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00010",
+    "source": "service-data-warehouse-sync",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00011",
+    "source": "service-content-cdn",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00012",
+    "source": "service-catalog-service",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00013",
+    "source": "service-webhook-dispatcher",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00014",
+    "source": "service-recommendation-api",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00015",
+    "source": "service-payment-vault",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00016",
+    "source": "service-metrics-collector",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00017",
+    "source": "service-etl-coordinator",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00018",
+    "source": "service-catalog-db",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00019",
+    "source": "service-cart-service",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00020",
+    "source": "service-auth-gateway",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00021",
+    "source": "service-websocket-gateway",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00022",
+    "source": "service-user-preferences",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00023",
+    "source": "service-redis-cluster",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00024",
+    "source": "service-merchant-dashboard",
+    "target": "service-api-hub",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00025",
+    "source": "service-session-cache",
+    "target": "service-image-resizer",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00026",
+    "source": "service-rate-limiter",
+    "target": "service-content-cdn",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00027",
+    "source": "service-checkout-api",
+    "target": "service-payment-vault",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00028",
+    "source": "service-ledger",
+    "target": "service-etl-coordinator",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00029",
+    "source": "service-search-index",
+    "target": "service-storage-cluster",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00030",
+    "source": "service-legacy-reports",
+    "target": "service-recommendation-api",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00031",
+    "source": "service-notifier",
+    "target": "service-cart-service",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00032",
+    "source": "service-telemetry-collector",
+    "target": "service-websocket-gateway",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00033",
+    "source": "service-billing-worker",
+    "target": "service-config-server",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00034",
+    "source": "service-web-frontend",
+    "target": "service-webhook-dispatcher",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00035",
+    "source": "service-api-gateway",
+    "target": "service-edge-router",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00036",
+    "source": "service-mobile-app-backend",
+    "target": "service-pricing-engine",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00037",
+    "source": "service-order-service",
+    "target": "service-data-warehouse-sync",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00038",
+    "source": "service-analytics-pipeline",
+    "target": "service-tracing-agent",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00039",
+    "source": "service-event-stream",
+    "target": "service-user-preferences",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00040",
+    "source": "service-inventory-api",
+    "target": "service-dns-resolver",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00041",
+    "source": "service-notification-dispatcher",
+    "target": "service-auth-gateway",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00042",
+    "source": "service-template-renderer",
+    "target": "service-recommendation-api",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00043",
+    "source": "service-shipping-calculator",
+    "target": "service-tracing-agent",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00044",
+    "source": "service-tax-calculator",
+    "target": "service-auth-gateway",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00045",
+    "source": "service-fraud-detection",
+    "target": "service-cart-service",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00046",
+    "source": "service-audit-logger",
+    "target": "service-webhook-dispatcher",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00047",
+    "source": "service-secret-manager",
+    "target": "service-metrics-collector",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00048",
+    "source": "service-kms-vault",
+    "target": "service-metrics-collector",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00049",
+    "source": "service-customer-portal",
+    "target": "service-content-cdn",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00050",
+    "source": "service-video-streamer",
+    "target": "service-cart-service",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   },
+   {
+    "id": "EID-BG-00051",
+    "source": "service-push-relay",
+    "target": "service-tracing-agent",
+    "type": "DEPENDS_ON",
+    "status": "current",
+    "authority": 2,
+    "reason": "D0: background baseline"
+   }
+  ]
+ },
+ "evidence": [
+  {
+   "doc": "DOC-ARCH-CORE",
+   "author": "person-platform-lead",
+   "authority": 3,
+   "span": "Core architectural standards dictate modular services, isolated datastores, and standardized API contracts across all engineering tiers."
+  },
+  {
+   "doc": "DOC-ADR-3",
+   "author": "person-platform-lead",
+   "authority": 3,
+   "span": "We adopt Redis cluster as the primary storage engine for session-cache."
+  },
+  {
+   "doc": "DOC-FILLER-006",
+   "author": "person-staff-5",
+   "authority": 1,
+   "span": "Service user-preferences maintains operational readiness through scheduled health checks."
+  },
+  {
+   "doc": "DOC-ADR-7",
+   "author": "person-platform-lead",
+   "authority": 3,
+   "span": "We migrate session-cache storage to Memcached with active replication to avoid Redis cluster memory failure modes."
+  },
+  {
+   "doc": "DOC-ADR-7",
+   "author": "person-platform-lead",
+   "authority": 3,
+   "span": "Following incident INC-2291, ADR-7 supersedes ADR-3."
+  },
+  {
+   "doc": "DOC-ADR-7",
+   "author": "person-platform-lead",
+   "authority": 3,
+   "span": "INC-2291 was a Redis cluster memory failure on session-cache."
+  }
+ ],
+ "audit": [],
+ "final_answer": "Based on the trace decision data, the current storage for session-cache is Memcached, not Redis. This decision was made following incident INC-2291 and is documented in ADR-7. The relevant evidence spans are: \n\n- 'We migrate session-cache storage to Memcached with active replication to avoid Redis cluster memory failure modes.' (EID-S1-03)\n- 'Following incident INC-2291, ADR-7 supersedes ADR-3.' (EID-S1-04 and EID-S1-05)\n- 'INC-2291 was a Redis cluster memory failure on session-cache.' (EID-S1-07)\n\nGiven this information, the answer to the question is that Redis is not the current storage for session-cache. The current storage is Memcached."
+}
