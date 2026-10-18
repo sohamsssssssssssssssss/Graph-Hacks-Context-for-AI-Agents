@@ -181,7 +181,8 @@ def main():
     edges={e['eid']:e for e in map(json.loads,(ROOT/'data/edges.jsonl').read_text().splitlines())}
     docs={d['id']:d for d in map(json.loads,(ROOT/'data/docs.jsonl').read_text().splitlines())}
     names={n['id']:n['name'] for n in map(json.loads,(ROOT/'data/nodes.jsonl').read_text().splitlines()) if n['label']=='Service'}
-    llm=CachedLLM()
+    llm=CachedLLM(role='agent')
+    grader_llm=CachedLLM(role='grader')
     try:
         for system in SYSTEMS:
             for case in cases:
@@ -200,7 +201,7 @@ def main():
                         raise RuntimeError(trace['infra_failure']['message'])
                     if any(str(e).startswith('LLM request failed') for e in trace['errors']):
                         raise RuntimeError('; '.join(trace['errors']))
-                    grade_result=grade(case,trace,llm)
+                    grade_result=grade(case,trace,grader_llm)
                     row={'case_id':case['id'],'system':system,**mechanical(case,trace,edges,docs,names),**grade_result,
                          **usage(trace['llm_calls']),'latency_s':trace['latency_s'],'salvaged_final':bool(trace.get('salvaged_final'))}
                 except Exception as exc:

@@ -150,7 +150,7 @@ def evidence_rows(value):
 def run_agent(input_record,case_id='interactive',system='K',llm=None,mcp=False,trace_dir=None,backend=None):
     if system not in {'K','B1','B2'}:raise ValueError('unsupported system')
     if mcp and system!='K':raise ValueError('--mcp supports K; ablations are direct isolated runtimes')
-    llm=llm or CachedLLM()
+    llm=llm or CachedLLM(role='agent')
     first_call=len(llm.calls)
     started=time.perf_counter()
     kind,names=route(input_record)
@@ -254,6 +254,19 @@ def run_agent(input_record,case_id='interactive',system='K',llm=None,mcp=False,t
     trace['messages']=messages
     trace['llm_calls']=llm.calls[first_call:]
     trace['latency_s']=time.perf_counter()-started
+    calls=trace['llm_calls']
+    duration=sum(c.get('ollama_metrics',{}).get('eval_duration',0) for c in calls if not c.get('cache_hit'))/1e9
+    generated=sum(c.get('ollama_metrics',{}).get('eval_count',0) for c in calls if not c.get('cache_hit'))
+    trace['metrics']={'wall_seconds':trace['latency_s'],
+        'prompt_tokens':sum(c.get('usage',{}).get('prompt_tokens',0) or 0 for c in calls),
+        'completion_tokens':sum(c.get('usage',{}).get('completion_tokens',0) or 0 for c in calls),
+        'tokens_per_second':generated/duration if duration else None,
+        'eval_count':generated,'eval_seconds':duration,'tool_calls':len(trace['tool_calls']),
+        'tool_call_failures':sum(c.get('result',{}).get('ok') is False for c in trace['tool_calls']),
+        'malformed_output':bool(trace.get('final_format_retries') or trace.get('salvaged_final') or 'invalid_final_json' in trace['errors']),
+        'retries':trace.get('final_format_retries',0)+trace.get('target_retries',0)+sum(c.get('retries',0) for c in calls),
+        'ctx_guard_triggers':sum(bool(c.get('context_guard',{}).get('triggered')) for c in calls)}
+    trace['provider']=getattr(llm,'provider','test')
     directory=Path(trace_dir or ROOT/'traces');directory.mkdir(parents=True,exist_ok=True)
     safe_id=re.sub(r'[^A-Za-z0-9_.-]','_',case_id)
     (directory/f'{safe_id}_{system}.json').write_text(json.dumps(trace,indent=2,ensure_ascii=False))

@@ -238,7 +238,7 @@ def test_runner_records_infra_failure_and_continues(tmp_path,monkeypatch):
     monkeypatch.setattr(runner,'ROOT',tmp_path);monkeypatch.setattr(runner,'SYSTEMS',['K'])
     monkeypatch.setattr(runner,'load_cases',lambda:cases)
     monkeypatch.setattr(runner,'settings',lambda:{'LLM_MODEL':'fake'})
-    monkeypatch.setattr(runner,'CachedLLM',lambda:FakeLLM([]))
+    monkeypatch.setattr(runner,'CachedLLM',lambda **kwargs:FakeLLM([]))
     monkeypatch.setattr(runner,'run_agent',run)
     monkeypatch.setattr(runner,'grade',lambda *a:{})
     monkeypatch.setattr(runner,'mechanical',lambda *a:{})
