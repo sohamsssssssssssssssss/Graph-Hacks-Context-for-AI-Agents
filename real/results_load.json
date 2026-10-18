@@ -1,0 +1,133 @@
+{
+  "source_commit": "8747376ceeb8c46d34549c53cdf6b81bb5de70f9",
+  "graph": "keystone_real",
+  "nodes": {
+    "ADR": 18,
+    "Person": 11,
+    "PathPattern": 85,
+    "Owner": 23
+  },
+  "edges": {
+    "AUTHORED": 15,
+    "REFERENCES": 6,
+    "SUPERSEDES": 2,
+    "OWNS": 126
+  },
+  "authorship": [
+    {
+      "adr_id": "ADR001",
+      "name": "eywoon",
+      "commit": "9ccf3b06232aca3e1c6d0acb631d231b1c840dfa",
+      "path": "docs/architecture-decisions/adr001-add-adr-log.md"
+    },
+    {
+      "adr_id": "ADR002",
+      "name": "Fredrik Adelöw",
+      "commit": "86bb6cc6a8d3424a7f75393a05ebe225f9f68d55",
+      "path": "docs/architecture-decisions/adr002-default-catalog-file-format.md"
+    },
+    {
+      "adr_id": "ADR003",
+      "name": "Fredrik Adelöw",
+      "commit": "7fac93feea279d4a42b49a3a1f17c9ceebc597f4",
+      "path": "docs/architecture-decisions/adr003-avoid-default-exports.md"
+    },
+    {
+      "adr_id": "ADR004",
+      "name": "Patrik Oldsberg",
+      "commit": "582f63677678205956dbb6b69f563dc2934cfd65",
+      "path": "docs/architecture-decisions/adr004-module-export-structure.md"
+    },
+    {
+      "adr_id": "ADR005",
+      "name": "Marc Bruggmann",
+      "commit": "1312d34147af604355117ee85ed913e7a9460092",
+      "path": "docs/architecture-decisions/adr005-catalog-core-entities.md"
+    },
+    {
+      "adr_id": "ADR006",
+      "name": "ellieseastream",
+      "commit": "9f475bacd3253faa9cb38d5618606c608d45a1f0",
+      "path": "docs/architecture-decisions/adr006-avoid-react-fc.md"
+    },
+    {
+      "adr_id": "ADR007",
+      "name": "blam",
+      "commit": "c1e2a8dcc530b20ef65f90cc26857a0a20632dba",
+      "path": "docs/architecture-decisions/adr007-use-msw-to-mock-service-requests.md"
+    },
+    {
+      "adr_id": "ADR008",
+      "name": "David Tuite",
+      "commit": "7db913e36b5a7f84a2b96d71622f48d01fd76220",
+      "path": "docs/architecture-decisions/adr008-default-catalog-file-name.md"
+    },
+    {
+      "adr_id": "ADR009",
+      "name": "Fredrik Adelöw",
+      "commit": "0222279021d3ed0f3d83652c36abea64a37ac9a4",
+      "path": "docs/architecture-decisions/adr009-entity-references.md"
+    },
+    {
+      "adr_id": "ADR010",
+      "name": "Andrew Thauer",
+      "commit": "e58af307f077f36243f97b1bc6b9c0d8530f920a",
+      "path": "docs/architecture-decisions/adr010-luxon-date-library.md"
+    },
+    {
+      "adr_id": "ADR011",
+      "name": "Oliver Sand",
+      "commit": "fb118a6cf25c32a5a6e38f804a47299385fd3a59",
+      "path": "docs/architecture-decisions/adr011-plugin-package-structure.md"
+    },
+    {
+      "adr_id": "ADR012",
+      "name": "Harry Hogg",
+      "commit": "25c0779443d586ab8f1285f83ca057445b9ba012",
+      "path": "docs/architecture-decisions/adr012-use-luxon-locale-and-date-presets.md"
+    },
+    {
+      "adr_id": "ADR013",
+      "name": "Johan Haals",
+      "commit": "fbc20dc18e82a7c558408b297256bba3402957e6",
+      "path": "docs/architecture-decisions/adr013-use-node-fetch.md"
+    },
+    {
+      "adr_id": "ADR014",
+      "name": "Fredrik Adelöw",
+      "commit": "3ecfb121859d8445f745232e8501340416fffe5e",
+      "path": "docs/architecture-decisions/adr014-use-fetch.md"
+    },
+    {
+      "adr_id": "ADR015",
+      "name": "Patrik Oldsberg",
+      "commit": "cdb683f4d8cd807bb2cfbcf5d71317a1728702a7",
+      "path": "docs/architecture-decisions/adr015-jsx-loader-structure.md"
+    }
+  ],
+  "omitted_authorship": [],
+  "unresolved_metadata_targets": [],
+  "planted_authorship": "omitted: synthetic copies have no upstream creation commit",
+  "source_files": {
+    "real/raw/backstage/docs/architecture-decisions/adr001-add-adr-log.md": "f18029a3474565f25918728ee81e626f627f5a1a6ffb67e88a86fd3dc7829428",
+    "real/raw/backstage/docs/architecture-decisions/adr002-default-catalog-file-format.md": "8c762010e8610f7f1b1d96ca24a57ceb2b446653e6a42a1b000bae56ade5c72d",
+    "real/raw/backstage/docs/architecture-decisions/adr003-avoid-default-exports.md": "8d67c3e0c57461829bcacf5424d08f2288f098fde029facd4ad96cc9671b2a3c",
+    "real/raw/backstage/docs/architecture-decisions/adr004-module-export-structure.md": "8b2059c0af4c33225d69d9040b9a879d8369e0c5ce730c27b71241ee9e4b871a",
+    "real/raw/backstage/docs/architecture-decisions/adr005-catalog-core-entities.md": "582f8229d10bd8fddae82ab577d2223afa60e7ebbc2307872e21e89de613d239",
+    "real/raw/backstage/docs/architecture-decisions/adr006-avoid-react-fc.md": "46ffced838eb905017cace4929cb7ce20836626f693ddb471df1e3196623c36f",
+    "real/raw/backstage/docs/architecture-decisions/adr007-use-msw-to-mock-service-requests.md": "eeff262b8169a49fe0cf9d89e56a5ca2ea34501e118badb9492bc954c360dc96",
+    "real/raw/backstage/docs/architecture-decisions/adr008-default-catalog-file-name.md": "ffdc2996b696aa6db6acd143871ed1ef11130ddf0bf6643013e39f73796e388b",
+    "real/raw/backstage/docs/architecture-decisions/adr009-entity-references.md": "58a06ab2b45b21b83eb5d3b831980c333e509adaaf9906999148034ca95903e3",
+    "real/raw/backstage/docs/architecture-decisions/adr010-luxon-date-library.md": "54348a1522cf900e68c3c4cf96683b83c39060376c7fe9826602d7004ab0a7d2",
+    "real/raw/backstage/docs/architecture-decisions/adr011-plugin-package-structure.md": "c32ca9901e1828e4be3a428626de94d4da18e920b82a7c2374e922d55f522621",
+    "real/raw/backstage/docs/architecture-decisions/adr012-use-luxon-locale-and-date-presets.md": "d48f2dbdbf4c9870cbb723ec9eda85cb9582110dff69048ca128b70de4104c52",
+    "real/raw/backstage/docs/architecture-decisions/adr013-use-node-fetch.md": "568154d36ee52ef20442792eca09a84fa8593c93c669a14e6c7a204c2e09face",
+    "real/raw/backstage/docs/architecture-decisions/adr014-use-fetch.md": "3490d49ab9e7a9c81cef28abcac18ebe899b1c9c7e46311cb89994d8489ac238",
+    "real/raw/backstage/docs/architecture-decisions/adr015-jsx-loader-structure.md": "a1d885c6b54e81434ca91141dd1e7370db4410e67ec35fba61be3dea999ab368",
+    "real/planted/PLANTED-OWNER.md": "442082a88c1ad541bd186e556ae3ab3605aabf6dbc5a4c81a19729af7a8be3a8",
+    "real/planted/PLANTED-STATUS.md": "140d280e06b0bf537f2d6f1b6781f45f0b72c9402217a3538edbffdb5be609e7",
+    "real/planted/PLANTED-SUPERSEDES.md": "7a9fa58bcf476047ff6b5b00265c7e5b83a8b89d36fc62e0e18ea3cfef759de4"
+  },
+  "database_nodes": 137,
+  "database_edges": 149
+}

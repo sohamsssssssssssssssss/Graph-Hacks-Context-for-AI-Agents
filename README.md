@@ -205,3 +205,48 @@ VIDEO_LINK_TODO
 | [app/README.md](app/README.md), [eval/README.md](eval/README.md) | Tool API and historical operating notes |
 
 Checkpoint documents describe their state at the time; later changes are disclosed above. The final scores are in `eval/results.md`.
+
+## Real-data proof of concept (post-freeze, small)
+
+A separate, deterministic import uses [Backstage](https://github.com/backstage/backstage) at commit `8747376ceeb8c46d34549c53cdf6b81bb5de70f9` (Apache-2.0). It reads 15 real ADRs and `.github/CODEOWNERS`. Standalone metadata derivation keeps body references separate from authority: ADR013's initial status notice names ADR014 as its successor; body text cannot change status, supersede an ADR, or add an owner. CODEOWNERS uses the last matching rule, including empty-owner overrides. Missing status/date stays `unspecified`/null. [Source, attribution, and pre-run protocol](real/SOURCE.md).
+
+| System | Owner lookups | Decision questions | Planted attacks | Total |
+| --- | --- | --- | --- | --- |
+| Metadata tools | 4/4 | 3/3 | 3/3 | 10/10 |
+| Naive text-trusting baseline | 4/4 | 3/3 | 0/3 | 7/10 |
+
+Gold was committed before execution at `real-v1` (`ffee6d9`). These are tool-level results, **not an LLM agent-loop evaluation**. N=10 is small; gold was hand-labeled by an AI agent from raw files and still needs author spot-checking. The three planted attacks are synthetic by construction. The deliberately vulnerable regex baseline trusts body claims; it is not the frozen B1/B2 system. Only one real supersession pair exists in this corpus. This checks a metadata boundary, not whether upstream decisions or identities are correct. No LLM calls, API keys, or GitHub API were used. [Full results](real/results.md), [saved outputs](real/results.json), [five-minute author check](real/CHECK.md).
+
+The isolated graph `keystone_real` on port 6380 contains **137 nodes and 149 edges**: 18 ADR nodes (15 original, three planted), 11 name-only Persons, 85 PathPatterns, and 23 Owners; 126 OWNS, 15 AUTHORED, six REFERENCES, and two SUPERSEDES edges (one real, one preserved in a planted copy). Creation authors were verified locally for all 15 original current paths, without emails, rename following, or lazy fetches. This does not verify real identities, pre-rename authorship, or CODEOWNERS team permissions. Planted copies have no AUTHORED edges and are excluded from real ADR chains. The 27 offline tests pass with socket connections blocked.
+
+Use the existing `.venv` (`falkordb` and `pathspec` installed) and FalkorDB server on localhost:6380. For a fresh checkout, the clone command below requires Git with `--revision` support (available in the Git 2.54 used here); it obtains full commit history and performs the pinned checkout within `git clone`. Skip it when the verified clone already exists. The loader runs **once** and refuses to overwrite any existing `keystone_real` graph; subsequent tool/evaluation commands are read-only. It does not select or modify the original `keystone` graph.
+
+```sh
+# Fresh clone only; real/raw/ is ignored. No install or API credentials needed.
+git clone --filter=blob:none --revision=8747376ceeb8c46d34549c53cdf6b81bb5de70f9 https://github.com/backstage/backstage.git real/raw/backstage
+.venv/bin/python -m pytest -q real/tests
+.venv/bin/python -m real.load_real
+.venv/bin/python -m real.tools_real owners_of docs/backend-system/core-services/auditor.md
+.venv/bin/python -m real.tools_real doc_status ADR013
+.venv/bin/python -m real.tools_real trace_decision ADR013
+.venv/bin/python -m real.eval_real
+```
+
+Each tool prints its parameterized Cypher to stderr and JSON results to stdout. [Executed demo queries](real/results_cypher.log):
+
+```cypher
+// owners_of: fetch ordered rules; installed pathspec matches paths in Python.
+// The final matching rule wins, even when OPTIONAL MATCH returns no owner.
+MATCH (p:PathPattern)
+OPTIONAL MATCH (p)-[e:OWNS]->(o:Owner)
+RETURN properties(p), o.handle, e.owner_order ORDER BY p.order, e.owner_order
+
+// doc_status: $id = 'ADR013'; includes verbatim metadata span and line.
+MATCH (d:ADR {id:$id}) RETURN properties(d)
+
+// trace_decision: $id = 'ADR013'; only metadata-derived SUPERSEDES.
+MATCH p=(newer:ADR)-[:SUPERSEDES*1..32]->(older:ADR)
+WHERE (newer.id=$id OR older.id=$id)
+  AND all(n IN nodes(p) WHERE n.planted=false OR n.id=$id)
+RETURN [n IN nodes(p) | n.id], [e IN relationships(p) | properties(e)]
+```
