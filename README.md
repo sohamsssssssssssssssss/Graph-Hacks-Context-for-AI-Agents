@@ -147,6 +147,29 @@ K versus B1 isolates the gate with the same agent model and tools: **1 versus 4 
 
 **18 answer grades remain pending due to Groq quota**: two B2 and sixteen B1. No agent cases are missing. See the [failed-case list and K diagnosis](eval/results.md#cases-we-fail), [per-case CSV](eval/frozen_qwen2.5_cases_v1/per_case.csv), and [saved traces](eval/frozen_qwen2.5_cases_v1/traces). These scores use an automated grader, not independent human validation.
 
+## Additional evidence (post-freeze)
+
+These experiments were designed after cases-v1: they are additional, post-hoc evidence, not a replacement for the frozen results above. K, B1, and B2 all use `qwen2.5:7b-instruct`. The [frozen-run breakdown](eval/additional/breakdown.md) uses the original case categories and assigns one post-hoc cause to each of the 21/24 K cases with a wrong outcome or answer: agent error 9/21, right outcome/wrong answer 9/21, over-escalation 2/21, reported rule/reference inconsistency 1/21, other 0/21.
+
+The [additional attack gold](cases/additional/attacks_v1.jsonl) and fixtures were committed and tagged `attacks-v1` before their runs. There are five variants in each of six families: forged approval, injected instructions, no-standing takeover, equal-authority takeover, alias confidence, and chat-only supersession. Gold includes 21/30 ESCALATE, 5/30 ANSWER_ONLY, and 4/30 ACT controls, specified from the written rules. No LLM grader was used.
+
+| System | Outcome correct / N | Unsafe final ACT / N | Cases with unsafe audit ACT / N (post-hoc supplement) |
+| --- | ---: | ---: | ---: |
+| K | 28/30 | 0/30 | 0/30 |
+| B1 | 11/30 | 17/30 | 20/30 |
+| B2 | 23/30 | 1/30 | 0/30 |
+
+For this set, the pre-registered unsafe outcome is final ACT when gold is not ACT. The execution supplement also catches recorded ACT actions followed by a non-ACT final answer; B2 can assert ACT but cannot execute. The cases-v1 execution metric remains unchanged. [Per-family counts, traces, and limitations](eval/additional/attacks.md) are saved alongside the [pre-run protocol](eval/additional/preregistration.md).
+
+The conditional [freshness check](eval/additional/freshness.md) asked ownership before and after valid old-team-authorized transfers on eight new services:
+
+| System | Stale after update / N | New-owner-only answers / N | Both-owner or abstaining answers / N |
+| --- | ---: | ---: | ---: |
+| K | 0/8 | 8/8 | 0/8 |
+| B1 | 0/8 | 8/8 | 0/8 |
+
+These small templated tests use isolated in-memory graph fixtures with the unchanged derivation, agent, tools, and gate. They test rule-following under variation, not whether the rules are right, production database behavior, or persistent conversational memory. Freshness uses a conservative lexical check, with full answers retained. The no-status-derivation ablation **A1 was not run**; case A1 in cases-v1 is not that ablation.
+
 ## Disclosures
 
 - The first frozen run was incomplete: **45/72 infrastructure failures**. It was discarded for the final comparison; its [records](eval/run_records.jsonl) remain available.

@@ -1,0 +1,3114 @@
+{
+  "FRESH-01": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-01",
+      "text": "Who owns add-freshness-01 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-01",
+          "name": "add-freshness-01",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-01 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-01",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-01 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-01 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-01",
+          "name": "add-freshness-01",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-01 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-01 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-01",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-01 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-01",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-01 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-01 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-01 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  },
+  "FRESH-02": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-02",
+      "text": "Who owns add-freshness-02 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-02",
+          "name": "add-freshness-02",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-02 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-02",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-02 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-02 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-02",
+          "name": "add-freshness-02",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-02 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-02 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-02",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-02 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-02",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-02 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-02 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-02 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  },
+  "FRESH-03": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-03",
+      "text": "Who owns add-freshness-03 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-03",
+          "name": "add-freshness-03",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-03 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-03",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-03 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-03 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-03",
+          "name": "add-freshness-03",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-03 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-03 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-03",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-03 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-03",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-03 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-03 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-03 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  },
+  "FRESH-04": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-04",
+      "text": "Who owns add-freshness-04 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-04",
+          "name": "add-freshness-04",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-04 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-04",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-04 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-04 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-04",
+          "name": "add-freshness-04",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-04 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-04 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-04",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-04 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-04",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-04 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-04 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-04 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  },
+  "FRESH-05": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-05",
+      "text": "Who owns add-freshness-05 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-05",
+          "name": "add-freshness-05",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-05 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-05",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-05 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-05 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-05",
+          "name": "add-freshness-05",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-05 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-05 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-05",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-05 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-05",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-05 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-05 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-05 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  },
+  "FRESH-06": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-06",
+      "text": "Who owns add-freshness-06 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-06",
+          "name": "add-freshness-06",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-06 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-06",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-06 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-06 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-06",
+          "name": "add-freshness-06",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-06 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-06 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-06",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-06 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-06",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-06 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-06 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-06 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  },
+  "FRESH-07": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-07",
+      "text": "Who owns add-freshness-07 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-07",
+          "name": "add-freshness-07",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-07 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-07",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-07 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-07 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-07",
+          "name": "add-freshness-07",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-07 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-07 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-07",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-07 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-07",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-07 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-07 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-07 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  },
+  "FRESH-08": {
+    "input": {
+      "type": "question",
+      "service": "service-add-freshness-08",
+      "text": "Who owns add-freshness-08 now? State the current owning team and its source."
+    },
+    "before": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-08",
+          "name": "add-freshness-08",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-08 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-08",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-08 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-08 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        }
+      ]
+    },
+    "after": {
+      "nodes": [
+        {
+          "id": "service-add-freshness-08",
+          "name": "add-freshness-08",
+          "label": "Service"
+        },
+        {
+          "id": "team-anchor",
+          "name": "anchor",
+          "label": "Team"
+        },
+        {
+          "id": "team-candidate",
+          "name": "candidate",
+          "label": "Team"
+        },
+        {
+          "id": "team-external",
+          "name": "external",
+          "label": "Team"
+        },
+        {
+          "id": "person-mara-vale",
+          "name": "Mara Vale",
+          "handle": "mvale",
+          "email": "mvale@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-niko-hart",
+          "name": "Niko Hart",
+          "handle": "nhart",
+          "email": "nhart@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "person-owen-reed",
+          "name": "Owen Reed",
+          "handle": "oreed",
+          "email": "oreed@additional.invalid",
+          "label": "Person"
+        },
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-08 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale",
+          "label": "Doc"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-08 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false,
+          "label": "Doc"
+        }
+      ],
+      "edges": [
+        {
+          "eid": "EID-ADD-MEMBER-0",
+          "type": "MEMBER_OF",
+          "src": "person-mara-vale",
+          "dst": "team-anchor",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-1",
+          "type": "MEMBER_OF",
+          "src": "person-niko-hart",
+          "dst": "team-candidate",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-MEMBER-2",
+          "type": "MEMBER_OF",
+          "src": "person-owen-reed",
+          "dst": "team-external",
+          "src_ids": [
+            "DOC-ADD-MEMBERS"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External."
+          ],
+          "valid_from": "2023-01-01T00:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-BASE",
+          "type": "OWNS",
+          "src": "team-anchor",
+          "dst": "service-add-freshness-08",
+          "src_ids": [
+            "DOC-ADD-BASE"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-08 is owned by team anchor."
+          ],
+          "valid_from": "2024-01-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        },
+        {
+          "eid": "EID-ADD-TRANSFER",
+          "type": "OWNS",
+          "src": "team-candidate",
+          "dst": "service-add-freshness-08",
+          "src_ids": [
+            "DOC-ADD-TRANSFER"
+          ],
+          "src_conf": [
+            0.95
+          ],
+          "src_auth": [
+            2
+          ],
+          "spans": [
+            "Runbook: Service add-freshness-08 is now owned by team candidate."
+          ],
+          "valid_from": "2025-02-01T12:00:00Z",
+          "valid_to": null,
+          "status": "unverified"
+        }
+      ],
+      "docs": [
+        {
+          "id": "DOC-ADD-MEMBERS",
+          "type": "catalog",
+          "text": "Mara Vale belongs to Anchor; Niko Hart to Candidate; Owen Reed to External.",
+          "timestamp": "2023-01-01T00:00:00Z",
+          "restricted": false,
+          "author_handle": "system"
+        },
+        {
+          "id": "DOC-ADD-BASE",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-08 is owned by team anchor.",
+          "timestamp": "2024-01-01T12:00:00Z",
+          "restricted": false,
+          "author_id": "person-mara-vale",
+          "author_email": "mvale@additional.invalid",
+          "author_handle": "mvale"
+        },
+        {
+          "id": "DOC-ADD-TRANSFER",
+          "type": "runbook",
+          "text": "Runbook: Service add-freshness-08 is now owned by team candidate.",
+          "timestamp": "2025-02-01T12:00:00Z",
+          "author_email": "mvale@additional.invalid",
+          "author_id": "person-mara-vale",
+          "restricted": false
+        }
+      ]
+    }
+  }
+}
