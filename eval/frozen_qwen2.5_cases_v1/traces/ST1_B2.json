@@ -1,0 +1,96 @@
+{
+  "case_id": "ST1",
+  "system": "B2",
+  "model": "qwen2.5:7b-instruct",
+  "input": {
+    "type": "question",
+    "service": "session-cache",
+    "text": "Is Redis the current storage for session-cache?"
+  },
+  "original_input": {
+    "type": "question",
+    "service": "session-cache",
+    "text": "Is Redis the current storage for session-cache?"
+  },
+  "route": "decision_question",
+  "allowed_tools": [],
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "started_at": "2026-10-18T11:15:49.094785+00:00",
+  "tool_calls": [],
+  "errors": [],
+  "final": {
+    "answer": "The current storage for session-cache is not specified in the provided text. The evidence does not establish a confidence, owner, or execution status.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "final_format_retries": 0,
+  "target_retries": 0,
+  "proposed_final": {
+    "answer": "The current storage for session-cache is not specified in the provided text. The evidence does not establish a confidence, owner, or execution status.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "gate_failure": false,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Answer the supplied text only. No tools or company evidence are available. Return one JSON object with answer (string), outcome (exactly one of \"ACT\", \"ANSWER_ONLY\", \"ESCALATE\"), cited_edge_ids (string array), cited_spans (string array). For questions use ANSWER_ONLY; for alerts without trustworthy evidence use ESCALATE. Never claim execution without tools. In the final answer text, always state the owning team and ownership source, the catalog confidence reported by the tools and verification status, and whether the action was executed in the local dry-run, was not executed, or was escalated. State unavailable or not applicable when the evidence does not establish a field; never invent a confidence, owner or execution. Distinguish local dry-run execution from external delivery. Copy quoted evidence spans in full, including every sentence and prefix; never shorten or paraphrase a quoted span. If no full span was returned, cite edge IDs and leave cited_spans empty."
+    },
+    {
+      "role": "user",
+      "content": "Is Redis the current storage for session-cache?"
+    },
+    {
+      "role": "assistant",
+      "content": "{\n  \"answer\": \"The current storage for session-cache is not specified in the provided text. The evidence does not establish a confidence, owner, or execution status.\",\n  \"outcome\": \"ANSWER_ONLY\",\n  \"cited_edge_ids\": [],\n  \"cited_spans\": []\n}"
+    }
+  ],
+  "llm_calls": [
+    {
+      "provider": "ollama",
+      "role": "agent",
+      "context_guard": {
+        "triggered": false,
+        "before": 401,
+        "after": 401,
+        "truncated_outputs": 0
+      },
+      "grader_input_truncated": false,
+      "retries": 0,
+      "ollama_metrics": {
+        "eval_count": 61,
+        "eval_duration": 2284497000,
+        "prompt_eval_count": 219,
+        "prompt_eval_duration": 81785000,
+        "total_duration": 2370725166,
+        "load_duration": 1338000
+      },
+      "cache_key": "cf34f531c0350bcf0f2f76a414edb2d83c280d0d289d5237d7c25e4e1c4b68ff",
+      "cache_hit": false,
+      "latency_s": 2.3720682080020197,
+      "usage": {
+        "prompt_tokens": 219,
+        "completion_tokens": 61,
+        "total_tokens": 280
+      },
+      "billed_tokens": 280
+    }
+  ],
+  "latency_s": 2.3722736249910668,
+  "metrics": {
+    "wall_seconds": 2.3722736249910668,
+    "prompt_tokens": 219,
+    "completion_tokens": 61,
+    "tokens_per_second": 26.701720334935874,
+    "eval_count": 61,
+    "eval_seconds": 2.284497,
+    "tool_calls": 0,
+    "tool_call_failures": 0,
+    "malformed_output": false,
+    "retries": 0,
+    "ctx_guard_triggers": 0
+  },
+  "provider": "ollama"
+}

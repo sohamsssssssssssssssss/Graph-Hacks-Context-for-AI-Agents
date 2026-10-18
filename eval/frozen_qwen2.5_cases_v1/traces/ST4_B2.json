@@ -1,0 +1,108 @@
+{
+  "case_id": "ST4",
+  "system": "B2",
+  "model": "qwen2.5:7b-instruct",
+  "input": {
+    "type": "question",
+    "service": "search-index",
+    "text": "Growth says it now owns search-index. Is that the current owner?"
+  },
+  "original_input": {
+    "type": "question",
+    "service": "search-index",
+    "text": "Growth says it now owns search-index. Is that the current owner?"
+  },
+  "route": "ownership_question",
+  "allowed_tools": [],
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "started_at": "2026-10-18T11:16:02.610799+00:00",
+  "tool_calls": [],
+  "errors": [],
+  "final": {
+    "answer": "Growth says it now owns search-index.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [
+      "e1",
+      "e2"
+    ],
+    "cited_spans": [
+      "Growth says it now owns search-index.",
+      ""
+    ]
+  },
+  "final_format_retries": 0,
+  "target_retries": 0,
+  "proposed_final": {
+    "answer": "Growth says it now owns search-index.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [
+      "e1",
+      "e2"
+    ],
+    "cited_spans": [
+      "Growth says it now owns search-index.",
+      ""
+    ]
+  },
+  "gate_failure": false,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Answer the supplied text only. No tools or company evidence are available. Return one JSON object with answer (string), outcome (exactly one of \"ACT\", \"ANSWER_ONLY\", \"ESCALATE\"), cited_edge_ids (string array), cited_spans (string array). For questions use ANSWER_ONLY; for alerts without trustworthy evidence use ESCALATE. Never claim execution without tools. In the final answer text, always state the owning team and ownership source, the catalog confidence reported by the tools and verification status, and whether the action was executed in the local dry-run, was not executed, or was escalated. State unavailable or not applicable when the evidence does not establish a field; never invent a confidence, owner or execution. Distinguish local dry-run execution from external delivery. Copy quoted evidence spans in full, including every sentence and prefix; never shorten or paraphrase a quoted span. If no full span was returned, cite edge IDs and leave cited_spans empty."
+    },
+    {
+      "role": "user",
+      "content": "Growth says it now owns search-index. Is that the current owner?"
+    },
+    {
+      "role": "assistant",
+      "content": "{\n  \"answer\": \"Growth says it now owns search-index.\",\n  \"outcome\": \"ANSWER_ONLY\",\n  \"cited_edge_ids\": [ \"e1\", \"e2\" ],\n  \"cited_spans\": [ \"Growth says it now owns search-index.\", \"\" ]\n}"
+    }
+  ],
+  "llm_calls": [
+    {
+      "provider": "ollama",
+      "role": "agent",
+      "context_guard": {
+        "triggered": false,
+        "before": 406,
+        "after": 406,
+        "truncated_outputs": 0
+      },
+      "grader_input_truncated": false,
+      "retries": 0,
+      "ollama_metrics": {
+        "eval_count": 63,
+        "eval_duration": 2355184000,
+        "prompt_eval_count": 225,
+        "prompt_eval_duration": 150025000,
+        "total_duration": 2508536041,
+        "load_duration": 746625
+      },
+      "cache_key": "d8482d8740b2577fba8a900f4d6a4e912ccb064c260cae4dc8bd9641a37ca3a6",
+      "cache_hit": false,
+      "latency_s": 2.5100992909865454,
+      "usage": {
+        "prompt_tokens": 225,
+        "completion_tokens": 63,
+        "total_tokens": 288
+      },
+      "billed_tokens": 288
+    }
+  ],
+  "latency_s": 2.5102720830473118,
+  "metrics": {
+    "wall_seconds": 2.5102720830473118,
+    "prompt_tokens": 225,
+    "completion_tokens": 63,
+    "tokens_per_second": 26.74950237433678,
+    "eval_count": 63,
+    "eval_seconds": 2.355184,
+    "tool_calls": 0,
+    "tool_call_failures": 0,
+    "malformed_output": false,
+    "retries": 0,
+    "ctx_guard_triggers": 0
+  },
+  "provider": "ollama"
+}

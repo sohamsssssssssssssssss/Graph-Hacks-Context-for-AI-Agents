@@ -1,0 +1,102 @@
+{
+  "case_id": "T1",
+  "system": "B2",
+  "model": "qwen2.5:7b-instruct",
+  "input": {
+    "type": "question",
+    "service": "session-cache",
+    "text": "Why did we move session-cache off Redis?"
+  },
+  "original_input": {
+    "type": "question",
+    "service": "session-cache",
+    "text": "Why did we move session-cache off Redis?"
+  },
+  "route": "decision_question",
+  "allowed_tools": [],
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "started_at": "2026-10-18T11:15:53.327266+00:00",
+  "tool_calls": [],
+  "errors": [],
+  "final": {
+    "answer": "We moved session-cache off Redis to improve performance and reduce costs. Redis was becoming a bottleneck in our system, and moving the session-cache to a more lightweight solution allowed us to scale better and save on Redis licensing fees.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [
+      "e1",
+      "e2"
+    ],
+    "cited_spans": []
+  },
+  "final_format_retries": 0,
+  "target_retries": 0,
+  "proposed_final": {
+    "answer": "We moved session-cache off Redis to improve performance and reduce costs. Redis was becoming a bottleneck in our system, and moving the session-cache to a more lightweight solution allowed us to scale better and save on Redis licensing fees.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [
+      "e1",
+      "e2"
+    ],
+    "cited_spans": []
+  },
+  "gate_failure": false,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Answer the supplied text only. No tools or company evidence are available. Return one JSON object with answer (string), outcome (exactly one of \"ACT\", \"ANSWER_ONLY\", \"ESCALATE\"), cited_edge_ids (string array), cited_spans (string array). For questions use ANSWER_ONLY; for alerts without trustworthy evidence use ESCALATE. Never claim execution without tools. In the final answer text, always state the owning team and ownership source, the catalog confidence reported by the tools and verification status, and whether the action was executed in the local dry-run, was not executed, or was escalated. State unavailable or not applicable when the evidence does not establish a field; never invent a confidence, owner or execution. Distinguish local dry-run execution from external delivery. Copy quoted evidence spans in full, including every sentence and prefix; never shorten or paraphrase a quoted span. If no full span was returned, cite edge IDs and leave cited_spans empty."
+    },
+    {
+      "role": "user",
+      "content": "Why did we move session-cache off Redis?"
+    },
+    {
+      "role": "assistant",
+      "content": "{\n  \"answer\": \"We moved session-cache off Redis to improve performance and reduce costs. Redis was becoming a bottleneck in our system, and moving the session-cache to a more lightweight solution allowed us to scale better and save on Redis licensing fees.\",\n  \"outcome\": \"ANSWER_ONLY\",\n  \"cited_edge_ids\": [\"e1\", \"e2\"],\n  \"cited_spans\": []\n}"
+    }
+  ],
+  "llm_calls": [
+    {
+      "provider": "ollama",
+      "role": "agent",
+      "context_guard": {
+        "triggered": false,
+        "before": 398,
+        "after": 398,
+        "truncated_outputs": 0
+      },
+      "grader_input_truncated": false,
+      "retries": 0,
+      "ollama_metrics": {
+        "eval_count": 84,
+        "eval_duration": 3173432000,
+        "prompt_eval_count": 219,
+        "prompt_eval_duration": 80533000,
+        "total_duration": 3257172375,
+        "load_duration": 847583
+      },
+      "cache_key": "e0b8b665e69232fc548541f79903868c17f550242c59d288c55fb1a6b97a5541",
+      "cache_hit": false,
+      "latency_s": 3.25837875000434,
+      "usage": {
+        "prompt_tokens": 219,
+        "completion_tokens": 84,
+        "total_tokens": 303
+      },
+      "billed_tokens": 303
+    }
+  ],
+  "latency_s": 3.258520082978066,
+  "metrics": {
+    "wall_seconds": 3.258520082978066,
+    "prompt_tokens": 219,
+    "completion_tokens": 84,
+    "tokens_per_second": 26.469765225787096,
+    "eval_count": 84,
+    "eval_seconds": 3.173432,
+    "tool_calls": 0,
+    "tool_call_failures": 0,
+    "malformed_output": false,
+    "retries": 0,
+    "ctx_guard_triggers": 0
+  },
+  "provider": "ollama"
+}

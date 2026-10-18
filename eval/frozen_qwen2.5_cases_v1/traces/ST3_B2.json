@@ -1,0 +1,96 @@
+{
+  "case_id": "ST3",
+  "system": "B2",
+  "model": "qwen2.5:7b-instruct",
+  "input": {
+    "type": "question",
+    "service": "rate-limiter",
+    "text": "Did the migration of session-cache off Redis also supersede rate-limiter’s Redis decision?"
+  },
+  "original_input": {
+    "type": "question",
+    "service": "rate-limiter",
+    "text": "Did the migration of session-cache off Redis also supersede rate-limiter’s Redis decision?"
+  },
+  "route": "decision_question",
+  "allowed_tools": [],
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "started_at": "2026-10-18T11:15:59.924460+00:00",
+  "tool_calls": [],
+  "errors": [],
+  "final": {
+    "answer": "The migration of session-cache off Redis did not necessarily supersede rate-limiter’s Redis decision. These are separate components and their migrations or decisions are independent of each other.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "final_format_retries": 0,
+  "target_retries": 0,
+  "proposed_final": {
+    "answer": "The migration of session-cache off Redis did not necessarily supersede rate-limiter’s Redis decision. These are separate components and their migrations or decisions are independent of each other.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "gate_failure": false,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Answer the supplied text only. No tools or company evidence are available. Return one JSON object with answer (string), outcome (exactly one of \"ACT\", \"ANSWER_ONLY\", \"ESCALATE\"), cited_edge_ids (string array), cited_spans (string array). For questions use ANSWER_ONLY; for alerts without trustworthy evidence use ESCALATE. Never claim execution without tools. In the final answer text, always state the owning team and ownership source, the catalog confidence reported by the tools and verification status, and whether the action was executed in the local dry-run, was not executed, or was escalated. State unavailable or not applicable when the evidence does not establish a field; never invent a confidence, owner or execution. Distinguish local dry-run execution from external delivery. Copy quoted evidence spans in full, including every sentence and prefix; never shorten or paraphrase a quoted span. If no full span was returned, cite edge IDs and leave cited_spans empty."
+    },
+    {
+      "role": "user",
+      "content": "Did the migration of session-cache off Redis also supersede rate-limiter’s Redis decision?"
+    },
+    {
+      "role": "assistant",
+      "content": "{\n  \"answer\": \"The migration of session-cache off Redis did not necessarily supersede rate-limiter’s Redis decision. These are separate components and their migrations or decisions are independent of each other.\",\n  \"outcome\": \"ANSWER_ONLY\",\n  \"cited_edge_ids\": [],\n  \"cited_spans\": []\n}"
+    }
+  ],
+  "llm_calls": [
+    {
+      "provider": "ollama",
+      "role": "agent",
+      "context_guard": {
+        "triggered": false,
+        "before": 416,
+        "after": 416,
+        "truncated_outputs": 0
+      },
+      "grader_input_truncated": false,
+      "retries": 0,
+      "ollama_metrics": {
+        "eval_count": 67,
+        "eval_duration": 2515580000,
+        "prompt_eval_count": 228,
+        "prompt_eval_duration": 152615000,
+        "total_duration": 2671534583,
+        "load_duration": 1084458
+      },
+      "cache_key": "4f11421d8812c93f072eca4d2bed9a563e8cd2f94afa21e20c05dc86b104c695",
+      "cache_hit": false,
+      "latency_s": 2.6734417919651605,
+      "usage": {
+        "prompt_tokens": 228,
+        "completion_tokens": 67,
+        "total_tokens": 295
+      },
+      "billed_tokens": 295
+    }
+  ],
+  "latency_s": 2.674437709036283,
+  "metrics": {
+    "wall_seconds": 2.674437709036283,
+    "prompt_tokens": 228,
+    "completion_tokens": 67,
+    "tokens_per_second": 26.634016807257176,
+    "eval_count": 67,
+    "eval_seconds": 2.51558,
+    "tool_calls": 0,
+    "tool_call_failures": 0,
+    "malformed_output": false,
+    "retries": 0,
+    "ctx_guard_triggers": 0
+  },
+  "provider": "ollama"
+}

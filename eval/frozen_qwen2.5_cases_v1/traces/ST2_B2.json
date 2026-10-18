@@ -1,0 +1,96 @@
+{
+  "case_id": "ST2",
+  "system": "B2",
+  "model": "qwen2.5:7b-instruct",
+  "input": {
+    "type": "question",
+    "service": "checkout-api",
+    "text": "Who owns checkout-api now?"
+  },
+  "original_input": {
+    "type": "question",
+    "service": "checkout-api",
+    "text": "Who owns checkout-api now?"
+  },
+  "route": "ownership_question",
+  "allowed_tools": [],
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "started_at": "2026-10-18T11:15:51.479116+00:00",
+  "tool_calls": [],
+  "errors": [],
+  "final": {
+    "answer": "The ownership of checkout-api is not explicitly stated in the provided evidence.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "final_format_retries": 0,
+  "target_retries": 0,
+  "proposed_final": {
+    "answer": "The ownership of checkout-api is not explicitly stated in the provided evidence.",
+    "outcome": "ANSWER_ONLY",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "gate_failure": false,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Answer the supplied text only. No tools or company evidence are available. Return one JSON object with answer (string), outcome (exactly one of \"ACT\", \"ANSWER_ONLY\", \"ESCALATE\"), cited_edge_ids (string array), cited_spans (string array). For questions use ANSWER_ONLY; for alerts without trustworthy evidence use ESCALATE. Never claim execution without tools. In the final answer text, always state the owning team and ownership source, the catalog confidence reported by the tools and verification status, and whether the action was executed in the local dry-run, was not executed, or was escalated. State unavailable or not applicable when the evidence does not establish a field; never invent a confidence, owner or execution. Distinguish local dry-run execution from external delivery. Copy quoted evidence spans in full, including every sentence and prefix; never shorten or paraphrase a quoted span. If no full span was returned, cite edge IDs and leave cited_spans empty."
+    },
+    {
+      "role": "user",
+      "content": "Who owns checkout-api now?"
+    },
+    {
+      "role": "assistant",
+      "content": "{\n  \"answer\": \"The ownership of checkout-api is not explicitly stated in the provided evidence.\",\n  \"outcome\": \"ANSWER_ONLY\",\n  \"cited_edge_ids\": [],\n  \"cited_spans\": []\n}"
+    }
+  ],
+  "llm_calls": [
+    {
+      "provider": "ollama",
+      "role": "agent",
+      "context_guard": {
+        "triggered": false,
+        "before": 394,
+        "after": 394,
+        "truncated_outputs": 0
+      },
+      "grader_input_truncated": false,
+      "retries": 0,
+      "ollama_metrics": {
+        "eval_count": 47,
+        "eval_duration": 1758815000,
+        "prompt_eval_count": 216,
+        "prompt_eval_duration": 77046000,
+        "total_duration": 1839632583,
+        "load_duration": 912500
+      },
+      "cache_key": "e8b97432f9d960a305fabbceeece2fd17ebd9ee2f1be1b7ad33cc60e0909f0d4",
+      "cache_hit": false,
+      "latency_s": 1.8406555420369841,
+      "usage": {
+        "prompt_tokens": 216,
+        "completion_tokens": 47,
+        "total_tokens": 263
+      },
+      "billed_tokens": 263
+    }
+  ],
+  "latency_s": 1.840783999999985,
+  "metrics": {
+    "wall_seconds": 1.840783999999985,
+    "prompt_tokens": 216,
+    "completion_tokens": 47,
+    "tokens_per_second": 26.72253761765734,
+    "eval_count": 47,
+    "eval_seconds": 1.758815,
+    "tool_calls": 0,
+    "tool_call_failures": 0,
+    "malformed_output": false,
+    "retries": 0,
+    "ctx_guard_triggers": 0
+  },
+  "provider": "ollama"
+}

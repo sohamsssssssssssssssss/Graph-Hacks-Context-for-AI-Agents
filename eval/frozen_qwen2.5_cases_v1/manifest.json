@@ -1,0 +1,45 @@
+{
+  "identity": {
+    "tag_commit": "6d29174a33068d0236495d86ca324eba666af617",
+    "files": {
+      "agent.py": "37839ea992f64a3cc9a900737e1a25571fa3e610dbc53bd8779a6480178962eb",
+      "llm.py": "1125de0d173bfc8e5380c6c55c0d7f27716178cc2681bf0c99f5ddc6d859aede",
+      "derive.py": "ce3ef293999734def54a3f91b400b9a9d7483e24a6e7423d5e48d8c100a1f662",
+      "resolve.py": "d8210acdc84d3e3637c5c8746d4f39eebf76ed9c285960c72c5e1397b65a7d75",
+      "mcp_server.py": "6eb7554807e8d614edb4fb8cecf9282c3db582d8fabc55af69c8eb89a716d934",
+      "SPEC.md": "5f19611a23acbe511332e38af73421537fc767ad277d00f8757f07282a49301a",
+      "docs/RULES.md": "eb3efc840fa2cb0ac851421fbe90ad95c8cea6112ff98564362c4191b5b1f9e7",
+      "app/config.json": "39c084e8d9195d80ab203671c282f09cea99b743b0105905c1ce5af04803f281",
+      "eval/run_eval.py": "0d20e7f6a46a4ccde7f696cd16290291caba8141471f98f5e3c8b8befbf88ffc",
+      "eval/run_frozen.py": "ffd03240021f8123eac4fccba6c6c42eb0dd867df51d69ad461e30fc2d9ab75f",
+      "labels/labels_v1.json": "b922021680493d7a51d37d474deed0aa3b9638c32df924b1566edd4f17200d2e",
+      "labels/LABELS_V1.sha256": "d2b404a9296a21f4a45356ac4b2c9f185747dbc52ec8b5b9202d74df6905765e",
+      "app/__init__.py": "ca55e1156ab5778194ef619e74152f91565bac10a29b001d442518bfb9fc13dd",
+      "app/store.py": "2143a4f1d29045fc2fff70fd00fdfce5f64ea25238c234f35a365df70f5c40f8",
+      "app/tools.py": "ba9a3fa1cc87681124a8eeb1cbf2c69a47d851896e25b99fd58dfa4585f27965",
+      "cases/author_cases.jsonl": "5bb94032938a975e72ecf61211f960f5ce68f9dab802cc625a056be5de9f8711",
+      "cases/blind_cases.jsonl": "5501eaaa1aed8f734b5b9fb27f5ef155f8ad9bd6d08df2ed4a61946686c17608",
+      "cases/dev_cases.jsonl": "7124b0c700317f47dcf6dd1d732f280c49083f6fea8cfb6d1a520d17c593f3fa"
+    },
+    "data": {
+      "data/docs.jsonl": "4563a0cea048589e8c2421e616551e8ea4da625a4630676bc4e69d56a9edefe7",
+      "data/edges.jsonl": "a4c0412d30a4e63d89b1e56909d4f972b66ad9b4e0f6d148ebdac860c2989999",
+      "data/nodes.jsonl": "bc3954fd32c89fb473bca47d3facb84e2bfcacb596239a755dc0e15c5a4fdac7"
+    },
+    "agent_provider": "ollama",
+    "agent_model": "qwen2.5:7b-instruct",
+    "agent_weights_digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+    "grader_model": "openai/gpt-oss-120b",
+    "systems": [
+      "K",
+      "B2",
+      "B1"
+    ],
+    "expected_runs": 72,
+    "judge_prompt_sha256": "a478a569e0390208e102b603d3efc2bdb0aa68b0ccd703b3c6120c33a7622e43"
+  },
+  "started_at": "2026-10-18T10:58:11.516739+00:00",
+  "status": "pending_infrastructure",
+  "active_wall_s": 2667.044539667084,
+  "last_saved_at": "2026-10-18T11:47:07.093272+00:00"
+}

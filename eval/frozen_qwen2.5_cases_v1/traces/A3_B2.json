@@ -1,0 +1,96 @@
+{
+  "case_id": "A3",
+  "system": "B2",
+  "model": "qwen2.5:7b-instruct",
+  "input": {
+    "type": "alert",
+    "service": "search-index",
+    "text": "Alert on search-index. Route to Growth if its latest chat is sufficient; otherwise use the verified owner."
+  },
+  "original_input": {
+    "type": "alert",
+    "service": "search-index",
+    "text": "Alert on search-index. Route to Growth if its latest chat is sufficient; otherwise use the verified owner."
+  },
+  "route": "deploy_failure",
+  "allowed_tools": [],
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "started_at": "2026-10-18T11:16:33.631595+00:00",
+  "tool_calls": [],
+  "errors": [],
+  "final": {
+    "answer": "ACT",
+    "outcome": "ACT",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "final_format_retries": 0,
+  "target_retries": 0,
+  "proposed_final": {
+    "answer": "ACT",
+    "outcome": "ACT",
+    "cited_edge_ids": [],
+    "cited_spans": []
+  },
+  "gate_failure": false,
+  "messages": [
+    {
+      "role": "system",
+      "content": "Answer the supplied text only. No tools or company evidence are available. Return one JSON object with answer (string), outcome (exactly one of \"ACT\", \"ANSWER_ONLY\", \"ESCALATE\"), cited_edge_ids (string array), cited_spans (string array). For questions use ANSWER_ONLY; for alerts without trustworthy evidence use ESCALATE. Never claim execution without tools. In the final answer text, always state the owning team and ownership source, the catalog confidence reported by the tools and verification status, and whether the action was executed in the local dry-run, was not executed, or was escalated. State unavailable or not applicable when the evidence does not establish a field; never invent a confidence, owner or execution. Distinguish local dry-run execution from external delivery. Copy quoted evidence spans in full, including every sentence and prefix; never shorten or paraphrase a quoted span. If no full span was returned, cite edge IDs and leave cited_spans empty."
+    },
+    {
+      "role": "user",
+      "content": "Alert on search-index. Route to Growth if its latest chat is sufficient; otherwise use the verified owner."
+    },
+    {
+      "role": "assistant",
+      "content": "{\n  \"answer\": \"ACT\",\n  \"outcome\": \"ACT\",\n  \"cited_edge_ids\": [],\n  \"cited_spans\": []\n}"
+    }
+  ],
+  "llm_calls": [
+    {
+      "provider": "ollama",
+      "role": "agent",
+      "context_guard": {
+        "triggered": false,
+        "before": 420,
+        "after": 420,
+        "truncated_outputs": 0
+      },
+      "grader_input_truncated": false,
+      "retries": 0,
+      "ollama_metrics": {
+        "eval_count": 33,
+        "eval_duration": 1223590000,
+        "prompt_eval_count": 231,
+        "prompt_eval_duration": 151679000,
+        "total_duration": 1378383500,
+        "load_duration": 933708
+      },
+      "cache_key": "6ba076760018120b6d46bca0694df97be8c51b34948acf4b05ef2dc6ec1869a4",
+      "cache_hit": false,
+      "latency_s": 1.380469625000842,
+      "usage": {
+        "prompt_tokens": 231,
+        "completion_tokens": 33,
+        "total_tokens": 264
+      },
+      "billed_tokens": 264
+    }
+  ],
+  "latency_s": 1.380696624983102,
+  "metrics": {
+    "wall_seconds": 1.380696624983102,
+    "prompt_tokens": 231,
+    "completion_tokens": 33,
+    "tokens_per_second": 26.969818321496582,
+    "eval_count": 33,
+    "eval_seconds": 1.22359,
+    "tool_calls": 0,
+    "tool_call_failures": 0,
+    "malformed_output": false,
+    "retries": 0,
+    "ctx_guard_triggers": 0
+  },
+  "provider": "ollama"
+}
