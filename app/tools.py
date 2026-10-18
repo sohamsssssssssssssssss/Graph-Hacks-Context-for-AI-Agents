@@ -15,6 +15,7 @@ from resolve import resolve_author
 from app.store import GraphStore
 
 CONFIG = json.loads(Path(__file__).with_name("config.json").read_text())
+SYSTEM_CATALOG_IDS = {"DOC-CATALOG"}
 
 
 def now_iso():
@@ -81,7 +82,8 @@ class View:
         if edge["type"] == "OWNS":
             group = [e for e in self.es.values() if e["type"] == "OWNS" and (e["src"],e["dst"],e["status"]) ==
                      (edge["src"],edge["dst"],edge["status"]) and self.valid(e)]
-        people, authorities = {}, []
+        people, authorities, system_sources = {}, [], set()
+        system_confidence = None
         for support in group:
             for sid, confidence in zip(support["src_ids"], support["src_conf"]):
                 doc = self.ds[sid]
@@ -89,6 +91,17 @@ class View:
                 if authority < tier or doc["timestamp"] > self.at:
                     continue
                 if not 0 <= confidence <= 1:
+                    continue
+                if not any(span in doc["text"] for span in support["spans"]):
+                    continue
+                if (sid in SYSTEM_CATALOG_IDS and sid in edge["src_ids"] and
+                        doc["type"] == "catalog" and doc.get("author_id") is None and
+                        doc.get("author_handle") == "system" and doc.get("author_email") == "system@company.internal" and
+                        support["type"] in {"OWNS", "ON_CALL", "MEMBER_OF"}):
+                    # Only explicitly cited catalog support earns system trust; chat aliases cannot borrow it.
+                    system_confidence = max(system_confidence or 0, confidence)
+                    system_sources.add(sid)
+                    authorities.append(authority)
                     continue
                 teams = set()
                 if support["type"] == "OWNS":
@@ -106,12 +119,11 @@ class View:
                 person = candidates.pop()
                 if not members.get(person, set()).intersection(teams):
                     continue
-                if not any(span in doc["text"] for span in support["spans"]):
-                    continue
                 people[person] = max(people.get(person, 0), confidence)
                 authorities.append(authority)
-        return {"confidence": 1 - math.prod(1-c for c in people.values()),
-                "authority": max(authorities, default=0), "authors": sorted(people)}
+        confidences = list(people.values()) + ([system_confidence] if system_confidence is not None else [])
+        return {"confidence": 1 - math.prod(1-c for c in confidences),
+                "authority": max(authorities, default=0), "authors": sorted(people), "system_sources": sorted(system_sources)}
 
 
 class ToolRuntime:
@@ -264,6 +276,7 @@ class ToolRuntime:
         authority = min(m["authority"] for m in eligible)
         summary = {"confidence": confidence, "eligible_confidence": eligible_confidence, "authority": authority,
                    "authors": sorted({p for m in metrics for p in m["authors"]}),
+                   "system_sources": sorted({s for m in metrics for s in m["system_sources"]}),
                    "evidence": [view.evidence(e) for e in selected]}
         for edge in selected:
             if not view.current(edge):

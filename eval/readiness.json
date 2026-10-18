@@ -1,0 +1,17 @@
+{
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "cases_sha256": "1a4be87b5e31328275e429fa2ef751314709a1f7c121df1c12af2ebd25187fbd",
+  "agent_source_sha256": "53e54c6f327e2d4860c7f5c4b1b6a11d071e3db2ae89f7277cf4cfc53136d65e",
+  "judge_prompt_sha256": "a478a569e0390208e102b603d3efc2bdb0aa68b0ccd703b3c6120c33a7622e43",
+  "llm_source_sha256": "ca0caf6e2097ef4b6481d462948d784d60e799bc8f21f35d94c86284d0bb38bd",
+  "runtime_source_sha256": "6978035220b9c2e8ef8076e6b40547ddbb1602c21f16fa27757c85e9489cef3b",
+  "systems": [
+    "K",
+    "B1",
+    "B2"
+  ],
+  "expected_n_per_system": 24,
+  "transport": "direct",
+  "status": "blocked_before_run",
+  "reason": "Configure local .env: LLM_API_KEY, LLM_MODEL"
+}

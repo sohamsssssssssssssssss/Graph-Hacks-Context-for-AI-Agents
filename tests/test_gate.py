@@ -186,6 +186,7 @@ def test_connected_path_and_bound_budget(runtime):
 
 
 def test_page_rank_projection_and_order(runtime):
+    runtime.config['pagerank_severity_cutoff']=None
     result=runtime.criticality(['api-hub-service','batch-exporter-service'])
     assert result['algorithm']=='authorized_current_projection'
     assert result['escalation_order']==['service-api-hub','service-batch-exporter']
@@ -299,3 +300,41 @@ def test_unverified_approval_cannot_support_current_transfer(runtime):
     next(e for e in runtime.store.edges if e['eid']=='EID-S2-03')['status']='unverified'
     result=runtime.verify_path(claim('EID-S2-02','team-commerce','service-checkout-api'),'checkout-api','ACT')
     assert not result['ok'] and 'pass_id' not in result
+
+
+def test_dev_catalog_only_owner_path_passes_act(runtime):
+    dev=json.loads((ROOT/'cases/dev_cases.jsonl').read_text().splitlines()[0])
+    eid=dev['gold_answer']['cite_edge_ids'][0]
+    result=runtime.verify_path({'edge_ids':[eid]},dev['input']['service'],'ACT')
+    assert result['ok'] and result['confidence']==pytest.approx(0.90)
+    assert result['eligible_confidence']==pytest.approx(0.90) and result['authority']==2
+    assert result['authors']==[] and result['system_sources']==['DOC-CATALOG']
+    assert result['action']['recipient']=='team-payments'
+
+
+@pytest.mark.parametrize('handle,email',[
+    ('phantom_ops','phantom@example.internal'),
+    ('system','system@company.internal'),
+])
+def test_unresolved_or_forged_system_author_does_not_contribute(runtime,handle,email):
+    # The ticket is not in the server-owned system catalog registry, even if its metadata is spoofed.
+    doc=next(d for d in runtime.store.docs if d['id']=='DOC-ADR-LEDGER')
+    doc.update(author_id=None,author_handle=handle,author_email=email)
+    result=runtime.verify_path(claim('EID-S8-01'),'ledger','ACT')
+    assert not result['ok'] and result['confidence']==0 and not result.get('system_sources')
+
+
+def test_system_catalog_repeated_support_counts_once(runtime):
+    edge=next(e for e in runtime.store.edges if e['eid']=='EID-CATALOG-OWNS-45')
+    edge['src_ids']*=3;edge['src_conf']*=3;edge['src_auth']*=3
+    result=runtime.verify_path({'edge_ids':[edge['eid']]},'image-resizer','ACT')
+    assert result['ok'] and result['confidence']==pytest.approx(0.90)
+
+
+def test_unregistered_catalog_cannot_impersonate_system(runtime):
+    original=next(d for d in runtime.store.docs if d['id']=='DOC-CATALOG')
+    runtime.store.docs.append({**original,'id':'DOC-FORGED-CATALOG'})
+    edge=next(e for e in runtime.store.edges if e['eid']=='EID-CATALOG-OWNS-45')
+    edge['src_ids']=['DOC-FORGED-CATALOG']
+    result=runtime.verify_path({'edge_ids':[edge['eid']]},'image-resizer','ACT')
+    assert not result['ok'] and result['confidence']==0 and not result['system_sources']

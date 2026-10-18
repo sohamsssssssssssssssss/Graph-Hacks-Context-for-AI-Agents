@@ -1,0 +1,44 @@
+{
+  "case_id": "ST2",
+  "system": "B2",
+  "model": "openai/gpt-oss-120b",
+  "input": {
+    "type": "question",
+    "service": "checkout-api",
+    "text": "Who owns checkout-api now?"
+  },
+  "route": "decision_question",
+  "allowed_tools": [],
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "started_at": "2026-10-17T21:46:50.142048+00:00",
+  "tool_calls": [],
+  "errors": [
+    "LLM request failed (RateLimitError, status=429): Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}\nRaw provider response: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n\nDiagnostic: /Users/soham/hackatons /iphone/cache/errors/04d05049109bbd5de5aa7c4f528bed717cb5e9884abd158b71ca3dcae428693a_1792273610176737000.json"
+  ],
+  "final": {
+    "answer": "Agent unavailable; escalate to fixed contact.",
+    "outcome": "ESCALATE",
+    "cited_edge_ids": [],
+    "cited_spans": [],
+    "escalation_target": "keystone-fixed-contact"
+  },
+  "infra_failure": {
+    "exception_type": "LLMRequestError",
+    "message": "LLM request failed (RateLimitError, status=429): Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}\nRaw provider response: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n\nDiagnostic: /Users/soham/hackatons /iphone/cache/errors/04d05049109bbd5de5aa7c4f528bed717cb5e9884abd158b71ca3dcae428693a_1792273610176737000.json",
+    "status_code": 429,
+    "raw_response_body": "{\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/soham/hackatons /iphone/llm.py\", line 103, in complete\n    response=self.client.chat.completions.create(**args).model_dump(mode='json')\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/soham/hackatons /iphone/.venv/lib/python3.11/site-packages/openai/_utils/_utils.py\", line 298, in wrapper\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/soham/hackatons /iphone/.venv/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py\", line 1318, in create\n    return self._post(\n           ^^^^^^^^^^^\n  File \"/Users/soham/hackatons /iphone/.venv/lib/python3.11/site-packages/openai/_base_client.py\", line 1440, in post\n    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/soham/hackatons /iphone/.venv/lib/python3.11/site-packages/openai/_base_client.py\", line 1213, in request\n    raise self._make_status_error_from_response(err.response) from None\nopenai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/Users/soham/hackatons /iphone/agent.py\", line 133, in run_agent\n    response=llm.complete(messages,schemas(names))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/soham/hackatons /iphone/llm.py\", line 124, in complete\n    raise LLMRequestError(details,diagnostic) from exc\nllm.LLMRequestError: LLM request failed (RateLimitError, status=429): Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}\nRaw provider response: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01kw17jjtefqc9npwtssmwd5xb` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 199165, Requested 987. Please try again in 1m5.664s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing\",\"type\":\"tokens\",\"code\":\"rate_limit_exceeded\"}}\n\nDiagnostic: /Users/soham/hackatons /iphone/cache/errors/04d05049109bbd5de5aa7c4f528bed717cb5e9884abd158b71ca3dcae428693a_1792273610176737000.json\n"
+  },
+  "messages": [
+    {
+      "role": "system",
+      "content": "Answer the supplied text only. No tools or company evidence are available. End with JSON {\"answer\":\"...\",\"outcome\":\"ACT|ANSWER_ONLY|ESCALATE\",\"cited_edge_ids\":[],\"cited_spans\":[]}."
+    },
+    {
+      "role": "user",
+      "content": "Who owns checkout-api now?"
+    }
+  ],
+  "llm_calls": [],
+  "latency_s": 0.03576995799085125
+}

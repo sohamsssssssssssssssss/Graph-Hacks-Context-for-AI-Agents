@@ -1,8 +1,8 @@
 {
-  "ACT": 0.70,
-  "READ": 0.50,
+  "ACT": 0.7,
+  "READ": 0.5,
   "fixed_contact": "keystone-fixed-contact",
-  "pagerank_severity_cutoff": null,
+  "pagerank_severity_cutoff": 0.019535258803056135,
   "max_steps": 8,
   "pass_ttl_s": 300
 }

@@ -1,0 +1,34 @@
+{
+  "config_sha256": "7dcfd3b901e00e07e62f55c80dd5c74b8460fd154c99f8310577f274e55a4619",
+  "dev_sha256": "550cee65ad28915dcda0d3e0314b9c944795e53cbb10d0eaabb9365a74a58dcc",
+  "cutoff": 0.019535258803056135,
+  "frozen_at": "2026-10-17T20:54:58.756315+00:00",
+  "method": "midpoint between maximum normal and minimum elevated development score",
+  "algorithm": "authorized_current_projection",
+  "dev_scores": [
+    {
+      "service": "service-image-resizer",
+      "score": 0.030399790672599247,
+      "rank": 3,
+      "severity": "unconfigured"
+    },
+    {
+      "service": "service-dns-resolver",
+      "score": 0.02645473530124337,
+      "rank": 4,
+      "severity": "unconfigured"
+    },
+    {
+      "service": "service-etl-coordinator",
+      "score": 0.012615782304868898,
+      "rank": 16,
+      "severity": "unconfigured"
+    },
+    {
+      "service": "service-ml-inference-runner",
+      "score": 0.009609737838788173,
+      "rank": 28,
+      "severity": "unconfigured"
+    }
+  ]
+}
