@@ -87,6 +87,9 @@ def test_grader_limiter_enforces_minute_and_day():
     limiter.events=[[clock[0],199000]]
     limiter.acquire(2000)
     assert clock[0]>=86460 and max(delays)<=60
+    limiter.events=[[clock[0]-100,199000]]
+    with pytest.raises(RuntimeError,match='tokens per day'):
+        limiter.acquire(2000,defer_daily=True)
 
 
 def test_roles_have_separate_model_and_key_settings(monkeypatch):
@@ -107,7 +110,7 @@ def test_grader_429_waits_and_retries_daily_quota(tmp_path,monkeypatch):
         attempts.append(kwargs)
         if len(attempts)==1:raise Limited('tokens per day (TPD): limit reached; try again in 2s')
         return SimpleNamespace(model_dump=lambda mode:{'choices':[{'message':{'content':'ok'}}],'usage':{'total_tokens':10}})
-    monkeypatch.setattr(module,'GRADER_LIMITER',GraderLimiter())
+    monkeypatch.setattr(module,'GRADER_LIMITER',SimpleNamespace(acquire=lambda tokens:None))
     client=SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
     llm=CachedLLM('grader',client,tmp_path,sleep=delays.append,role='grader')
     llm.complete([{'role':'user','content':'small'}])
@@ -173,3 +176,37 @@ def test_executed_alert_keeps_terminal_turn_and_gate_outcome(tmp_path,at_budget,
     assert trace['final']['outcome']=='ACT' and 'max_steps' not in trace['errors']
     assert 'terminal_call' in trace and len(llm.calls)==(9 if at_budget else 2)
     assert trace['proposed_final']['outcome']==model_outcome
+
+
+def test_frozen_grader_defers_daily_quota_without_losing_output(tmp_path):
+    from llm import GraderQuotaDeferred
+    class Limit(Exception):
+        status_code=429
+        response=SimpleNamespace(text='quota')
+    calls=[]
+    def create(**kwargs):calls.append(kwargs);raise Limit('tokens per day (TPD): try again in 20m')
+    client=SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    llm=CachedLLM('grader',client,tmp_path,role='grader',defer_daily_quota=True)
+    with pytest.raises(GraderQuotaDeferred):llm.complete([{'role':'user','content':'small'}])
+    assert len(calls)==1 and llm.calls[-1]['failed']
+
+
+def test_grader_413_truncates_only_answer_and_retries(tmp_path,monkeypatch):
+    import llm as module
+    attempts=[]
+    class TooLarge(Exception):
+        status_code=413
+        response=SimpleNamespace(text='request too large')
+    def create(**kwargs):
+        attempts.append(kwargs)
+        if len(attempts)==1:raise TooLarge('request too large')
+        return SimpleNamespace(model_dump=lambda mode:{'choices':[{'message':{'content':'ok'}}],'usage':{'total_tokens':10}})
+    monkeypatch.setattr(module,'GRADER_LIMITER',SimpleNamespace(acquire=lambda tokens:None))
+    client=SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    llm=CachedLLM('grader',client,tmp_path,role='grader')
+    payload={'question':'question','reference_facts':['keep fact'],'forbidden_claims':['keep prohibition'],'answer':'x'*18000}
+    llm.complete([{'role':'user','content':json.dumps(payload)}])
+    before=json.loads(attempts[0]['messages'][-1]['content']);after=json.loads(attempts[1]['messages'][-1]['content'])
+    assert len(after['answer'])<len(before['answer'])
+    assert after['reference_facts']==before['reference_facts']==payload['reference_facts']
+    assert after['forbidden_claims']==payload['forbidden_claims'] and len(llm.calls)==2

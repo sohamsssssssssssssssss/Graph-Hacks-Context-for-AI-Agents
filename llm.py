@@ -83,7 +83,7 @@ class GraderLimiter:
     def __init__(self,sleep=time.sleep,clock=time.time):
         self.sleep=sleep;self.clock=clock;self.events=[]
 
-    def acquire(self,tokens):
+    def acquire(self,tokens,defer_daily=False):
         if tokens>8000:raise ValueError('Grader request exceeds 8000-token minute budget')
         while True:
             now=self.clock()
@@ -92,6 +92,7 @@ class GraderLimiter:
             for window,limit in [(60,8000),(86400,200000)]:
                 recent=[e for e in self.events if now-e[0]<window]
                 if sum(e[1] for e in recent)+tokens>limit:
+                    if window==86400 and defer_daily:raise RuntimeError('tokens per day (TPD): local grader budget exhausted; resume later')
                     released=0
                     for stamp,count in recent:
                         released+=count
@@ -105,17 +106,17 @@ class GraderLimiter:
 GRADER_LIMITER=GraderLimiter()
 
 
-def grader_context(messages):
+def grader_context(messages,limit=6000):
     messages=copy.deepcopy(messages)
-    if estimate_tokens(messages)<=6000:return messages,False
+    if estimate_tokens(messages)<=limit:return messages,False
     # Keep the complete rubric and reference facts; shorten only the submitted answer.
     payload=json.loads(messages[-1]['content'])
     answer=payload.get('answer','')
-    while estimate_tokens(messages)>6000 and len(answer)>64:
+    while estimate_tokens(messages)>limit and len(answer)>64:
         answer=answer[:int(len(answer)*0.7)]
         payload['answer']=answer+' [answer truncated for grader input limit]'
         messages[-1]['content']=json.dumps(payload,ensure_ascii=False)
-    if estimate_tokens(messages)>6000:raise ValueError('Grader rubric exceeds input budget; rubric was not truncated')
+    if estimate_tokens(messages)>limit:raise ValueError('Grader rubric exceeds input budget; rubric was not truncated')
     print('Grader input truncated to respect request/token limits.',file=sys.stderr,flush=True)
     return messages,True
 
@@ -173,6 +174,10 @@ class LLMRequestError(RuntimeError):
         super().__init__(f"LLM request failed ({details['exception_type']}, status={self.status_code}): {details['message']}\nRaw provider response: {self.raw_response_body}\nDiagnostic: {path}")
 
 
+class GraderQuotaDeferred(LLMRequestError):
+    pass
+
+
 def is_final_answer(value):
     return (isinstance(value,dict) and set(value)=={'answer','outcome','cited_edge_ids','cited_spans'} and
             isinstance(value['answer'],str) and isinstance(value['outcome'],str) and
@@ -196,9 +201,11 @@ def salvaged_answer(details):
 
 
 class CachedLLM:
-    def __init__(self, model=None, client=None, cache_dir=None, sleep=time.sleep, role='agent', provider=None):
+    def __init__(self, model=None, client=None, cache_dir=None, sleep=time.sleep, role='agent', provider=None, defer_daily_quota=False):
         config=settings(role) if client is None else {}
         self.role=role
+        self.defer_daily_quota=defer_daily_quota
+        self.grader_input_limit=6000
         self.provider=provider or config.get('provider','openai')
         self.base_url=config.get('LLM_BASE_URL','http://127.0.0.1:11434')
         self.no_think=False
@@ -222,7 +229,7 @@ class CachedLLM:
             except ContextLimitError as exc:
                 self.calls.append({'usage':{},'cache_hit':False,'context_guard':exc.event,'retries':0,'failed':True})
                 raise
-        else:messages,truncated=grader_context(messages)
+        else:messages,truncated=grader_context(messages,self.grader_input_limit)
         key_data={'model':self.model,'messages':messages,'tools':tools or []}
         response_format=grader_format(messages) if self.role=='grader' else None
         if self.role=='grader':key_data.update(reasoning_effort='low',response_format=response_format)
@@ -249,7 +256,7 @@ class CachedLLM:
                         args['tools']=tools
                         args['parallel_tool_calls']=False
                         if tool_choice is not None:args['tool_choice']=tool_choice
-                    reservation=self.limiter.acquire(estimate_tokens(messages,tools)+1600) if self.limiter else None
+                    reservation=(self.limiter.acquire(estimate_tokens(messages,tools)+1600,defer_daily=True) if self.defer_daily_quota else self.limiter.acquire(estimate_tokens(messages,tools)+1600)) if self.limiter else None
                     if self.provider=='ollama':
                         native=copy.deepcopy(messages)
                         for m in native:
@@ -290,6 +297,13 @@ class CachedLLM:
                         break
                     # Legacy clients fail fast on daily quota; the grader waits for its retry window.
                     daily_quota='tokens per day (TPD)' in details['message'] or 'requests per day (RPD)' in details['message']
+                    if self.role=='grader' and ((daily_quota and self.defer_daily_quota) or (details['status_code']==413 and self.grader_input_limit>1500)):
+                        self.calls.append({'provider':self.provider,'role':self.role,'cache_key':key,'cache_hit':False,'usage':{},'billed_tokens':0,
+                            'latency_s':time.perf_counter()-started,'retries':attempt+1,'failed':True,'status_code':details['status_code']})
+                        if daily_quota and self.defer_daily_quota:raise GraderQuotaDeferred(details,diagnostic) from exc
+                        self.grader_input_limit//=2
+                        print(f'Grader HTTP 413; retrying with input budget {self.grader_input_limit}.',file=sys.stderr,flush=True)
+                        return self.complete(messages,tools,tool_choice)
                     if getattr(exc,'status_code',None)!=429 or (daily_quota and self.role!='grader') or attempt==6:
                         self.calls.append({'provider':self.provider,'role':self.role,'cache_key':key,'cache_hit':False,'usage':{},'billed_tokens':0,
                             'latency_s':time.perf_counter()-started,'retries':attempt,'context_guard':guard,'failed':True})

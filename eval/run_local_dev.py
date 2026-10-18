@@ -48,6 +48,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--resume',action='store_true')
     parser.add_argument('--grade-only',action='store_true')
+    parser.add_argument('--systems',nargs='+',choices=['K','B1','B2'],default=['K','B1','B2'])
     parser.add_argument('--run-name',default='',help='Separate DEV attempt suffix; prior results are preserved')
     args=parser.parse_args()
     cases=load_dev()
@@ -70,7 +71,7 @@ def main():
     alerts=[c for c in cases if c['input']['type']=='alert']
     smoke=[next((c for c in questions if c['id']=='DEV5'),questions[0]),
            next((c for c in alerts if c['id']=='DEV9'),alerts[0])]
-    plan=[(s,c) for s in ['K','B1','B2'] for c in (cases if s=='K' else smoke)]
+    plan=[(s,c) for s in args.systems for c in (cases if s=='K' else smoke)]
     def save(row):
         rows[(row['system'],row['case_id'])]=row
         with journal.open('a') as stream:stream.write(json.dumps(row,ensure_ascii=False)+'\n')

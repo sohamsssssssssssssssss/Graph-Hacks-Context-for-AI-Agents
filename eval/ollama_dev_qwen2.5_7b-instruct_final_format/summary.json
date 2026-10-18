@@ -1,0 +1,18 @@
+{
+  "K": {
+    "runs": 9,
+    "tokens_per_second": 23.697659562280563,
+    "avg_wall_s": 61.74926993510841,
+    "max_wall_s": 139.66846045898274,
+    "malformed_outputs": 6,
+    "tool_call_failures": 0,
+    "retries": 6,
+    "ctx_guard_triggers": 0,
+    "outcome_correct": 7,
+    "answer_correct": 5,
+    "answer_scored": 9,
+    "infra_failures": 0,
+    "prompt_tokens": 181080,
+    "completion_tokens": 9434
+  }
+}
