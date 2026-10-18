@@ -15,6 +15,7 @@ SPECS = {
     "criticality": ({"services":{"type":"array","items":STRING,"maxItems":100}}, ["services"], "Authorized current-edge PageRank and descending escalation order."),
     "rank_owners": ({"service":STRING}, ["service"], "Current owners, explicit contested sides, verified on-call and fallback."),
     "trace_decision": ({"topic":STRING}, ["topic"], "Accessible dated decision history; historical statuses are explicit."),
+    "ownership_history": ({"service":STRING,"as_of":{"type":["string","null"]}}, ["service"], "READ-only ownership, approvals and disputes, including labeled rejected/history evidence. Optional ISO timestamp recomputes past ownership; never authorizes ACT."),
     "verify_path": ({"claim":CLAIM,"target":STRING,"purpose":{"enum":["ACT","READ"]}}, ["claim","target","purpose"], "Recheck evidence and mint a target/action-bound, expiring single-use pass."),
     "propose_action": ({"pass_id":{"type":["string","null"]},"action":ACTION,"execute":{"type":"boolean","default":False}},
                        ["pass_id","action"], "Dry-run by default. Execution records a local audit, not external delivery."),

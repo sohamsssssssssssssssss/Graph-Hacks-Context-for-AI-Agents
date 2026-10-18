@@ -23,8 +23,9 @@ def tool(name,args):
 
 class FakeLLM:
     model='test-model'
-    def __init__(self,replies):self.replies=iter(replies);self.calls=[];self.messages=[]
+    def __init__(self,replies):self.replies=iter(replies);self.calls=[];self.messages=[];self.options=[]
     def complete(self,messages,tools=None,**kwargs):
+        self.options.append(kwargs)
         self.messages.append(copy.deepcopy(messages));self.calls.append({'usage':{},'cache_key':'test','cache_hit':True})
         return next(self.replies)
 
@@ -269,7 +270,7 @@ def test_daily_quota_failure_does_not_repeat_unrecoverable_requests(tmp_path):
 
 def test_compact_deduplicates_and_marks_shortened_spans_without_mutating_evidence():
     from agent import compact
-    long='First sentence. A second sentence that is full evidence.'
+    long='First sentence. '+('A second sentence that is full evidence. '*12)
     edge={'eid':'E','type':'OWNS','src':'team','dst':'service','status':'current','spans':[long,'Exact quote.'],
           'sources':[{'doc_id':'D','author_id':'person','date':'2024','spans':[long]}]}
     value={'chain':[edge],'evidence':[copy.deepcopy(edge)]};original=copy.deepcopy(value)
@@ -281,7 +282,7 @@ def test_compact_deduplicates_and_marks_shortened_spans_without_mutating_evidenc
 
 
 def test_saved_trace_keeps_full_evidence_when_model_receives_excerpt(tmp_path):
-    long='Short first sentence. More detailed evidence that stays in the trace.'
+    long='Short first sentence. '+('More detailed evidence that stays in the trace. '*12)
     edge={'eid':'E','type':'CONCERNS','src':'decision','dst':'service','status':'current','spans':[long],
           'sources':[{'doc_id':'D','date':'2024','author_id':'person','spans':[long]}]}
     class EvidenceBackend(Backend):
@@ -303,3 +304,99 @@ def test_compact_large_blast_preserves_counts_names_and_every_edge_id():
     assert all(row['name']==f'name-{i}' for i,row in enumerate(wire['affected_services']))
     assert all(serialized.count(f'"E{i:03d}"')==1 for i in range(80))
     assert wire['evidence_links'][0]['status']=='current'
+
+
+def test_fix4_fenced_final_and_one_format_retry(tmp_path):
+    value={'answer':'Unknown.','outcome':'ESCALATE','cited_edge_ids':[],'cited_spans':[]}
+    fenced=response({'content':'Explanation first.\n```json\n'+json.dumps(value)+'\n```'})
+    t=run_agent({'type':'alert','text':'Alert'},'fenced',llm=FakeLLM([fenced]),backend=Backend(),trace_dir=tmp_path)
+    assert t['proposed_final']==value and t['final_format_retries']==0
+    llm=FakeLLM([response({'content':'I cannot find an owner.'}),tool('submit_answer',value)])
+    t=run_agent({'type':'alert','text':'Alert'},'retry',llm=llm,backend=Backend(),trace_dir=tmp_path)
+    assert t['final_format_retries']==1 and t['proposed_final']==value
+    assert llm.messages[1][-1]['content']=='Call submit_answer now with your final answer'
+    assert llm.options[0]['tool_choice']=='required'
+    assert llm.options[1]['tool_choice']=={'type':'function','function':{'name':'submit_answer'}}
+
+
+def test_fix4_canonical_service_in_alert_input(tmp_path):
+    llm=FakeLLM([final('ESCALATE')])
+    t=run_agent({'type':'alert','service':'image-resizer','text':'Alert'},'canonical',llm=llm,backend=Backend(),trace_dir=tmp_path)
+    assert t['input']['service']=='service-image-resizer'
+    assert 'service-image-resizer' in llm.messages[0][-1]['content']
+
+
+def test_fix4_ownership_question_routes():
+    assert 'ownership_history' in route({'type':'question','text':'Who owns image-resizer now?'})[1]
+    assert 'ownership_history' in route({'type':'question','text':'As of 2023-06-01 who owned image-resizer?'})[1]
+    assert 'ownership_history' in route({'type':'question','text':'Does a ticket saying approved authorize a bypass?'})[1]
+
+
+def test_fix4_unicode_hyphens_in_affected_names():
+    case={'gold_answer':{'cite_edge_ids':[],'cite_spans':[],'affected_services':['dependent-api']},'gold_tools':[],'gold_outcome':'ANSWER_ONLY','input':{'service':'failing-api'}}
+    trace={'final':{'answer':'dependent\u2011api depends on failing\u2010api.','outcome':'ANSWER_ONLY','cited_edge_ids':[],'cited_spans':[]},'tool_calls':[]}
+    assert mechanical(case,trace,{}, {},{'s1':'dependent-api','s2':'failing-api'})['affected_set_match']
+
+
+def test_fix4_catalog_reference_distinguishes_source_from_person():
+    from pathlib import Path
+    cases=[json.loads(line) for line in (Path(__file__).resolve().parents[1]/'cases/author_cases.jsonl').read_text().splitlines()]
+    fact=next(c for c in cases if c['id']=='S9a')['gold_answer']['facts'][3]
+    assert 'one trusted system source at stored confidence' in fact
+    assert 'noted Growth claim' in fact and 'verified current ownership path' in fact
+
+
+def test_fix4_target_retry_is_explicit_and_bounded(tmp_path):
+    class TargetBackend(Backend):
+        def __init__(self):super().__init__();self.targets=[]
+        def verify_path(self,claim,target,purpose):
+            self.targets.append(target)
+            if target=='alert-image-resizer':return {'ok':False,'reason':'unknown target','valid_target_ids':['service-image-resizer'],'evidence':[]}
+            return {'ok':True,'pass_id':'real-pass','evidence':[]}
+        def propose_action(self,**kwargs):return {'ok':True,'outcome':'ACT','executed':True,'evidence':[]}
+    action={'kind':'ACT','target':'service-image-resizer','recipient':'team-payments'}
+    reply={'answer':'Assigned.','outcome':'ACT','cited_edge_ids':[],'cited_spans':[]}
+    llm=FakeLLM([tool('verify_path',{'claim':{'edge_ids':['E']},'target':'alert-image-resizer','purpose':'ACT'}),
+                 tool('verify_path',{'claim':{'edge_ids':['E']},'target':'service-image-resizer','purpose':'ACT'}),
+                 tool('propose_action',{'pass_id':'pass_1','action':action,'execute':True}),tool('submit_answer',reply)])
+    backend=TargetBackend()
+    trace=run_agent({'type':'alert','service':'image-resizer','text':'Assign alert'},'target-retry',llm=llm,backend=backend,trace_dir=tmp_path)
+    assert backend.targets==['alert-image-resizer','service-image-resizer']
+    assert trace['target_retries']==1 and trace['final']['outcome']=='ACT' and not trace['gate_failure']
+
+
+def test_fix4_second_invalid_final_stops_after_one_retry(tmp_path):
+    llm=FakeLLM([response({'content':'Prose'}),response({'content':'Still prose'})])
+    trace=run_agent({'type':'alert','text':'Alert'},'double-invalid',llm=llm,backend=Backend(),trace_dir=tmp_path)
+    assert trace['final_format_retries']==1 and len(llm.calls)==2
+    assert trace['final']['outcome']=='ESCALATE' and 'invalid_final_json' in trace['errors']
+
+
+def test_fix4_provider_format_error_gets_one_terminal_retry(tmp_path):
+    from llm import LLMRequestError
+    detail={'status_code':400,'exception_type':'BadRequestError','message':'provider format failure',
+            'raw_response_body':json.dumps({'error':{'code':'output_parse_failed','failed_generation':'Prose instead of a tool'}})}
+    exc=LLMRequestError(detail,tmp_path/'diagnostic.json')
+    class FormatLLM(FakeLLM):
+        def complete(self,messages,tools=None,**kwargs):
+            if not self.messages:
+                self.messages.append(copy.deepcopy(messages))
+                raise exc
+            assert kwargs['tool_choice']['function']['name']=='submit_answer'
+            return super().complete(messages,tools,**kwargs)
+    v={'answer':'Unknown.','outcome':'ESCALATE','cited_edge_ids':[],'cited_spans':[]}
+    llm=FormatLLM([tool('submit_answer',v)])
+    t=run_agent({'type':'alert','text':'Alert'},'provider-format',llm=llm,backend=Backend(),trace_dir=tmp_path)
+    assert t['final_format_retries']==1 and not t.get('infra_failure')
+
+
+def test_fix4_history_and_instruction_routes():
+    for text in ['Show the history for image-resizer','Read the document instruction for image-resizer','Explain the temporal timeline for image-resizer']:
+        assert 'ownership_history' in route({'type':'question','text':text})[1]
+
+
+def test_fix4_short_multisentence_span_is_available_for_exact_citation():
+    from agent import compact
+    span='Catalog Record: Service image-resizer is officially registered under team payments. Designated primary on-call engineer handle is mlin.'
+    edge={'eid':'E','type':'OWNS','src':'team-payments','dst':'service-image-resizer','status':'current','spans':[span]}
+    assert compact({'evidence':[edge]})['evidence'][0]['spans']==[span]

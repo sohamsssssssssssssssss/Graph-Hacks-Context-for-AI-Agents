@@ -338,3 +338,73 @@ def test_unregistered_catalog_cannot_impersonate_system(runtime):
     edge['src_ids']=['DOC-FORGED-CATALOG']
     result=runtime.verify_path({'edge_ids':[edge['eid']]},'image-resizer','ACT')
     assert not result['ok'] and result['confidence']==0 and not result['system_sources']
+
+
+@pytest.mark.parametrize('topic,method,seed',[
+    ('  dec-adr-7  ','decision_exact','DEC-ADR-7'),
+    ('session-cache migration','service_in_topic','service-session-cache'),
+    ('checkout-api ownership','service_in_topic','service-checkout-api'),
+    ('DOC-TICKET-S5B','doc_exact','DOC-TICKET-S5B'),
+    ('session storage','decision_tokens','DEC-ADR-3'),
+])
+def test_fix4_trace_matching(runtime,topic,method,seed):
+    value=runtime.trace_decision(topic)
+    assert value['matched_seed']['method']==method and seed in value['matched_seed']['ids']
+    if method=='doc_exact':
+        assert any(e['eid']=='EID-S5B-01' and e['status']=='rejected' for e in value['chain'])
+
+
+def test_fix4_restricted_doc_seed_is_indistinguishable_from_missing(runtime):
+    assert runtime.trace_decision('DOC-PM-S6')==runtime.trace_decision('DOC-DOES-NOT-EXIST')
+
+
+def test_fix4_ownership_history_and_as_of(runtime):
+    before=copy.deepcopy((runtime.store.nodes,runtime.store.edges,runtime.store.docs))
+    current=runtime.ownership_history('checkout-api')
+    assert current['read_only'] and current['owner_teams']==['team-commerce']
+    byid={e['eid']:e for e in current['history']}
+    assert byid['EID-S2-03']['status']=='current' and byid['EID-S5B-01']['status']=='rejected'
+    assert byid['EID-S5B-01']['author']=='UNRESOLVED' and byid['EID-S2-03']['author']=='person-dev-patel'
+    assert all(e['derived_reason'] and e['doc_id'] and e['date'] and e['spans'] for e in current['history'])
+    assert [e['date'] for e in current['history']]==sorted(e['date'] for e in current['history'])
+    past=runtime.ownership_history('checkout-api','2024-02-02T00:00:00Z')
+    assert past['owner_teams']==['team-payments']
+    assert 'EID-S2-03' not in {e['eid'] for e in past['history']}
+    assert not runtime.passes and (runtime.store.nodes,runtime.store.edges,runtime.store.docs)==before
+    assert not runtime.verify_path({'edge_ids':['EID-S2-01']},'checkout-api','ACT')['ok']
+
+
+def test_fix4_unknown_target_returns_authorized_ids(runtime):
+    result=runtime.verify_path({'edge_ids':['EID-CATALOG-OWNS-45']},'alert-image-resizer','ACT')
+    assert not result['ok'] and result['reason']=='unknown target'
+    assert 'service-image-resizer' in result['valid_target_ids']
+    assert all(not x.startswith('DOC-') for x in result['valid_target_ids'])
+    assert not runtime.passes
+
+
+def test_fix4_history_filters_future_docs_and_restricted_evidence(runtime):
+    result=runtime.ownership_history('checkout-api','2024-02-02T00:00:00Z')
+    assert all(row['date']<='2024-02-02T00:00:00Z' for row in result['history'])
+    assert all(s['date']<='2024-02-02T00:00:00Z' for e in result['evidence'] for s in e['sources'])
+    restricted=runtime.ownership_history('auth-gateway')
+    assert 'DOC-PM-S6' not in json.dumps(restricted) and not runtime.passes
+    assert 'EID-S1-05' not in {r['eid'] for r in runtime.ownership_history('session-cache')['history']}
+
+
+def test_fix4_history_rejects_naive_as_of(runtime):
+    assert not runtime.ownership_history('image-resizer','2023-06-01')['ok']
+
+
+def test_fix4_ownership_supersession_is_read_only(runtime):
+    original=next(e for e in runtime.store.edges if e['eid']=='EID-S2-02')
+    runtime.store.edges.append({**copy.deepcopy(original),'eid':'TEST-OWNERSHIP-SUPERSEDES','type':'SUPERSEDES'})
+    result=runtime.ownership_history('checkout-api')
+    row=next(r for r in result['history'] if r['eid']=='TEST-OWNERSHIP-SUPERSEDES')
+    assert result['read_only'] and row['type']=='SUPERSEDES' and row['derived_reason'] and not runtime.passes
+
+
+def test_fix4_history_wire_preserves_unresolved_author_metadata(runtime):
+    from agent import compact
+    result=compact(runtime.ownership_history('checkout-api'))
+    row=next(r for r in result['history'] if r['eid']=='EID-S5B-01')
+    assert row['author']=='UNRESOLVED' and row['author_metadata']['handle']=='shadow_actor'

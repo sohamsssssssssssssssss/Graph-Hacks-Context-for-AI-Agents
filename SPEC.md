@@ -5,7 +5,7 @@
 ```mermaid
 flowchart LR
   G[Synthetic generator] --> F[(FalkorDB)]
-  A[Agent] --> T[Six backend tools]
+  A[Agent] --> T[Seven backend tools]
   T <--> F
   T --> V[Verifier and gate]
   V --> P[Answer and highlighted path]
@@ -18,6 +18,7 @@ flowchart LR
 | criticality | affected services, time | PageRank, severity, escalation order |
 | rank_owners | service, time | teams, supporting/conflicting claims, sources |
 | trace_decision | service/topic, time | dated decisions, supersession/incident paths, spans |
+| ownership_history | service, as_of (optional ISO timestamp) | READ-only ordered ownership/approval/dispute provenance, statuses, reasons and as-of rederivation; no ACT authorization |
 | verify_path | edges, sources, tier, time | standing/status/access/citation checks, authority, confidence, receipt |
 | propose_action | incident, receipt | ACT / ANSWER_ONLY / ESCALATE, assignment/paging result, audit ID |
 

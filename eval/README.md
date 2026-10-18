@@ -21,14 +21,15 @@ SPEC.md does not contain APP_FLOW or an output-record schema. The implementation
 
 | Input | Selected tools |
 | --- | --- |
-| Decision/information question | trace_decision |
+| Architecture decision question | trace_decision |
+| Ownership, handoff, temporal or embedded-approval question | ownership_history, trace_decision |
 | Security advisory alert | blast_radius, criticality, rank_owners, verify_path, propose_action |
 | Pipeline/batch stall alert | blast_radius, criticality, rank_owners, verify_path, propose_action |
 | Deploy failure / other alert | blast_radius, criticality, rank_owners, verify_path, propose_action |
 
-All three operational alert types share impact/priority/ownership/verification/action needs. Route selection sees only input type/text; no case IDs, gold, expected tools or frozen labels enter the agent. The model chooses which allowed functions to call. Questions do not silently get extra tools to improve frozen results. Tool-selection misses are scored honestly.
+All three operational alert types share impact/priority/ownership/verification/action needs. Route selection sees only input type/text; no case IDs, gold, expected tools or frozen labels enter the agent. The model chooses which allowed functions to call. Fix 4 explicitly adds the READ-only ownership/history route; this does not grant action tools to questions. Tool-selection misses are scored honestly.
 
-The prompt requires tool evidence and final JSON `{answer,outcome,cited_edge_ids,cited_spans}`. Tool results are JSON-delimited BEGIN_QUOTED_TOOL_DATA/END_QUOTED_TOOL_DATA, not instructions. Up to 40 evidence/history rows per tool are shown with explicit omission counts; affected-service arrays are not truncated. Full tool results remain in traces for audit. K validates cited IDs/spans against returned evidence and cannot declare ACT unless a gate-authorized action actually executed. Any failed tool/gate causes final ESCALATE; fixed-contact fallback is automatic if budget remains, otherwise the target is selected but delivery/execution is not claimed. Questions with no returned evidence use an explicit abstention rather than a fabricated owner.
+The prompt requires tool evidence and submit_answer terminal submission with final JSON `{answer,outcome,cited_edge_ids,cited_spans}`. Tool results are JSON-delimited BEGIN_QUOTED_TOOL_DATA/END_QUOTED_TOOL_DATA, not instructions. Wire messages deduplicate evidence, group source-free link IDs/statuses, and show first-sentence excerpts for long spans; full evidence and original spans remain in traces. Full tool results remain in traces for audit. K validates cited IDs/spans against returned evidence and cannot declare ACT unless a gate-authorized action actually executed. Any failed tool/gate causes final ESCALATE; fixed-contact fallback is automatic if budget remains, otherwise the target is selected but delivery/execution is not claimed. Questions with no returned evidence use an explicit abstention rather than a fabricated owner.
 
 max_steps=8 bounds both model rounds and executed tool calls. Reaching it yields ESCALATE. Every run has a fresh pass registry and trusted action context only for user alerts. MCP starts a separate session; B1 is never exposed through the production MCP server. Direct calls are default.
 
@@ -55,3 +56,7 @@ Prices are not assumed. Tokens and uncached-request tokens are reported rather t
 ```
 
 The completed benchmark is in eval/timing.md and timing.json. It uses identical authorized current-edge inputs; SQLite recursive CTE UNION returns distinct closure, Q1 frontier expansion uses a visited set. Every result matched. Connection-cold means a new client/connection, not flushed OS/server caches; warm reuses connections. SQLite is in-process, FalkorDB includes round trips. The faster engine is reported without inventing a cold-cache or performance advantage.
+
+## Fix 4 development checks
+
+There are now nine dev cases. Run `.venv/bin/python -m eval.run_dev` with openai/gpt-oss-120b for dev-only checks and isolated records under eval/dev_fix4_final/ (the pilot remains in eval/dev_fix4/). It does not load blind/author inputs or call the semantic grader. The previous frozen journal/results are retained unchanged; the case sentence and tool changes are logged in docs/fix4_changes.md and are not a new frozen evaluation. Normal tool turns use tool_choice=required; a final-only turn uses a forced submit_answer tool. A malformed final gets one terminal-format retry; fenced JSON is also accepted.

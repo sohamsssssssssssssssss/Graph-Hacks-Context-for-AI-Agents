@@ -43,7 +43,8 @@ def mechanical(case,trace,edges,docs,service_names):
     executed=[c['result'] for c in trace['tool_calls'] if c['name']=='propose_action' and c['result'].get('executed')]
     fallback=[v for v in executed if v.get('payload',{}).get('kind')=='PAGE' and v.get('payload',{}).get('target')==CONFIG['fixed_contact']]
     operational=[v for v in executed if v not in fallback]
-    text=final['answer']
+    normalize_hyphens=lambda value:value.translate(str.maketrans({c:'-' for c in '‐‑‒–—―−﹣－'}))
+    text=normalize_hyphens(final['answer'])
     for ident,name in service_names.items():text=text.replace(ident,name)
     mentioned={name for name in service_names.values() if re.search(r'(?<![\w-])'+re.escape(name)+r'(?![\w-])',text,re.I)}
     affected=case['gold_answer'].get('affected_services')

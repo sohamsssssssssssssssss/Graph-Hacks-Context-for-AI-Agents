@@ -1,4 +1,4 @@
-"""Live six-tool MCP stdio smoke test: python3.11 mcp_client_test.py."""
+"""Live seven-tool MCP stdio smoke test: python3.11 mcp_client_test.py."""
 import json
 import os
 from pathlib import Path
@@ -23,11 +23,12 @@ def main():
     try:
         assert call('initialize',{'protocolVersion':'2025-11-25','capabilities':{},'clientInfo':{'name':'keystone-smoke','version':'1'}})['protocolVersion']=='2025-11-25'
         server.stdin.write(json.dumps({'jsonrpc':'2.0','method':'notifications/initialized'})+'\n');server.stdin.flush()
-        assert len(call('tools/list')['tools'])==6
+        assert len(call('tools/list')['tools'])==7
         calls=[('blast_radius',{'service':'redis-cluster'}),
                ('criticality',{'services':['api-hub-service','batch-exporter-service']}),
                ('rank_owners',{'service':'notifier'}),
                ('trace_decision',{'topic':'session-cache-storage'}),
+               ('ownership_history',{'service':'image-resizer','as_of':'2023-06-01T00:00:00Z'}),
                ('verify_path',{'claim':{'edge_ids':['EID-S8-01']},'target':'ledger','purpose':'ACT'})]
         results={}
         for name,args in calls:
@@ -43,7 +44,7 @@ def main():
         assert results['rank_owners']['contested']
         assert any(e['eid']=='EID-S1-05' for e in results['trace_decision']['chain'])
         assert results['propose_action']['dry_run'] and not results['propose_action']['executed']
-        print(json.dumps({'tools_called':list(results),'passed':6,'failed':0,
+        print(json.dumps({'tools_called':list(results),'passed':7,'failed':0,
                           'pagerank_algorithm':results['criticality']['algorithm']}))
     finally:
         server.stdin.close()

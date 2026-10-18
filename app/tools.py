@@ -1,10 +1,11 @@
-"""Six deterministic tools and a single-use authorization gate. No LLM calls."""
+"""Seven deterministic tools and a single-use authorization gate. No LLM calls."""
 from collections import defaultdict, deque
 from datetime import datetime, timezone
 import hashlib
 import json
 import math
 import os
+import re
 from pathlib import Path
 import secrets
 import threading
@@ -226,12 +227,42 @@ class ToolRuntime:
     def trace_decision(self, topic):
         self.step()
         view = View(self.store)
-        service = view.find(topic)
-        seeds = {n["id"] for n in view.nodes if n["label"] == "Decision" and (n.get("topic") == topic or n["id"] == topic)}
-        if service:
-            seeds.add(service)
+        normalize = lambda text: re.sub(r"[^\w]+", " ", text.casefold()).strip()
+        query = normalize(topic)
+        decisions = [n for n in view.nodes if n["label"] == "Decision"]
+        seeds = {n["id"] for n in decisions if query in {normalize(n["id"]), normalize(n.get("topic", ""))}}
+        method = "decision_exact"
+        if not seeds:
+            seeds = {n["id"] for n in view.nodes if n["label"] == "Service" and
+                     any(re.search(r"(?<!\w)"+re.escape(normalize(v))+r"(?!\w)", query)
+                         for v in (n["id"], n.get("name", n["id"])))}
+            method = "service_in_topic"
+        direct = []
+        if not seeds:
+            seeds = {sid for sid in view.ds if normalize(sid) == query}
+            method = "doc_exact"
+            direct = [e for e in view.es.values() if seeds.intersection(e["src_ids"])]
+        if not seeds:
+            words = set(query.split())-{"the", "for", "of", "why", "did", "we", "decision", "trace", "show", "a", "on", "and", "to"}
+            scored = []
+            for node in decisions:
+                tokens = set(normalize(node.get("topic", "")).split())
+                overlap = len(tokens & words)
+                score = overlap / len(tokens | words) if tokens | words else 0
+                if overlap >= 2 and score >= 0.5:
+                    scored.append((score, node["id"]))
+            best = max((score for score, _ in scored), default=0)
+            seeds = {nid for score, nid in scored if score == best}
+            method = "decision_tokens"
+        matched = {"method": method, "ids": sorted(seeds)} if seeds else None
         allowed = {"CONCERNS", "SUPERSEDES", "BECAUSE_OF", "CAUSED_BY", "DECIDED"}
-        seen, frontier, evidence = set(seeds), set(seeds), {}
+        # Rejected approvals are excluded from the operational View, but are valid READ audit records.
+        read_states = derive(view.nodes, [e for e in view.es.values() if e["status"] != "unverified"], list(view.ds.values())) if direct else view.derived
+        evidence = {e["eid"]: view.evidence(e) | read_states[e["eid"]]
+                    for e in direct if e["status"] in {"current", "retired", "contested", "rejected", "noted"} and
+                    not e.get("citation_invalid") and e["valid_from"] <= view.at}
+        walk_seeds = {v for e in direct for v in (e["src"], e["dst"])} if direct else set(seeds)
+        seen, frontier = set(walk_seeds), set(walk_seeds)
         for _ in range(self.config["max_steps"]):
             new = set()
             for edge in view.es.values():
@@ -241,14 +272,72 @@ class ToolRuntime:
                 if edge["src"] in frontier or edge["dst"] in frontier:
                     if view.ns[edge["src"]]["label"] == "Person" and edge["src"] not in seeds and edge["dst"] not in seen:
                         continue
-                    evidence[edge["eid"]] = view.evidence(edge)
+                    evidence[edge["eid"]] = view.evidence(edge) | {"derived_reason": view.derived[edge["eid"]]["derived_reason"]}
                     new |= {v for v in (edge["src"],edge["dst"]) if view.ns[v]["label"] != "Person"}
             frontier = new-seen
             if not frontier:
                 break
             seen |= frontier
-        return {"chain": sorted(evidence.values(), key=lambda e: (e["valid_from"],e["eid"])),
+        return {"matched_seed": matched, "read_only": True,
+                "chain": sorted(evidence.values(), key=lambda e: (e["valid_from"],e["eid"])),
                 "evidence": sorted(evidence.values(), key=lambda e: (e["valid_from"],e["eid"]))}
+
+    def ownership_history(self, service, as_of=None):
+        self.step()
+        view = View(self.store)
+        service = view.find(service)
+        if service is None or view.ns[service]["label"] != "Service":
+            return {"read_only": True, "owner_teams": [], "history": [], "evidence": []}
+        at = view.at
+        if as_of is not None:
+            try:
+                parsed = datetime.fromisoformat(as_of.replace("Z", "+00:00"))
+                if parsed.tzinfo is None:
+                    raise ValueError("timezone required")
+                at = parsed.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+            except (ValueError, TypeError, AttributeError):
+                return error("as_of must be a timezone-aware ISO 8601 timestamp")
+        docs = {sid: doc for sid, doc in view.ds.items() if doc["timestamp"] <= at}
+        edges = []
+        for original in view.es.values():
+            indexes = [i for i, sid in enumerate(original["src_ids"]) if sid in docs]
+            if not indexes or original["valid_from"] > at or original["status"] == "unverified":
+                continue
+            edge = dict(original)
+            for key in ("src_ids", "src_conf", "src_auth"):
+                edge[key] = [original[key][i] for i in indexes]
+            edges.append(edge)
+        states = derive(view.nodes, edges, list(docs.values()))
+        ownership = [e for e in edges if e["type"] == "OWNS" and e["dst"] == service]
+        claim_nodes = {v for e in ownership for v in (e["src"], e["dst"])}
+        claim_docs = {sid for e in ownership for sid in e["src_ids"]}
+        claim_nodes |= claim_docs | {n["id"] for n in view.nodes if n["label"] == "Decision" and "owner" in n.get("topic", "").casefold() and
+                                     any(e["type"] == "CONCERNS" and e["src"] == n["id"] and e["dst"] == service for e in edges)}
+        selected = [e for e in edges if (e["type"] in {"OWNS", "APPROVED", "DISPUTES"} and e["dst"] == service) or
+                    (e["type"] == "SUPERSEDES" and (claim_nodes.intersection({e["src"], e["dst"]}) or claim_docs.intersection(e["src_ids"])))]
+        history, evidence = [], []
+        teams = {e["src"] for e in ownership}
+        for edge in selected:
+            state = states[edge["eid"]]
+            if state["status"] not in {"current", "retired", "contested", "rejected", "noted"} or edge.get("citation_invalid"):
+                continue
+            evidence.append(view.evidence(edge) | state)
+            for sid in edge["src_ids"]:
+                doc = docs[sid]
+                members = defaultdict(set)
+                for member in edges:
+                    if member["type"] == "MEMBER_OF" and states[member["eid"]]["status"] == "current" and member["valid_from"] <= doc["timestamp"] and (not member.get("valid_to") or doc["timestamp"] < member["valid_to"]):
+                        members[member["src"]].add(member["dst"])
+                authors = {resolve_author(doc, view.people, members, team) for team in teams} - {None}
+                spans = [span for span in edge["spans"] if span in doc["text"]]
+                if spans:
+                    history.append({"eid": edge["eid"], "type": edge["type"], "src": edge["src"], "dst": edge["dst"],
+                                    **state, "doc_id": sid, "author": next(iter(authors)) if len(authors) == 1 else "UNRESOLVED",
+                                    "author_metadata": {key: doc.get("author_"+key) for key in ("handle", "email", "name") if doc.get("author_"+key)},
+                                    "date": doc["timestamp"], "spans": spans})
+        owners = sorted({e["src"] for e in ownership if states[e["eid"]]["status"] in {"current", "contested"}})
+        return {"service": service, "as_of": at if as_of is not None else None, "read_only": True, "owner_teams": owners,
+                "history": sorted(history, key=lambda row: (row["date"], row["eid"], row["doc_id"])), "evidence": evidence}
 
     def _verify(self, claim, target, purpose):
         if purpose not in {"ACT", "READ"} or not isinstance(claim, dict) or set(claim)-{"edge_ids", "start", "action"}:
@@ -256,7 +345,7 @@ class ToolRuntime:
         view = View(self.store)
         target = view.find(target)
         if target is None:
-            return error("no available evidence")
+            return error("unknown target", valid_target_ids=sorted(n["id"] for n in view.nodes if n["label"] == "Service"))
         ids = claim.get("edge_ids")
         if ids is None and isinstance(claim.get("start"), str):
             start = view.find(claim["start"])
@@ -384,5 +473,6 @@ def blast_radius(service): return call("blast_radius", service)
 def criticality(services): return call("criticality", services)
 def rank_owners(service): return call("rank_owners", service)
 def trace_decision(topic): return call("trace_decision", topic)
+def ownership_history(service, as_of=None): return call("ownership_history", service, as_of)
 def verify_path(claim, target, purpose): return call("verify_path", claim, target, purpose)
 def propose_action(pass_id, action, execute=False): return call("propose_action", pass_id, action, execute)
