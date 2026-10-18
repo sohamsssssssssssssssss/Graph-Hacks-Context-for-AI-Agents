@@ -1,5 +1,9 @@
 # Scale benchmark results
 
+> **Caveats:** 10k is complete. 100k is partial: **192 of 6,400 timing samples**, Q1 only, **48 samples per engine per mode**. SQLite used untuned status-index scans. The intended SQLite per-query timeout was not enforced; **39 of 3,296 SQLite samples over five seconds were kept**. Connected service counts stayed fixed.
+>
+> An earlier benchmark on the 6k graph found SQLite faster on blast radius (**0.087 ms vs 1.857 ms warm**), so the two results differ and neither is a general claim about speed.
+
 Registration: scale-v1 (`f99ac9a57947`). Status: partial. No LLM calls.
 
 Same data in both databases. Cold = first query on a new connection, including connection creation/close; server/OS caches were not flushed. Correctness ran before timings. SQLite is in-process; FalkorDB uses Docker and loopback networking. Each full table cell N=400 (20 input slots x 20 runs); per-input N=20. Q9 has one parameterless query repeated across all slots.
