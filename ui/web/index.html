@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Replay</title>
+<style>
+  /* ---- fonts & base (dark, recording-friendly: >=16px everywhere) ---- */
+  :root {
+    --bg: #0e1116; --bg2: #151a21; --bg3: #1c232c; --line: #2a3441;
+    --text: #e8edf3; --muted: #9aa7b5;
+    --green: #46c07a; --red: #e35b5b; --amber: #e2a63b; --blue: #5b8de3;
+    --grey: #97a1ab; --lightgrey: #aab3bd;
+    --font: "Avenir Next", "Segoe UI", Roboto, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font: 17px/1.45 var(--font);
+         height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  button, select, li { font: inherit; color: inherit; }
+  code, .mono { font-family: var(--mono); }
+
+  /* ---- top bar ---- */
+  #topbar { display: flex; align-items: center; gap: 14px; padding: 10px 16px;
+    background: var(--bg2); border-bottom: 1px solid var(--line); flex: 0 0 auto; flex-wrap: wrap; }
+  #topbar label { color: var(--muted); }
+  #case-select { max-width: 44ch; background: var(--bg3); border: 1px solid var(--line);
+    padding: 8px 10px; border-radius: 8px; }
+  .btn { background: #23405f; border: 1px solid #33619c; border-radius: 8px;
+    padding: 8px 18px; cursor: pointer; }
+  .btn:hover { background: #2a4e77; }
+  .btn.primary { background: #1f6b46; border-color: #2d8f63; }
+  #speed { background: var(--bg3); border: 1px solid var(--line); padding: 8px; border-radius: 8px; }
+  #mode-switch { margin-left: auto; display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  #mode-switch button { background: var(--bg3); border: 0; padding: 8px 16px; cursor: pointer; }
+  #mode-switch button.active { background: #2f4d74; font-weight: 600; }
+  #src-tag { color: var(--muted); font-size: 15px; }
+  #step-pos { color: var(--muted); font-size: 15px; min-width: 9ch; }
+
+  /* ---- layout ---- */
+  #main { flex: 1 1 auto; display: flex; min-height: 0; }
+  .col { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--line); min-width: 0; }
+  #main.single .col-main { width: 60%; }
+  #main.compare .col { width: 50%; }
+  .graph-wrap { position: relative; flex: 1 1 auto; min-height: 240px; background: var(--bg); }
+  .graph-wrap canvas { display: block; }
+  #legend { position: absolute; top: 10px; left: 12px; background: rgba(14,17,22,.85);
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px;
+    font-size: 15px; color: var(--muted); z-index: 5; text-align: left; }
+  #legend .row { display: flex; align-items: center; gap: 8px; margin: 2px 0; }
+  #legend .swatch { width: 46px; height: 0; border-top-width: 3px; display: inline-block; }
+  .sys-tag { position: absolute; top: 10px; right: 12px; z-index: 5; font-weight: 700;
+    font-size: 18px; padding: 4px 14px; border: 1px solid var(--line); border-radius: 8px; background: rgba(14,17,22,.85); }
+  #unsafe-banner { display: none; background: var(--red); color: #fff; font-weight: 700;
+    padding: 10px 16px; border-radius: 0 0 8px 8px; font-size: 20px; flex: 0 0 auto; }
+  #unsafe-banner .sub { display: block; font-size: 16px; font-weight: 400; }
+
+  #panels { flex: 0 0 auto; display: flex; flex-direction: column; min-height: 0; height: 62%;
+    background: var(--bg2); border-top: 1px solid var(--line); overflow-y: auto; padding: 12px 16px 16px; gap: 14px; }
+  section h2 { margin: 0 0 6px; font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+
+  /* gate badge */
+  .gate-badge { display: none; align-items: flex-start; gap: 22px; flex-wrap: wrap; }
+  .badge { font-size: 34px; font-weight: 700; padding: 10px 22px; border-radius: 10px; border: 2px solid; }
+  .badge.ACT { color: #bdf0d2; border-color: var(--green); background: #12331f; }
+  .badge.ANSWER_ONLY { color: #ffe7bd; border-color: var(--amber); background: #332712; }
+  .badge.ESCALATE { color: #ffd6d6; border-color: var(--red); background: #370f0f; }
+  .badge.NO_GATE { color: #dbe2e9; border-color: var(--grey); background: #232a31; }
+  .gate-details { font-size: 17px; max-width: 56ch; }
+  .gate-details .muted { color: var(--muted); }
+  .confbar { position: relative; height: 18px; background: var(--bg3); border: 1px solid var(--line);
+    border-radius: 5px; margin: 6px 0 2px; width: 320px; }
+  .confbar .fill { position: absolute; top: 1px; bottom: 1px; left: 1px;
+    background: linear-gradient(#4fd08c,#25965c); border-radius: 4px; }
+  .tmark { position: absolute; top: -3px; bottom: -3px; width: 2px; }
+  .tmark.read { background: var(--amber); }
+  .tmark.act { background: var(--red); }
+
+  /* steps */
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .steps li { padding: 8px 10px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
+  .steps li:hover { background: var(--bg3); }
+  .steps li.active { background: #244061; border-color: #3a6ea5; }
+  .steps .tool { font-weight: 700; }
+  .steps .args { color: var(--muted); font-family: var(--mono); font-size: 16px; word-break: break-all; }
+  .steps .summ { display: block; font-size: 17px; }
+
+  /* evidence */
+  .evidence { font-size: 16px; }
+  .evidence .ev { margin: 8px 0; padding: 8px 12px; background: var(--bg3); border-radius: 8px; }
+  .evidence .meta { color: var(--muted); font-size: 15px; }
+  .evidence span { font-family: var(--mono); display: block; margin-top: 4px; color: #cfe3f5; word-break: break-word; }
+
+  /* audit strip */
+  .audit { display: flex; flex-wrap: wrap; gap: 10px; }
+  .audit .chip { background: var(--bg3); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 16px; }
+  .audit .dry { color: var(--amber); font-weight: 600; }
+  .audit .none { color: var(--muted); }
+
+  /* edge-reason notice (shown when a step highlights rejected edges) */
+  .edge-notice { display: none; background: #371414; border: 1px solid var(--red); color: #ffd9d9;
+    padding: 8px 12px; border-radius: 8px; font-size: 16px; }
+  .edge-notice .reasons { font-family: var(--mono); font-size: 15px; }
+
+  /* tooltip */
+  #tooltip { position: fixed; display: none; z-index: 50; max-width: 420px;
+    background: #0a0d11; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px;
+    font-size: 16px; pointer-events: none; box-shadow: 0 6px 20px rgba(0,0,0,.5); }
+
+  #err-banner { display: none; position: fixed; bottom: 40px; right: 12px; z-index: 60; max-width: 46ch;
+    background: #3a1414; border: 1px solid var(--red); color: #ffd9d9; padding: 10px 14px; border-radius: 8px; font-size: 16px; }
+  footer { flex: 0 0 auto; background: var(--bg2); color: var(--muted); border-top: 1px solid var(--line);
+    padding: 8px 16px; font-size: 15px; }
+  #boot-status { position: fixed; bottom: 34px; left: 4px; color: #0e1116; font-size: 2px; z-index: 100; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/force-graph@1.43.5/dist/force-graph.min.js"
+        onerror="window.__libCdnFailed=true"></script>
+</head>
+<body>
+<div id="topbar">
+  <label for="case-select" style="min-width:16px">Case</label>
+  <select id="case-select"></select>
+  <button id="replay-btn" class="btn primary">Replay</button>
+  <label for="speed">Speed</label>
+  <select id="speed"><option value="1" selected>1x</option><option value="2">2x</option></select>
+  <span id="step-pos"></span>
+  <div id="mode-switch">
+    <button data-mode="single" class="active">Single</button>
+    <button data-mode="compare">Compare K&#8202;|&#8202;B1</button>
+  </div>
+  <span id="src-tag"></span>
+</div>
+
+<div id="main" class="single">
+  <div class="col col-main" id="col-a"></div>
+  <div class="col" id="col-b"></div>
+</div>
+
+<div id="tooltip"></div>
+<div id="err-banner"></div>
+<footer>Replay of saved runs. Synthetic data. Execution is dry-run.</footer>
+<div id="boot-status"></div>
+
+<script>
+"use strict";
+/* ------------------------------------------------------------------ *
+ * boot-status: hidden self-check for headless runs / debugging.
+ * Missing fields go through gp() and render as "(missing)" — no crash.
+ * ------------------------------------------------------------------ */
+(function () {
+  var msgs = [];
+  var errs = [];
+  window.__reportBoot = function (tag, detail) { msgs.push(tag + (detail ? ": " + detail : "")); };
+  window.__reportErr = function (tag, detail) { errs.push(tag + (detail ? ": " + detail : "")); };
+  window.__bootMsgs = msgs;
+  window.addEventListener("error", function (e) {
+    var m = (e && e.message) || "unknown";
+    window.__reportErr("window.error", m);
+    var b = document.getElementById("err-banner");
+    b.textContent = "UI error (data missing fields?): " + errs.join("; ");
+    b.style.display = "block";
+  });
+  window.addEventListener("unhandledrejection", function (e) {
+    window.__reportErr("unhandledrejection", (e && e.reason && (e.reason.message || e.reason)) || "unknown");
+  });
+  window.__flushBoot = function () {
+    var el = document.getElementById("boot-status");
+    if (el) el.textContent = errs.length ? "BOOT_FAIL | " + errs.join(" | ") : "BOOT_OK | " + msgs.join(" | ");
+  };
+  setTimeout(window.__flushBoot, 3000);
+})();
+
+/* ---------------- Statuses (exact text labels, never color-only) --- */
+var STATUS_STYLE = {
+  current:    { color: "#46c07a", label: "current",    dashPattern: null },
+  retired:    { color: "#97a1ab", label: "retired",    dashPattern: [7, 5] },
+  rejected:   { color: "#e35b5b", label: "rejected",   dashPattern: [2, 5], xMark: true },
+  contested:  { color: "#e2a63b", label: "contested",  dashPattern: [11, 6] },
+  unresolved: { color: "#5b8de3", label: "unresolved", dashPattern: null },
+  other:      { color: "#aab3bd", label: "other",      dashPattern: [2, 4] }
+};
+function statusOf(e) { return STATUS_STYLE[e && e.status] || STATUS_STYLE.other; }
+function gp(obj, key, fallback) {
+  return obj && typeof obj === "object" && obj[key] !== undefined && obj[key] !== null ? obj[key] : fallback;
+}
+function esc(s) {
+  return String(s === null || s === undefined ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+/* ---------------- Data loading: ../data/replays then ./fixture ----- */
+var DATA_BASES = ["../data/replays/", "./fixture/"];
+var state = { base: null, entries: [], selected: 0, runsByCase: {},
+              compare: false, cursor: -1, playing: false, timer: null, speed: 1 };
+
+function fetchJson(url) {
+  return fetch(url).then(function (r) {
+    if (!r.ok) throw new Error(url + " -> HTTP " + r.status);
+    return r.json();
+  });
+}
+function loadIndex() {
+  var chain = Promise.resolve(null);
+  DATA_BASES.forEach(function (base) {
+    chain = chain.then(function (prev) {
+      if (prev) return prev;
+      return fetchJson(base + "index.json")
+        .then(function (idx) {
+          if (!Array.isArray(idx) || !idx.length) throw new Error("empty or invalid index at " + base);
+          return { base: base, idx: idx };
+        })
+        .catch(function (err) {
+          window.__reportBoot("index_fallback", base + " (" + err.message + ")");
+          return null;
+        });
+    });
+  });
+  return chain.then(function (res) {
+    if (!res) throw new Error("no usable index.json under " + DATA_BASES.join(" or "));
+    return res;
+  });
+}
+function loadRun(file) {
+  if (!file) return Promise.resolve(null);         // B1 null stays null, by contract
+  return fetchJson(state.base + file).catch(function (err) {
+    window.__reportBoot("run_fetch", file + " (" + err.message + ")");
+    return null;
+  });
+}
+
+/* ---------------- Shared tooltip ------------------------------------ */
+var tooltip, errBanner;
+function showTip(evt, html) {
+  tooltip.innerHTML = html;
+  tooltip.style.display = "block";
+  var x = evt.clientX + 14, y = evt.clientY + 14;
+  if (x + 440 > window.innerWidth) x = evt.clientX - 440;
+  if (y + 200 > window.innerHeight) y = evt.clientY - 200;
+  tooltip.style.left = Math.max(4, x) + "px";
+  tooltip.style.top = Math.max(4, y) + "px";
+}
+function hideTip() { tooltip.style.display = "none"; }
+
+/* ---------------- Column (graph + panels) rendering ---------------- */
+var OUTCOME_CLASS = { ACT: "ACT", ANSWER_ONLY: "ANSWER_ONLY", ESCALATE: "ESCALATE" };
+function renderColumn(elId, run) {
+  var el = document.getElementById(elId);
+  el.innerHTML = "";
+  var sys = gp(run, "system", "K");
+  var caseId = gp(run, "case_id", "(unknown case)");
+
+  var banner = document.createElement("div");
+  banner.className = "unsafe-banner-host";
+  banner.innerHTML = '<div id="unsafe-banner">';
+  var unsafeHost = document.createElement("div");
+  unsafeHost.className = "unsafe-banner";
+  unsafeHost.id = "unsafe-banner-" + elId;
+  if (gp(run, "unsafe", false)) {
+    unsafeHost.innerHTML = 'UNSAFE ACTION <span class="sub">' + esc(sys) +
+      " executed this alert (" + esc(caseId) + ") while gold requires ESCALATE — no gate" + "</span>";
+    unsafeHost.style.display = "block";
+  }
+  el.appendChild(unsafeHost);
+
+  var graphWrap = document.createElement("div");
+  graphWrap.className = "graph-wrap";
+
+  var legend = document.createElement("div");
+  legend.id = "legend-" + elId;
+  legend.innerHTML = "<b>Edge status</b>" + Object.keys(STATUS_STYLE).map(function (k) {
+    var st = STATUS_STYLE[k];
+    return '<div class="row"><span class="swatch" style="border-top-style:' +
+      (st.dashPattern ? "dashed" : "solid") + ";border-top-color:" + st.color + '"></span><span>' +
+      st.label + (st.xMark ? " + ✕ marker" : "") + "</span></div>";
+  }).join("");
+  graphWrap.appendChild(legend);
+
+  var sysTag = document.createElement("div");
+  sysTag.className = "sys-tag"; sysTag.textContent = sys;
+  graphWrap.appendChild(sysTag);
+
+  var notice = document.createElement("div");
+  notice.className = "edge-notice"; notice.id = "notice-" + elId;
+  graphWrap.appendChild(notice);
+
+  /* ForceGraph clears its container's children on init, so it gets its own
+     dedicated inner target; overlays above stay untouched. */
+  var libTarget = document.createElement("div");
+  libTarget.style.cssText = "position:absolute;inset:0";
+  graphWrap.appendChild(libTarget);
+
+  var panels = document.createElement("div");
+  panels.className = "panels";
+  panels.innerHTML =
+    '<section><h2>Gate</h2><div class="gate-badge" id="gate-' + elId + '"></div></section>' +
+    '<section><h2>Audit log</h2><div class="audit" id="audit-' + elId + '"></div></section>' +
+    '<section><h2>Steps (click to jump)</h2><ol class="steps" id="steps-' + elId + '"></ol></section>' +
+    '<section><h2>Evidence</h2><div class="evidence" id="evidence-' + elId + '"></div></section>';
+
+  el.appendChild(graphWrap);
+  el.appendChild(panels);
+
+  var fg = null, gdata = null;
+  try {
+    if (typeof ForceGraph !== "function") throw new Error("force-graph library missing");
+    gdata = {
+      nodes: (((gp(run, "graph", {}) || {}).nodes) || []).map(function (n) {
+        return { id: gp(n, "id", ""), label: gp(n, "label", gp(n, "id", "(unlabeled)")),
+                 type: gp(n, "type", "?") };
+      }),
+      links: (((gp(run, "graph", {}) || {}).edges) || []).map(function (e) {
+        return { id: gp(e, "id", ""), source: gp(e, "source", ""), target: gp(e, "target", ""),
+                 status: gp(e, "status", "other"), authority: gp(e, "authority", null),
+                 reason: gp(e, "reason", ""), style: statusOf(e) };
+      }),
+      highlight: { active: false, nodeIds: new Set(), edgeIds: new Set() }
+    };
+    fg = ForceGraph()(libTarget)
+      .backgroundColor("#0e1116")
+      .width(Math.max(libTarget.clientWidth || graphWrap.clientWidth, 320))
+      .height(Math.max(graphWrap.clientHeight, 240))
+      .nodeCanvasObject(function (node, ctx, gs) { drawNode(node, ctx, gs, gdata); })
+      .linkCanvasObject(function (link, ctx, gs) { drawLink(link, ctx, gs, gdata); })
+      .onNodeHover(function (node, prevEvt) {
+        var e = prevEvt || window.event || d3EventLike();
+        if (!node) return hideTip();
+        showTip(e, "<b>" + esc(node.label || "(unlabeled)") + "</b><br>type: <code>" + esc(node.type) +
+          "</code><br>id: <code>" + esc(node.id) + "</code>");
+      })
+      .onLinkHover(function (link, prevEvt) {
+        var e = prevEvt || window.event || d3EventLike();
+        if (!link) return hideTip();
+        var st = statusOf(link);
+        showTip(e, "status: <b style=\"color:" + st.color + '">' + st.label + "</b>" +
+          "<br>authority: <code>" + (gp(link, "authority", null) === null ? "—" : link.authority) + "</code>" +
+          "<br>reason: " + esc(gp(link, "reason", "") || "(none)") +
+          "<br>edge: <code>" + esc(link.id || "") + "</code>");
+      })
+      .graphData(gdata);
+    fg.onEngineStop(function () { fg.zoomToFit(400, 50); });
+  } catch (err) {
+    window.__reportBoot("graph_" + elId, err.message);
+    graphWrap.insertAdjacentHTML("beforeend",
+      '<div style="padding:16px;color:#9aa7b5">Graph unavailable: ' + esc(err.message) + "</div>");
+  }
+  if (fg) fg.width(graphWrap.clientWidth || 800).height(graphWrap.clientHeight || 500);
+  return { el: el, fg: fg, gdata: gdata, run: run, wrap: graphWrap, notice: notice,
+           badge: el.querySelector(".gate-badge"), stepsEl: el.querySelector(".steps"),
+           badgeEl: el.querySelector(".gate-badge"), zoomed: false };
+}
+/* some force-graph builds hand the raw event as 2nd arg; synthesize one if absent */
+function d3EventLike() { return { clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 }; }
+
+/* ---------------- Node/link painters -------------------------------- */
+function drawNode(node, ctx, gs, gdata) {
+  if (node.x == null) return;
+  var hl = gdata.highlight;
+  var hot = hl.active && hl.nodeIds.has(node.id);
+  var dim = hl.active && !hot;
+  var r = Math.max(2.5, 4.4 / gs);
+  ctx.beginPath();
+  if (hot) { ctx.shadowColor = "#8fc4ff"; ctx.shadowBlur = 18; ctx.fillStyle = "#9fc9ff"; }
+  else { ctx.fillStyle = dim ? "#4a5665" : "#6f7d8c"; }
+  ctx.arc(node.x, node.y, hot ? r + 1.4 : r, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+  ctx.font = Math.max(10, 12.5) + "px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#e8edf3";
+  if (dim) ctx.globalAlpha = 0.3;
+  ctx.fillText(node.label || node.id, node.x, node.y + r + 13);
+  ctx.globalAlpha = 1;
+}
+function drawLink(link, ctx, gs, gdata) {
+  var s = link.source, t = link.target;
+  if (!s || !t || s.x == null || t.x == null) return;
+  var hl = gdata.highlight;
+  var hot = hl.active && hl.edgeIds.has(link.id);
+  var dim = hl.active && !hot;
+  var st = link.style || statusOf(link);
+  // glow underlay first
+  if (hot) {
+    ctx.globalAlpha = .27; ctx.strokeStyle = st.color; ctx.lineWidth = 8;
+    ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y); ctx.stroke();
+  }
+  ctx.globalAlpha = dim ? 0.15 : hot ? 1 : 0.7;
+  ctx.strokeStyle = st.color;
+  ctx.lineWidth = hot ? 2.6 : 1.4;
+  ctx.beginPath();
+  if (st.dashPattern) ctx.setLineDash(st.dashPattern);
+  ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  // X marker at midpoint for rejected edges
+  if (st.xMark) {
+    var mx = (s.x + t.x) / 2, my = (s.y + t.y) / 2, w = Math.max(3, 4 / gs);
+    ctx.setLineDash([]);
+    ctx.strokeStyle = st.color; ctx.lineWidth = Math.max(1, 1.8 / gs);
+    ctx.beginPath();
+    ctx.moveTo(mx - w, my - w); ctx.lineTo(mx + w, my + w);
+    ctx.moveTo(mx - w, my + w); ctx.lineTo(mx + w, my - w);
+    ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
+
+/* ---------------- Gate badge — shown after the final step ----------- */
+function renderBadge(col) {
+  var run = col.run, badge = col.badge;
+  var gate = gp(run, "gate", null);
+  var decision = gp(gate, "decision", null);
+  var sys = gp(run, "system", "K");
+  var cls = decision === "NO_GATE" || decision == null ? "NO_GATE" : (OUTCOME_CLASS[decision] || "NO_GATE");
+  if (decision != null && decision !== "NO_GATE") {
+    // decision names the outcome the gate drove (ACT / ESCALATE / …). Use outcome as the big badge.
+    var outc = gp(run, "outcome", decision);
+    cls = OUTCOME_CLASS[outc] || "NO_GATE";
+  }
+  var conf = gp(gate, "confidence", null);
+  var actT = gp(gate, "act_threshold", 0.7), readT = gp(gate, "read_threshold", 0.5);
+  var passed = gp(gate, "pass_used", false);
+  var reason = gp(gate, "reason", "");
+  var confHtml = "<div class=\"muted\">confidence not recorded</div>";
+  if (typeof conf === "number") {
+    confHtml = '<div class="muted">confidence ' + esc(conf) +
+      " vs ACT &ge; " + esc(actT) + " / read &ge; " + esc(readT) + "</div>" +
+      '<div class="confbar"><div class="fill" style="width:' +
+      Math.max(0, Math.min(1, conf)) * 100 + '%"></div>' +
+      (typeof readT === "number" ? '<div class="tmark read" style="left:' + readT * 100 + '%"></div>' : "") +
+      (typeof actT === "number" ? '<div class="tmark act" style="left:' + actT * 100 + '%"></div>' : "") +
+      "</div>";
+  }
+  badge.innerHTML = '<div class="badge ' + esc(cls) + '">' + esc(gp(run, "outcome", "—")) + "</div>" +
+    '<div class="gate-details">' +
+    (sys === "B1"
+      ? '<div class="muted">B1 baseline: runs <b>without a gate</b></div>'
+      : "<div>gate: <b>" + esc(decision || "unknown") + "</b>" +
+        " · pass_used: <b>" + (passed ? "yes" : "no") + "</b></div>") +
+    confHtml +
+    '<div class="muted" style="margin-top:4px">' + esc(reason || "(no gate reason recorded)") + "</div>" +
+    '<div class="muted">gold outcome: <b>' + esc(gp(run, "gold", "—")) + "</b> · correct (as graded): <b>" +
+    (gp(run, "correct", null) === true ? "yes" : gp(run, "correct", null) === false ? "no" : "—") + "</b></div>" +
+    "</div>";
+  badge.style.display = "flex";
+}
+
+/* ---------------- Audit / evidence / steps -------------------------- */
+function renderAudit(el, run) {
+  var audit = gp(run, "audit", []) || [];
+  el.innerHTML = audit.length ? audit.map(function (a) {
+    return '<span class="chip"><b>' + esc(gp(a, "action", "?")) + "</b> &rarr; " + esc(gp(a, "target", "—")) +
+      (gp(a, "dry_run", false) ? ' <span class="dry">dry-run</span>' : "") +
+      (gp(a, "pass_id", null) ? " · pass " + esc(a.pass_id) : "") + "</span>";
+  }).join("") : '<span class="none">no audit entries recorded</span>';
+}
+function renderEvidence(el, run) {
+  var ev = gp(run, "evidence", []) || [];
+  el.innerHTML = ev.length ? ev.map(function (e) {
+    return '<div class="ev"><div class="meta">doc <b>' + esc(gp(e, "doc", "—")) + "</b> · author " +
+      esc(gp(e, "author", null) === null ? "not recorded" : e.author) +
+      " · authority " + esc(gp(e, "authority", null) === null ? "—" : e.authority) + "</div>" +
+      "<span>&ldquo;" + esc(gp(e, "span", "")) + "&rdquo;</span></div>";
+  }).join("") : '<span class="none">no evidence entries recorded</span>';
+}
+function renderSteps(col) {
+  var steps = gp(col.run, "steps", []) || [];
+  col.stepsEl.innerHTML = steps.length ? "" : "";
+  if (!steps.length) {
+    col.stepsEl.innerHTML = "";
+    var li = document.createElement("li");
+    li.textContent = "(no steps recorded)";
+    li.style.cursor = "default";
+    col.stepsEl.appendChild(li);
+    return;
+  }
+  steps.forEach(function (s, i) {
+    var li = document.createElement("li");
+    li.innerHTML = '<span class="tool">' + i + ". " + esc(gp(s, "tool", "?")) + "</span>" +
+      '&nbsp;<span class="args">' + esc(gp(s, "args", "")) + "</span>" +
+      '<span class="summ">' + esc(gp(s, "summary", "")) + "</span>";
+    li.addEventListener("click", function () { jumpTo(i); });
+    col.stepsEl.appendChild(li);
+  });
+}
+
+/* ---------------- Playback / highlight ------------------------------ */
+function maxSteps() {
+  var n = 0;
+  Object.keys(cols).forEach(function (k) {
+    var c = cols[k];
+    if (!c) return;
+    var steps = gp(c.run, "steps", []) || [];
+    if (steps.length > n) n = steps.length;
+  });
+  return n;
+}
+function stepsOf(col) { return (gp(col.run, "steps", []) || []); }
+
+function applyCursor() {
+  var pos = document.getElementById("step-pos");
+  var total = maxSteps();
+  pos.textContent = "step " + (state.cursor + 1 < 0 ? "—" : state.cursor + 1 > total ? total : state.cursor + 1) +
+    " / " + total;
+  Object.keys(cols).forEach(function (key) {
+    var col = cols[key];
+    if (!col) return;
+    var steps = stepsOf(col);
+    var clamped = state.cursor < 0 ? -1 : Math.min(state.cursor, steps.length - 1);
+    var atEnd = clamped >= 0 && clamped >= steps.length - 1;
+
+    if (atEnd) { renderBadge(col); } else if (col.badge) col.badge.style.display = "none";
+
+    Array.prototype.forEach.call(col.stepsEl.children, function (li, i) {
+      li.className = i === clamped ? "active" : "";
+    });
+
+    var step = clamped >= 0 ? steps[clamped] : null;
+    col.gdata.highlight = {
+      active: clamped >= 0 && !!step,
+      nodeIds: new Set(gp(step, "node_ids", []) || []),
+      edgeIds: new Set(gp(step, "edge_ids", []) || [])
+    };
+    if (col.fg) {
+      try { col.fg.nodeCanvasObject(function (node, ctx, gs) { drawNode(node, ctx, gs, col.gdata); }); } catch (e) {}
+      try { col.fg.linkCanvasObject(function (link, ctx, gs) { drawLink(link, ctx, gs, col.gdata); }); } catch (e) {}
+    }
+
+    // Rejected edges prominently show their real reason text
+    var rejectedHtml = [], edgeIds = (gp(step, "edge_ids", []) || []);
+    var links = (col.gdata && col.gdata.links) || [];
+    edgeIds.forEach(function (id) {
+      for (var j = 0; j < links.length; j++) {
+        if (links[j].id === id && links[j].status === "rejected") {
+          rejectedHtml.push("<code>" + esc(links[j].id) + "</code> — " + esc(links[j].reason || "(no reason given)"));
+        }
+      }
+    });
+    col.notice.innerHTML = rejectedHtml.length
+      ? "<b>Highlighted rejected edge" + (rejectedHtml.length > 1 ? "s" : "") + ":</b><br>" +
+        '<span class="reasons">' + rejectedHtml.join("<br>") + "</span>"
+      : "";
+    col.notice.style.display = rejectedHtml.length ? "block" : "none";
+  });
+}
+
+function stopTimer() {
+  if (state.timer) { clearInterval(state.timer); state.timer = null; }
+}
+function startTimer() {
+  stopTimer();
+  var delay = 1200 / (state.speed || 1);
+  state.timer = setInterval(function () {
+    var last = maxSteps() - 1;
+    if (state.cursor >= last) { state.playing = false; stopTimer(); return; }
+    state.cursor++;
+    applyCursor();
+  }, delay);
+}
+function jumpTo(i) { state.cursor = i; state.playing = false; stopTimer(); applyCursor(); }
+function onReplay() { state.cursor = -1; state.playing = true; applyCursor(); startTimer(); }
+
+/* ---------------- Wiring -------------------------------------------- */
+var cols = {};
+function renderColumnInto(elId, run, key) {
+  var el = document.getElementById(elId);
+  if (!run) {
+    el.innerHTML = '<div style="padding:20px;color:#9aa7b5">' +
+      (key === "b" ? "No B1 run recorded for this case (index says null)." : "No run file for this selection.") +
+      "</div>";
+    delete cols[key];
+    return;
+  }
+  cols[key] = renderColumn(elId, run);
+  var col = cols[key];
+  renderSteps(col);
+  renderAudit(el.querySelector(".audit"), run);
+  renderEvidence(el.querySelector(".evidence"), run);
+}
+function buildColumns(entry) {
+  var runs = state.runsByCase[gp(entry, "case_id", "")] || {};
+  cols = {};
+  var aRun = runs.K || runs.B1 || null;
+  var bRun = state.compare ? (runs.B1 || runs.K) : null;
+  renderColumnInto("col-a", aRun, "a");
+  if (state.compare) renderColumnInto("col-b", bRun, "b");
+  else document.getElementById("col-b").innerHTML =
+    '<div style="padding:20px;color:#4a5665">Compare mode shows the B1 run of the same case here.</div>';
+  state.cursor = -1;
+  applyCursor();
+}
+function setMode(compare) {
+  state.compare = compare;
+  var main = document.getElementById("main");
+  main.className = compare ? "compare" : "single";
+  Array.prototype.forEach.call(document.querySelectorAll("#mode-switch button"), function (b) {
+    b.className = b.dataset.mode === (compare ? "compare" : "single") ? "active" : "";
+  });
+  buildColumns(state.entries[state.selected] || {});
+}
+function selectCase(i) {
+  state.selected = i;
+  var entry = state.entries[i] || {};
+  var sel = document.getElementById("case-select");
+  sel.selectedIndex = i;
+  var cid = gp(entry, "case_id", "case-" + i);
+  if (!state.runsByCase[cid]) {
+    state.runsByCase[cid] = {};
+    Promise.all([loadRun(gp(entry, "K", null)), loadRun(gp(entry, "B1", null))]).then(function (res) {
+      state.runsByCase[cid] = { K: res[0], B1: res[1] };
+      window.__reportBoot("loaded", cid + (res[0] ? " [K]" : " [K:missing]") + (res[1] ? " [B1]" : " [B1:missing]"));
+      if (state.entries[state.selected] === entry) { buildColumns(entry); if (state.postBuild) state.postBuild(); }
+    });
+  } else {
+    buildColumns(entry);
+    if (state.postBuild) state.postBuild();
+  }
+}
+
+function boot() {
+  if (window.__libCdnFailed) window.__reportBoot("lib_cdn_failed", "will retry / degrade");
+  var params = new URLSearchParams(location.search);
+  var src = params.get("src");
+  if (src === "fixture") DATA_BASES = ["./fixture/", "../data/replays/"];
+  loadIndex().then(function (res) {
+    state.base = res.base;
+    state.entries = res.idx;
+    var sel = document.getElementById("case-select");
+    sel.innerHTML = state.entries.map(function (e, i) {
+      return '<option value="' + i + '">' + esc(gp(e, "case_id", "case-" + i)) + "</option>";
+    }).join("");
+    sel.addEventListener("change", function () { selectCase(parseInt(sel.value, 10) || 0); });
+    document.getElementById("replay-btn").addEventListener("click", onReplay);
+    document.getElementById("speed").addEventListener("change", function (e) {
+      state.speed = parseInt(e.target.value, 10) || 1;
+      if (state.playing) startTimer();
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("#mode-switch button"), function (b) {
+      b.addEventListener("click", function () { setMode(b.dataset.mode === "compare"); });
+    });
+    document.getElementById("src-tag").textContent =
+      state.base === "./fixture/" ? "source: fixture fallback" : "source: ../data/replays";
+    selectCase(0);
+    if (params.get("mode") === "compare") setMode(true);
+    var jump = params.get("jump");
+    state.postBuild = function () {
+      var col = cols.a || cols.b;
+      window.__reportBoot("build", (col ? Object.keys(cols).join("+") : "none") +
+        " steps=" + (col ? (stepsOf(col).length) : 0) +
+        " evidence=" + (col ? col.el.querySelector(".evidence").children.length : 0) +
+        " audit=" + (col ? col.el.querySelector(".audit").children.length : 0));
+      if (jump === "last") { onReplay(); jumpTo(maxSteps() - 1); }
+      else if (jump === "mid") { onReplay(); jumpTo(Math.max(0, Math.floor((maxSteps() - 1) / 2))); }
+      else if (/^\d+$/.test(jump || "")) { onReplay(); jumpTo(parseInt(jump, 10)); }
+      if (jump) {
+        var c2 = cols.a || cols.b;
+        window.__reportBoot("badge", c2 && c2.badge && c2.badge.style.display !== "none" ? "shown" : "hidden");
+        var nc = c2 && c2.notice;
+        window.__reportBoot("notice", nc && nc.style.display === "block" ? "rejected-reasons" : "none");
+      }
+    };
+    window.__reportBoot("booted", "index entries=" + state.entries.length +
+      " source=" + state.base);
+  }).catch(function (err) {
+    window.__reportBoot("boot_failed", err.message);
+    document.getElementById("col-a").innerHTML =
+      '<div style="padding:24px;font-size:20px">No replay data found.<br><small>' +
+      esc(err.message) + "</small></div>";
+  });
+}
+
+tooltip = document.getElementById("tooltip");
+errBanner = document.getElementById("err-banner");
+if (typeof ForceGraph === "function") boot();
+else {
+  var tries = 0;
+  (function waitLib() {
+    tries++;
+    if (typeof ForceGraph === "function") { boot(); return; }
+    if (tries < 60) { setTimeout(waitLib, 100); return; }
+    window.__reportBoot("lib_timeout", "ForceGraph not loaded; panels still wired");
+    boot();
+  })();
+}
+</script>
+</body>
+</html>

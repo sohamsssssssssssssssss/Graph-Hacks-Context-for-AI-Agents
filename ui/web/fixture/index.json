@@ -1,0 +1,9 @@
+[
+  {
+    "case_id": "FIXTURE-DEMO",
+    "title": "FIXTURE — alert on cache-proxy with a contested chat claim and a forged approval (demo data for recording, not a real run)",
+    "gold": "ESCALATE",
+    "K": "fixture_K.json",
+    "B1": "fixture_B1.json"
+  }
+]
