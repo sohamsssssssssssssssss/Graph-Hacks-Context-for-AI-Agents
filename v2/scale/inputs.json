@@ -1,0 +1,230 @@
+{
+  "Q1": [
+    {
+      "service": "service-redis-cluster"
+    },
+    {
+      "service": "service-payment-vault"
+    },
+    {
+      "service": "service-storage-cluster"
+    },
+    {
+      "service": "service-ldap-directory"
+    },
+    {
+      "service": "service-core-auth"
+    },
+    {
+      "service": "service-session-cache"
+    },
+    {
+      "service": "service-checkout-api"
+    },
+    {
+      "service": "service-ledger"
+    },
+    {
+      "service": "service-notifier"
+    },
+    {
+      "service": "service-auth-gateway"
+    },
+    {
+      "service": "service-api-hub"
+    },
+    {
+      "service": "service-web-frontend"
+    },
+    {
+      "service": "service-api-gateway"
+    },
+    {
+      "service": "service-order-service"
+    },
+    {
+      "service": "service-search-index"
+    },
+    {
+      "service": "service-catalog-db"
+    },
+    {
+      "service": "service-template-renderer"
+    },
+    {
+      "service": "service-user-preferences"
+    },
+    {
+      "service": "service-identity-provider"
+    },
+    {
+      "service": "service-batch-exporter"
+    }
+  ],
+  "Q3": [
+    {
+      "start": "service-web-frontend",
+      "target": "service-redis-cluster"
+    },
+    {
+      "start": "service-mobile-app-backend",
+      "target": "service-payment-vault"
+    },
+    {
+      "start": "service-analytics-pipeline",
+      "target": "service-storage-cluster"
+    },
+    {
+      "start": "service-notification-dispatcher",
+      "target": "service-ldap-directory"
+    },
+    {
+      "start": "service-api-hub",
+      "target": "service-core-auth"
+    },
+    {
+      "start": "service-batch-exporter",
+      "target": "service-core-auth"
+    },
+    {
+      "start": "service-redis-cluster",
+      "target": "service-web-frontend"
+    },
+    {
+      "start": "service-payment-vault",
+      "target": "service-mobile-app-backend"
+    },
+    {
+      "start": "team-commerce",
+      "target": "service-checkout-api"
+    },
+    {
+      "start": "team-payments",
+      "target": "service-ledger"
+    },
+    {
+      "start": "team-platform",
+      "target": "service-rate-limiter"
+    },
+    {
+      "start": "team-payments",
+      "target": "service-notifier"
+    },
+    {
+      "start": "service-session-cache",
+      "target": "service-redis-cluster"
+    },
+    {
+      "start": "service-checkout-api",
+      "target": "service-payment-vault"
+    },
+    {
+      "start": "service-order-service",
+      "target": "service-ledger"
+    },
+    {
+      "start": "service-search-index",
+      "target": "service-storage-cluster"
+    },
+    {
+      "start": "service-notifier",
+      "target": "service-ldap-directory"
+    },
+    {
+      "start": "service-template-renderer",
+      "target": "service-identity-provider"
+    },
+    {
+      "start": "service-auth-gateway",
+      "target": "service-ldap-directory"
+    },
+    {
+      "start": "service-core-auth",
+      "target": "service-batch-exporter"
+    }
+  ],
+  "Q6": [
+    {
+      "topic": "DEC-ADR-3"
+    },
+    {
+      "topic": "DEC-ADR-5"
+    },
+    {
+      "topic": "DEC-ADR-7"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-00"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-01"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-02"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-03"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-04"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-05"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-06"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-07"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-08"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-09"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-10"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-11"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-12"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-13"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-14"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-15"
+    },
+    {
+      "topic": "DEC-ARCH-CORE-16"
+    }
+  ],
+  "Q9": [
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ]
+}
