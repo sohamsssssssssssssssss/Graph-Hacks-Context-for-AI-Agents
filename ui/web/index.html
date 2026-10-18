@@ -46,9 +46,15 @@
   #main.single #col-graph-b { display: none; }
   #main.compare #col-graph-a, #main.compare #col-graph-b { width: 50%; border-right: 1px solid var(--line); }
   #main.compare #col-side { display: none; }
+  /* compare: guarantee graph pane > 300px by trimming evidence/panels */
+  #main.compare .graph-wrap { min-height: 300px; }
+  #main.compare .evidence-frame { max-height: 22vh; }
+  #main.compare .panels { height: 30%; min-height: 130px; }
 
   /* graph area: flex fills, no fixed heights that overflow */
   .graph-wrap { position: relative; flex: 1 1 auto; min-height: 220px; background: var(--bg); overflow: hidden; }
+  /* guaranteed pane height in Single mode: graph >= 55vh, evidence <= 30vh */
+  #main.single .graph-wrap { min-height: 55vh; }
   .graph-wrap canvas { display: block; }
   #legend { position: absolute; top: 10px; left: 12px; background: rgba(14,17,22,.85);
     border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px;
@@ -65,7 +71,7 @@
   .unsafe-banner .sub { display: block; font-size: 15px; font-weight: 400; }
 
   /* evidence lives directly under the graph and scrolls */
-  .evidence-frame { flex: 0 0 auto; height: 38%; min-height: 140px; overflow-y: auto;
+  .evidence-frame { flex: 0 0 auto; max-height: 30vh; min-height: 110px; overflow-y: auto;
     background: var(--bg2); border-top: 1px solid var(--line); padding: 10px 16px 12px; }
   .evidence-frame h2 { margin: 0 0 6px; }
   .evidence-frame .evidence { font-size: 15px; }
@@ -86,6 +92,7 @@
 
   /* gate badge */
   .gate-badge { display: none; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
+  .gate-placeholder { color: var(--muted); font-size: 18px; padding: 6px 0; }
   .badge { font-size: 30px; font-weight: 700; padding: 8px 20px; border-radius: 10px; border: 2px solid; }
   .badge.ACT { color: #bdf0d2; border-color: var(--green); background: #12331f; }
   .badge.ANSWER_ONLY { color: #ffe7bd; border-color: var(--amber); background: #332712; }
@@ -352,6 +359,9 @@ function mountGraph(el, run, suffix) {
   var libTarget = document.createElement("div");
   libTarget.style.cssText = "position:absolute;inset:0";
   graphWrap.appendChild(libTarget);
+  /* BUGFIX: attach the graph pane; without this the whole pane stays detached
+     and the column shows only the evidence panel. */
+  el.appendChild(graphWrap);
 
   var fg = null, gdata = null;
   try {
@@ -396,8 +406,21 @@ function mountGraph(el, run, suffix) {
     graphWrap.insertAdjacentHTML("beforeend",
       '<div style="padding:16px;color:#9aa7b5">Graph unavailable: ' + esc(err.message) + "</div>");
   }
-  return { graphWrap: graphWrap, fg: fg, gdata: gdata, run: run, notice: notice,
+  var col = { graphWrap: graphWrap, fg: fg, gdata: gdata, run: run, notice: notice,
            suffix: suffix, sys: sys, caseId: caseId };
+  /* Keep the canvas sized from its parent before any zoomToFit. */
+  if (window.ResizeObserver && col.fg) {
+    var pending = null;
+    var ro = new ResizeObserver(function () {
+      if (pending) clearTimeout(pending);
+      pending = setTimeout(function () {
+        resizeFg(col);
+        try { col.fg.zoomToFit(400, 60); } catch (e) {}
+      }, 150);
+    });
+    ro.observe(graphWrap);
+  }
+  return col;
 }
 
 /* Panels: gate badge, audit strip, steps; returns selectors map. */
@@ -639,7 +662,10 @@ function applyCursor() {
     var atEnd = clamped >= 0 && clamped >= steps.length - 1;
 
     if (atEnd) { renderBadge(col); }
-    else { var b = document.getElementById("gate-" + col.suffix); if (b) b.style.display = "none"; }
+    else {
+      var b = document.getElementById("gate-" + col.suffix);
+      if (b) { b.innerHTML = '<div class="gate-placeholder">Press Replay</div>'; b.style.display = "flex"; }
+    }
 
     var stepsEl = document.getElementById("steps-" + col.suffix);
     Array.prototype.forEach.call(stepsEl.children, function (li, i) {
@@ -797,6 +823,15 @@ function boot() {
     }
     state.postBuild = function () {
       var col = cols.a || cols.b;
+      if (col) {
+        var gw = col.graphWrap, ev = document.getElementById("evidence-a");
+        window.__reportBoot("layout",
+          "wrap=" + Math.round(gw.clientHeight) +
+          " canvas=" + (gw.querySelector("canvas") ? gw.querySelector("canvas").height : "none") +
+          " evidence=" + (ev ? Math.round(ev.parentElement.clientHeight) : "-") +
+          " panels=" + (document.querySelector(".panels") ? Math.round(document.querySelector(".panels").clientHeight) : "-") +
+          " main=" + Math.round(document.getElementById("main").clientHeight));
+      }
       var evEl = document.getElementById("evidence-a") || document.getElementById("evidence-b");
       var auEl = document.getElementById("audit-a") || document.getElementById("audit-b");
       window.__reportBoot("build", (col ? Object.keys(cols).join("+") : "none") +
