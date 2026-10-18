@@ -39,7 +39,7 @@
     "judge_prompt_sha256": "a478a569e0390208e102b603d3efc2bdb0aa68b0ccd703b3c6120c33a7622e43"
   },
   "started_at": "2026-10-18T10:58:11.516739+00:00",
-  "status": "pending_infrastructure",
-  "active_wall_s": 2667.044539667084,
-  "last_saved_at": "2026-10-18T11:47:07.093272+00:00"
+  "status": "complete",
+  "active_wall_s": 2793.4436787500745,
+  "last_saved_at": "2026-10-18T16:17:21.527581+00:00"
 }
