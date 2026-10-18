@@ -24,7 +24,7 @@ def tool(name,args):
 class FakeLLM:
     model='test-model'
     def __init__(self,replies):self.replies=iter(replies);self.calls=[];self.messages=[]
-    def complete(self,messages,tools=None):
+    def complete(self,messages,tools=None,**kwargs):
         self.messages.append(copy.deepcopy(messages));self.calls.append({'usage':{},'cache_key':'test','cache_hit':True})
         return next(self.replies)
 

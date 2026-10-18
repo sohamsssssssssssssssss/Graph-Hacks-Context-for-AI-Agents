@@ -39,7 +39,7 @@ def settings(role='agent'):
         provider=os.getenv('AGENT_PROVIDER','ollama')
         if provider not in {'ollama','groq','openai'}:raise ValueError('Unknown agent provider: '+provider)
         local=provider=='ollama'
-        model=os.getenv('AGENT_MODEL') or ('qwen3:8b' if local else os.getenv('LLM_MODEL','openai/gpt-oss-120b'))
+        model=os.getenv('AGENT_MODEL') or ('qwen2.5:7b-instruct' if local else os.getenv('LLM_MODEL','openai/gpt-oss-120b'))
         base=os.getenv('AGENT_BASE_URL') or ('http://127.0.0.1:11434' if local else os.getenv('LLM_BASE_URL','https://api.groq.com/openai/v1'))
         key=os.getenv('AGENT_API_KEY') or ('' if local else os.getenv('LLM_API_KEY',''))
     elif role == 'grader':
@@ -206,6 +206,7 @@ class CachedLLM:
         self.model=model or config.get('LLM_MODEL')
         if not self.model:
             raise ValueError('model is required')
+        self.thinking_control=not self.model.lower().startswith('qwen2.5')
         if client is None and self.provider!='ollama':
             from openai import OpenAI
             client=OpenAI(api_key=config['LLM_API_KEY'],base_url=config['LLM_BASE_URL'],max_retries=0,timeout=60)
@@ -226,8 +227,9 @@ class CachedLLM:
         response_format=grader_format(messages) if self.role=='grader' else None
         if self.role=='grader':key_data.update(reasoning_effort='low',response_format=response_format)
         if self.provider=='ollama':
-            key_data.update(provider='ollama',tool_choice=tool_choice,think=False,num_ctx=16384)
-            if self.no_think:key_data['no_think_fallback']=True
+            key_data.update(provider='ollama',tool_choice=tool_choice,num_ctx=16384)
+            if self.thinking_control:key_data['think']=False
+            if self.thinking_control and self.no_think:key_data['no_think_fallback']=True
         key=digest(key_data)
         attempt=0
         path=self.cache_dir/f'{key}.json'
@@ -258,10 +260,11 @@ class CachedLLM:
                             if m['role']=='tool':
                                 call_id=m.pop('tool_call_id',None)
                                 m['tool_name']=next((c['function']['name'] for previous in native for c in previous.get('tool_calls',[]) if c.get('id')==call_id),'')
-                        if self.no_think:native[0]['content']+=' /no_think'
+                        if self.thinking_control and self.no_think:native[0]['content']+=' /no_think'
                         if isinstance(tool_choice,dict):native[0]['content']+=' Finish now by calling '+tool_choice['function']['name']+'; no other output.'
-                        payload={'model':self.model,'messages':native,'stream':False,'think':False,'keep_alive':'30m',
+                        payload={'model':self.model,'messages':native,'stream':False,'keep_alive':'30m',
                                  'options':{'temperature':0,'num_ctx':16384,'num_predict':1600}}
+                        if self.thinking_control:payload['think']=False
                         if tools:payload['tools']=tools
                         raw=self.client(payload) if self.client else ollama_chat(self.base_url,payload)
                         response=normalize_ollama(raw)

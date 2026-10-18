@@ -10,3 +10,4 @@ cache/
 eval/timing.sqlite
 
 eval/ollama_dev/
+eval/ollama_dev_*/

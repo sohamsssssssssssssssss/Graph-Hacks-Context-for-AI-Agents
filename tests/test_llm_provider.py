@@ -125,3 +125,51 @@ def test_run_trace_reports_native_metrics_without_network(tmp_path):
     assert trace['metrics']['prompt_tokens']==100 and trace['metrics']['completion_tokens']==20
     assert trace['metrics']['tool_calls']==0 and not trace['metrics']['malformed_output']
     assert trace['metrics']['wall_seconds']>=0 and trace['metrics']['retries']==0
+
+
+def test_qwen25_omits_thinking_controls_and_still_strips_tags(tmp_path):
+    requests=[]
+    def client(payload):
+        requests.append(payload)
+        return native('<think>discard</think>usable')
+    llm=CachedLLM('qwen2.5:7b-instruct',client,tmp_path,provider='ollama')
+    for task in ['first','second']:
+        result=llm.complete([{'role':'system','content':'System'},{'role':'user','content':task}])
+        assert result['choices'][0]['message']['content']=='usable'
+    assert all('think' not in r and '/no_think' not in r['messages'][0]['content'] for r in requests)
+
+
+def test_alert_prompt_verification_example_matches_live_schema():
+    from agent import SYSTEM_PROMPT
+    from mcp_server import SPECS,validate
+    example=json.JSONDecoder().raw_decode(SYSTEM_PROMPT.split('verify_path arguments: ',1)[1])[0]
+    properties,required,_=SPECS['verify_path']
+    validate(example,{'type':'object','properties':properties,'required':required,'additionalProperties':False})
+    assert example['purpose']=='ACT'
+    assert example['claim']['start']==example['claim']['action']['recipient']
+    assert example['target']==example['claim']['action']['target']
+
+
+@pytest.mark.parametrize('at_budget,model_outcome',[(True,'ACT'),(False,'ANSWER_ONLY')])
+def test_executed_alert_keeps_terminal_turn_and_gate_outcome(tmp_path,at_budget,model_outcome):
+    from agent import run_agent
+    def reply(message):return {'choices':[{'message':message}]}
+    def call(name,args):return reply({'role':'assistant','content':'','tool_calls':[{
+        'id':'c','type':'function','function':{'name':name,'arguments':json.dumps(args)}}]})
+    action={'kind':'ACT','target':'service-example','recipient':'team-example'}
+    replies=([call('blast_radius',{'service':'service-example'})]*7 if at_budget else [])+[
+        call('propose_action',{'pass_id':'verified-pass','action':action,'execute':True}),
+        call('submit_answer',{'answer':'The verified action executed.','outcome':model_outcome,'cited_edge_ids':[],'cited_spans':[]})]
+    class LLM:
+        model='mock'
+        def __init__(self):self.calls=[];self.replies=iter(replies)
+        def complete(self,*args,**kwargs):self.calls.append({'usage':{}});return next(self.replies)
+    class Backend:
+        def blast_radius(self,**kwargs):return {'ok':True,'evidence':[]}
+        def propose_action(self,**kwargs):return {'ok':True,'executed':True,'outcome':'ACT','evidence':[]}
+    llm=LLM()
+    trace=run_agent({'type':'alert','service':'service-example','text':'An alert'},'DEV-terminal','K',
+                    llm=llm,backend=Backend(),trace_dir=tmp_path)
+    assert trace['final']['outcome']=='ACT' and 'max_steps' not in trace['errors']
+    assert 'terminal_call' in trace and len(llm.calls)==(9 if at_budget else 2)
+    assert trace['proposed_final']['outcome']==model_outcome

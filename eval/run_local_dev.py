@@ -1,6 +1,7 @@
 """Ollama DEV validation only: K/all, B1+B2/two smoke cases; resumable journal."""
 import argparse
 import json
+import re
 from pathlib import Path
 import statistics
 import time
@@ -47,16 +48,20 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--resume',action='store_true')
     parser.add_argument('--grade-only',action='store_true')
+    parser.add_argument('--run-name',default='',help='Separate DEV attempt suffix; prior results are preserved')
     args=parser.parse_args()
     cases=load_dev()
-    directory=ROOT/'eval/ollama_dev';directory.mkdir(parents=True,exist_ok=True)
+    agent=CachedLLM(role='agent')
+    if agent.provider!='ollama':raise ValueError('DEV local validation requires Ollama')
+    model_slug=re.sub(r'[^A-Za-z0-9._-]+','_',agent.model)
+    run_suffix='_'+re.sub(r'[^A-Za-z0-9._-]+','_',args.run_name) if args.run_name else ''
+    directory=ROOT/'eval'/('ollama_dev_'+model_slug+run_suffix);directory.mkdir(parents=True,exist_ok=True)
     journal=directory/'records.jsonl'
     if journal.exists() and not args.resume:raise RuntimeError('DEV journal exists; use --resume')
     records=[json.loads(line) for line in journal.read_text().splitlines() if line.strip()] if journal.exists() else []
     rows={(r['system'],r['case_id']):r for r in records}
-    agent=CachedLLM(role='agent')
-    if agent.provider!='ollama' or agent.model!='qwen3:8b':raise ValueError('This validation requires ollama / qwen3:8b')
-    agents={'K':agent,**{s:CachedLLM(role='agent',cache_dir=ROOT/'cache/agent/ollama'/s) for s in ['B1','B2']}}
+    if any(r['model']!=agent.model for r in records):raise ValueError('Resume model differs from DEV journal')
+    agents={'K':agent,**{s:CachedLLM(role='agent',cache_dir=ROOT/'cache/agent/ollama'/(model_slug+run_suffix)/s) for s in ['B1','B2']}}
     nodes,edges,docs=load_data(ROOT/'data')
     byedge={e['eid']:e for e in edges};bydoc={d['id']:d for d in docs}
     names={n['id']:n['name'] for n in nodes if n['label']=='Service'}
