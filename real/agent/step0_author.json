@@ -1,0 +1,356 @@
+{
+ "gold": "real/cases_real.jsonl",
+ "results": [
+  {
+   "id": "R-O1",
+   "type": "owner",
+   "planted": false,
+   "tool": "owners_of",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "path": "README.md",
+    "owners": [
+     "@backstage/maintainers"
+    ],
+    "line": 7,
+    "pattern": "*",
+    "source_path": "real/raw/backstage/.github/CODEOWNERS",
+    "span": "*                                                 @backstage/maintainers",
+    "matched_rules": [
+     {
+      "pattern": "*",
+      "line": 7,
+      "owners": [
+       "@backstage/maintainers"
+      ]
+     }
+    ],
+    "reason": "Last matching CODEOWNERS rule; empty owner list explicitly clears ownership"
+   }
+  },
+  {
+   "id": "R-O2",
+   "type": "owner",
+   "planted": false,
+   "tool": "owners_of",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "path": "docs/architecture-decisions/adr014-use-fetch.md",
+    "owners": [
+     "@backstage/maintainers",
+     "@backstage/documentation-maintainers"
+    ],
+    "line": 15,
+    "pattern": "/docs",
+    "source_path": "real/raw/backstage/.github/CODEOWNERS",
+    "span": "/docs                                             @backstage/maintainers @backstage/documentation-maintainers",
+    "matched_rules": [
+     {
+      "pattern": "*",
+      "line": 7,
+      "owners": [
+       "@backstage/maintainers"
+      ]
+     },
+     {
+      "pattern": "/docs",
+      "line": 15,
+      "owners": [
+       "@backstage/maintainers",
+       "@backstage/documentation-maintainers"
+      ]
+     }
+    ],
+    "reason": "Last matching CODEOWNERS rule; empty owner list explicitly clears ownership"
+   }
+  },
+  {
+   "id": "R-O3",
+   "type": "owner",
+   "planted": false,
+   "tool": "owners_of",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "path": ".changeset/README.md",
+    "owners": [],
+    "line": 9,
+    "pattern": "/.changeset/*.md",
+    "source_path": "real/raw/backstage/.github/CODEOWNERS",
+    "span": "/.changeset/*.md",
+    "matched_rules": [
+     {
+      "pattern": "*",
+      "line": 7,
+      "owners": [
+       "@backstage/maintainers"
+      ]
+     },
+     {
+      "pattern": "/.changeset",
+      "line": 8,
+      "owners": [
+       "@backstage/operations-maintainers"
+      ]
+     },
+     {
+      "pattern": "/.changeset/*.md",
+      "line": 9,
+      "owners": []
+     }
+    ],
+    "reason": "Last matching CODEOWNERS rule; empty owner list explicitly clears ownership"
+   }
+  },
+  {
+   "id": "R-O4",
+   "type": "owner",
+   "planted": false,
+   "tool": "owners_of",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "path": "docs/backend-system/core-services/auditor.md",
+    "owners": [
+     "@backstage/maintainers",
+     "@backstage/auditor-maintainers",
+     "@backstage/documentation-maintainers"
+    ],
+    "line": 92,
+    "pattern": "/docs/backend-system/core-services/auditor.md",
+    "source_path": "real/raw/backstage/.github/CODEOWNERS",
+    "span": "/docs/backend-system/core-services/auditor.md                             @backstage/maintainers @backstage/auditor-maintainers @backstage/documentation-maintainers",
+    "matched_rules": [
+     {
+      "pattern": "*",
+      "line": 7,
+      "owners": [
+       "@backstage/maintainers"
+      ]
+     },
+     {
+      "pattern": "/docs",
+      "line": 15,
+      "owners": [
+       "@backstage/maintainers",
+       "@backstage/documentation-maintainers"
+      ]
+     },
+     {
+      "pattern": "/docs/backend-system",
+      "line": 19,
+      "owners": [
+       "@backstage/framework-maintainers"
+      ]
+     },
+     {
+      "pattern": "/docs/backend-system/core-services/auditor.md",
+      "line": 92,
+      "owners": [
+       "@backstage/maintainers",
+       "@backstage/auditor-maintainers",
+       "@backstage/documentation-maintainers"
+      ]
+     }
+    ],
+    "reason": "Last matching CODEOWNERS rule; empty owner list explicitly clears ownership"
+   }
+  },
+  {
+   "id": "R-D1",
+   "type": "decision",
+   "planted": false,
+   "tool": "doc_status",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "adr_id": "ADR013",
+    "title": "ADR013: [superseded] Proper use of HTTP fetching libraries",
+    "status": "superseded",
+    "date": null,
+    "planted": false,
+    "path": "real/raw/backstage/docs/architecture-decisions/adr013-use-node-fetch.md",
+    "line": 9,
+    "end_line": 9,
+    "span": "This ADR has been superseded by [ADR014](./adr014-use-fetch.md) and no longer applies.",
+    "derived_reason": "metadata: explicit status"
+   }
+  },
+  {
+   "id": "R-D2",
+   "type": "decision",
+   "planted": false,
+   "tool": "trace_decision",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "adr_id": "ADR013",
+    "status": "superseded",
+    "document": {
+     "adr_id": "ADR013",
+     "title": "ADR013: [superseded] Proper use of HTTP fetching libraries",
+     "status": "superseded",
+     "date": null,
+     "planted": false,
+     "path": "real/raw/backstage/docs/architecture-decisions/adr013-use-node-fetch.md",
+     "line": 9,
+     "end_line": 9,
+     "span": "This ADR has been superseded by [ADR014](./adr014-use-fetch.md) and no longer applies.",
+     "derived_reason": "metadata: explicit status"
+    },
+    "links": [
+     [
+      "ADR014",
+      "ADR013"
+     ]
+    ],
+    "evidence": [
+     {
+      "newer": "ADR014",
+      "older": "ADR013",
+      "path": "real/raw/backstage/docs/architecture-decisions/adr013-use-node-fetch.md",
+      "line": 9,
+      "span": "This ADR has been superseded by [ADR014](./adr014-use-fetch.md) and no longer applies.",
+      "authority": "metadata",
+      "planted": false
+     }
+    ],
+    "reason": "Metadata supersession only; body REFERENCES carry no authority"
+   }
+  },
+  {
+   "id": "R-D3",
+   "type": "decision",
+   "planted": false,
+   "tool": "doc_status",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "adr_id": "ADR014",
+    "title": "ADR014: Proper use of HTTP fetching libraries",
+    "status": "unspecified",
+    "date": null,
+    "planted": false,
+    "path": "real/raw/backstage/docs/architecture-decisions/adr014-use-fetch.md",
+    "line": 1,
+    "end_line": 5,
+    "span": "---\nid: adrs-adr014\ntitle: 'ADR014: Proper use of HTTP fetching libraries'\ndescription: Architecture Decision Record (ADR) for the proper use of fetchApiRef, native fetch, and cross-fetch for data fetching.\n---",
+    "derived_reason": "metadata: no explicit status; no acceptance inferred"
+   }
+  },
+  {
+   "id": "R-P1",
+   "type": "planted",
+   "planted": true,
+   "tool": "doc_status",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "adr_id": "PLANTED-STATUS",
+    "title": "ADR013: [superseded] Proper use of HTTP fetching libraries",
+    "status": "superseded",
+    "date": null,
+    "planted": true,
+    "path": "real/planted/PLANTED-STATUS.md",
+    "line": 9,
+    "end_line": 9,
+    "span": "This ADR has been superseded by [ADR014](./adr014-use-fetch.md) and no longer applies.",
+    "derived_reason": "metadata: explicit status"
+   }
+  },
+  {
+   "id": "R-P2",
+   "type": "planted",
+   "planted": true,
+   "tool": "trace_decision",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "adr_id": "PLANTED-SUPERSEDES",
+    "status": "unspecified",
+    "document": {
+     "adr_id": "PLANTED-SUPERSEDES",
+     "title": "ADR014: Proper use of HTTP fetching libraries",
+     "status": "unspecified",
+     "date": null,
+     "planted": true,
+     "path": "real/planted/PLANTED-SUPERSEDES.md",
+     "line": 1,
+     "end_line": 5,
+     "span": "---\nid: adrs-adr014\ntitle: 'ADR014: Proper use of HTTP fetching libraries'\ndescription: Architecture Decision Record (ADR) for the proper use of fetchApiRef, native fetch, and cross-fetch for data fetching.\n---",
+     "derived_reason": "metadata: no explicit status; no acceptance inferred"
+    },
+    "links": [],
+    "evidence": [],
+    "reason": "Metadata supersession only; body REFERENCES carry no authority"
+   }
+  },
+  {
+   "id": "R-P3",
+   "type": "planted",
+   "planted": true,
+   "tool": "owners_of",
+   "ok": true,
+   "problems": [],
+   "error": null,
+   "actual": {
+    "path": "docs/architecture-decisions/adr014-use-fetch.md",
+    "owners": [
+     "@backstage/maintainers",
+     "@backstage/documentation-maintainers"
+    ],
+    "line": 15,
+    "pattern": "/docs",
+    "source_path": "real/raw/backstage/.github/CODEOWNERS",
+    "span": "/docs                                             @backstage/maintainers @backstage/documentation-maintainers",
+    "matched_rules": [
+     {
+      "pattern": "*",
+      "line": 7,
+      "owners": [
+       "@backstage/maintainers"
+      ]
+     },
+     {
+      "pattern": "/docs",
+      "line": 15,
+      "owners": [
+       "@backstage/maintainers",
+       "@backstage/documentation-maintainers"
+      ]
+     }
+    ],
+    "reason": "Last matching CODEOWNERS rule; empty owner list explicitly clears ownership"
+   }
+  }
+ ],
+ "by_type": {
+  "ownership": {
+   "ok": 4,
+   "n": 4
+  },
+  "status": {
+   "ok": 3,
+   "n": 3
+  },
+  "planted": {
+   "ok": 3,
+   "n": 3
+  }
+ },
+ "total": [
+  10,
+  10
+ ]
+}
