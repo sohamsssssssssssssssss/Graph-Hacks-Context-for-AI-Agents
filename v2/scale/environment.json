@@ -1,0 +1,32 @@
+{
+  "falkordb_modules": [
+    {
+      "name": "graph",
+      "ver": 42201
+    },
+    {
+      "name": "vectorset",
+      "ver": 1
+    }
+  ],
+  "sqlite_defaults": {
+    "journal_mode": "delete",
+    "synchronous": 2,
+    "cache_size": -2000,
+    "page_size": 4096
+  },
+  "falkordb_appendonly": {
+    "appendonly": "no"
+  },
+  "falkordb_save": {
+    "save": "3600 1 300 100 60 10000"
+  },
+  "processor": "arm",
+  "source_sha256": {
+    "generate.py": "5db57b4b73b047387ff4cc8c09da710456d72838df80c9793f24b935cf2542e1",
+    "derive.py": "ce3ef293999734def54a3f91b400b9a9d7483e24a6e7423d5e48d8c100a1f662",
+    "resolve.py": "d8210acdc84d3e3637c5c8746d4f39eebf76ed9c285960c72c5e1397b65a7d75"
+  },
+  "cpu_brand": "Apple M5",
+  "memory_bytes": 17179869184
+}

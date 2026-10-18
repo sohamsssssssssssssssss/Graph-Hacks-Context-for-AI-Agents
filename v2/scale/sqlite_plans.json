@@ -1,0 +1,322 @@
+{
+  "10k": {
+    "Q1": [
+      [
+        2,
+        0,
+        0,
+        "CO-ROUTINE walk"
+      ],
+      [
+        6,
+        2,
+        0,
+        "SETUP"
+      ],
+      [
+        7,
+        6,
+        0,
+        "SCAN CONSTANT ROW"
+      ],
+      [
+        22,
+        2,
+        0,
+        "RECURSIVE STEP"
+      ],
+      [
+        25,
+        22,
+        62,
+        "SEARCH e USING INDEX edge_status (status=?)"
+      ],
+      [
+        32,
+        22,
+        216,
+        "SCAN w"
+      ],
+      [
+        54,
+        0,
+        217,
+        "SCAN walk"
+      ],
+      [
+        61,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ]
+    ],
+    "Q3": [
+      [
+        2,
+        0,
+        0,
+        "CO-ROUTINE walk"
+      ],
+      [
+        6,
+        2,
+        0,
+        "SETUP"
+      ],
+      [
+        7,
+        6,
+        0,
+        "SCAN CONSTANT ROW"
+      ],
+      [
+        22,
+        2,
+        0,
+        "RECURSIVE STEP"
+      ],
+      [
+        25,
+        22,
+        62,
+        "SEARCH e USING INDEX edge_status (status=?)"
+      ],
+      [
+        50,
+        22,
+        216,
+        "SCAN w"
+      ],
+      [
+        72,
+        0,
+        217,
+        "SCAN walk"
+      ]
+    ],
+    "Q6": [
+      [
+        2,
+        0,
+        0,
+        "CO-ROUTINE walk"
+      ],
+      [
+        6,
+        2,
+        0,
+        "SETUP"
+      ],
+      [
+        7,
+        6,
+        0,
+        "SCAN CONSTANT ROW"
+      ],
+      [
+        22,
+        2,
+        0,
+        "RECURSIVE STEP"
+      ],
+      [
+        25,
+        22,
+        62,
+        "SEARCH e USING INDEX edge_status (status=?)"
+      ],
+      [
+        33,
+        22,
+        216,
+        "SCAN w"
+      ],
+      [
+        55,
+        0,
+        217,
+        "SCAN walk"
+      ],
+      [
+        60,
+        0,
+        0,
+        "USE TEMP B-TREE FOR DISTINCT"
+      ]
+    ],
+    "Q9": [
+      [
+        9,
+        0,
+        55,
+        "SEARCH n USING COVERING INDEX node_label (label=?)"
+      ],
+      [
+        13,
+        0,
+        61,
+        "SEARCH e USING INDEX edge_status (status=? AND src=?) LEFT-JOIN"
+      ]
+    ]
+  },
+  "100k": {
+    "Q1": [
+      [
+        2,
+        0,
+        0,
+        "CO-ROUTINE walk"
+      ],
+      [
+        6,
+        2,
+        0,
+        "SETUP"
+      ],
+      [
+        7,
+        6,
+        0,
+        "SCAN CONSTANT ROW"
+      ],
+      [
+        22,
+        2,
+        0,
+        "RECURSIVE STEP"
+      ],
+      [
+        25,
+        22,
+        62,
+        "SEARCH e USING INDEX edge_status (status=?)"
+      ],
+      [
+        32,
+        22,
+        216,
+        "SCAN w"
+      ],
+      [
+        54,
+        0,
+        217,
+        "SCAN walk"
+      ],
+      [
+        61,
+        0,
+        0,
+        "USE TEMP B-TREE FOR GROUP BY"
+      ]
+    ],
+    "Q3": [
+      [
+        2,
+        0,
+        0,
+        "CO-ROUTINE walk"
+      ],
+      [
+        6,
+        2,
+        0,
+        "SETUP"
+      ],
+      [
+        7,
+        6,
+        0,
+        "SCAN CONSTANT ROW"
+      ],
+      [
+        22,
+        2,
+        0,
+        "RECURSIVE STEP"
+      ],
+      [
+        25,
+        22,
+        62,
+        "SEARCH e USING INDEX edge_status (status=?)"
+      ],
+      [
+        50,
+        22,
+        216,
+        "SCAN w"
+      ],
+      [
+        72,
+        0,
+        217,
+        "SCAN walk"
+      ]
+    ],
+    "Q6": [
+      [
+        2,
+        0,
+        0,
+        "CO-ROUTINE walk"
+      ],
+      [
+        6,
+        2,
+        0,
+        "SETUP"
+      ],
+      [
+        7,
+        6,
+        0,
+        "SCAN CONSTANT ROW"
+      ],
+      [
+        22,
+        2,
+        0,
+        "RECURSIVE STEP"
+      ],
+      [
+        25,
+        22,
+        62,
+        "SEARCH e USING INDEX edge_status (status=?)"
+      ],
+      [
+        33,
+        22,
+        216,
+        "SCAN w"
+      ],
+      [
+        55,
+        0,
+        217,
+        "SCAN walk"
+      ],
+      [
+        60,
+        0,
+        0,
+        "USE TEMP B-TREE FOR DISTINCT"
+      ]
+    ],
+    "Q9": [
+      [
+        9,
+        0,
+        55,
+        "SEARCH n USING COVERING INDEX node_label (label=?)"
+      ],
+      [
+        13,
+        0,
+        61,
+        "SEARCH e USING INDEX edge_status (status=? AND src=?) LEFT-JOIN"
+      ]
+    ]
+  }
+}
