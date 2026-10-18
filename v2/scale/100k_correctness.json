@@ -1,0 +1,5240 @@
+[
+  {
+    "query": "Q1",
+    "input": 0,
+    "params": {
+      "service": "service-redis-cluster"
+    },
+    "sqlite": [
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-checkout-api",
+        1
+      ],
+      [
+        "service-kms-vault",
+        1
+      ],
+      [
+        "service-legacy-reports",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        3
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-push-relay",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        1
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-session-cache",
+        1
+      ],
+      [
+        "service-sms-gateway",
+        1
+      ],
+      [
+        "service-tax-calculator",
+        1
+      ],
+      [
+        "service-video-streamer",
+        1
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-checkout-api",
+        1
+      ],
+      [
+        "service-kms-vault",
+        1
+      ],
+      [
+        "service-legacy-reports",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        3
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-push-relay",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        1
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-session-cache",
+        1
+      ],
+      [
+        "service-sms-gateway",
+        1
+      ],
+      [
+        "service-tax-calculator",
+        1
+      ],
+      [
+        "service-video-streamer",
+        1
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 1,
+    "params": {
+      "service": "service-payment-vault"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-checkout-api",
+        2
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-graphql-federation",
+        2
+      ],
+      [
+        "service-ledger",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        2
+      ],
+      [
+        "service-template-renderer",
+        1
+      ],
+      [
+        "service-user-preferences",
+        1
+      ],
+      [
+        "service-web-frontend",
+        1
+      ],
+      [
+        "service-websocket-gateway",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-checkout-api",
+        2
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-graphql-federation",
+        2
+      ],
+      [
+        "service-ledger",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        2
+      ],
+      [
+        "service-template-renderer",
+        1
+      ],
+      [
+        "service-user-preferences",
+        1
+      ],
+      [
+        "service-web-frontend",
+        1
+      ],
+      [
+        "service-websocket-gateway",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 2,
+    "params": {
+      "service": "service-storage-cluster"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-auth-gateway",
+        1
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-billing-worker",
+        2
+      ],
+      [
+        "service-cart-service",
+        1
+      ],
+      [
+        "service-catalog-db",
+        1
+      ],
+      [
+        "service-email-sender",
+        2
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        3
+      ],
+      [
+        "service-graphql-federation",
+        3
+      ],
+      [
+        "service-inventory-api",
+        2
+      ],
+      [
+        "service-kms-vault",
+        2
+      ],
+      [
+        "service-legacy-reports",
+        3
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        3
+      ],
+      [
+        "service-rate-limiter",
+        1
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-session-cache",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        2
+      ],
+      [
+        "service-video-streamer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-webhook-dispatcher",
+        1
+      ],
+      [
+        "service-websocket-gateway",
+        2
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-auth-gateway",
+        1
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-billing-worker",
+        2
+      ],
+      [
+        "service-cart-service",
+        1
+      ],
+      [
+        "service-catalog-db",
+        1
+      ],
+      [
+        "service-email-sender",
+        2
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        3
+      ],
+      [
+        "service-graphql-federation",
+        3
+      ],
+      [
+        "service-inventory-api",
+        2
+      ],
+      [
+        "service-kms-vault",
+        2
+      ],
+      [
+        "service-legacy-reports",
+        3
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        3
+      ],
+      [
+        "service-rate-limiter",
+        1
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-session-cache",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        2
+      ],
+      [
+        "service-video-streamer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-webhook-dispatcher",
+        1
+      ],
+      [
+        "service-websocket-gateway",
+        2
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 3,
+    "params": {
+      "service": "service-ldap-directory"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-auth-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        4
+      ],
+      [
+        "service-billing-worker",
+        3
+      ],
+      [
+        "service-cart-service",
+        2
+      ],
+      [
+        "service-checkout-api",
+        2
+      ],
+      [
+        "service-email-sender",
+        3
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-feature-store",
+        3
+      ],
+      [
+        "service-fraud-detection",
+        2
+      ],
+      [
+        "service-identity-provider",
+        1
+      ],
+      [
+        "service-inventory-api",
+        1
+      ],
+      [
+        "service-kms-vault",
+        3
+      ],
+      [
+        "service-legacy-reports",
+        1
+      ],
+      [
+        "service-merchant-dashboard",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        3
+      ],
+      [
+        "service-notification-dispatcher",
+        3
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        3
+      ],
+      [
+        "service-rate-limiter",
+        2
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        3
+      ],
+      [
+        "service-session-cache",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        4
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        3
+      ],
+      [
+        "service-video-streamer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-webhook-dispatcher",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-auth-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        4
+      ],
+      [
+        "service-billing-worker",
+        3
+      ],
+      [
+        "service-cart-service",
+        2
+      ],
+      [
+        "service-checkout-api",
+        2
+      ],
+      [
+        "service-email-sender",
+        3
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-feature-store",
+        3
+      ],
+      [
+        "service-fraud-detection",
+        2
+      ],
+      [
+        "service-identity-provider",
+        1
+      ],
+      [
+        "service-inventory-api",
+        1
+      ],
+      [
+        "service-kms-vault",
+        3
+      ],
+      [
+        "service-legacy-reports",
+        1
+      ],
+      [
+        "service-merchant-dashboard",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        3
+      ],
+      [
+        "service-notification-dispatcher",
+        3
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        3
+      ],
+      [
+        "service-rate-limiter",
+        2
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        3
+      ],
+      [
+        "service-session-cache",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        4
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        3
+      ],
+      [
+        "service-video-streamer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-webhook-dispatcher",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 4,
+    "params": {
+      "service": "service-core-auth"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-api-hub",
+        1
+      ],
+      [
+        "service-audit-logger",
+        3
+      ],
+      [
+        "service-auth-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        1
+      ],
+      [
+        "service-billing-worker",
+        3
+      ],
+      [
+        "service-cart-service",
+        2
+      ],
+      [
+        "service-catalog-db",
+        2
+      ],
+      [
+        "service-catalog-service",
+        2
+      ],
+      [
+        "service-checkout-api",
+        3
+      ],
+      [
+        "service-config-server",
+        2
+      ],
+      [
+        "service-content-cdn",
+        2
+      ],
+      [
+        "service-customer-portal",
+        3
+      ],
+      [
+        "service-data-warehouse-sync",
+        2
+      ],
+      [
+        "service-dns-resolver",
+        2
+      ],
+      [
+        "service-edge-router",
+        2
+      ],
+      [
+        "service-email-sender",
+        3
+      ],
+      [
+        "service-etl-coordinator",
+        2
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-feature-store",
+        3
+      ],
+      [
+        "service-fraud-detection",
+        3
+      ],
+      [
+        "service-graphql-federation",
+        3
+      ],
+      [
+        "service-identity-provider",
+        2
+      ],
+      [
+        "service-image-resizer",
+        2
+      ],
+      [
+        "service-inventory-api",
+        3
+      ],
+      [
+        "service-kms-vault",
+        3
+      ],
+      [
+        "service-ldap-directory",
+        2
+      ],
+      [
+        "service-ledger",
+        3
+      ],
+      [
+        "service-legacy-reports",
+        3
+      ],
+      [
+        "service-merchant-dashboard",
+        2
+      ],
+      [
+        "service-metrics-collector",
+        2
+      ],
+      [
+        "service-ml-inference-runner",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        3
+      ],
+      [
+        "service-notification-dispatcher",
+        3
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        3
+      ],
+      [
+        "service-payment-vault",
+        2
+      ],
+      [
+        "service-pricing-engine",
+        2
+      ],
+      [
+        "service-push-relay",
+        3
+      ],
+      [
+        "service-rate-limiter",
+        3
+      ],
+      [
+        "service-recommendation-api",
+        2
+      ],
+      [
+        "service-redis-cluster",
+        2
+      ],
+      [
+        "service-search-index",
+        3
+      ],
+      [
+        "service-secret-manager",
+        3
+      ],
+      [
+        "service-session-cache",
+        3
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-sms-gateway",
+        3
+      ],
+      [
+        "service-storage-cluster",
+        2
+      ],
+      [
+        "service-tax-calculator",
+        3
+      ],
+      [
+        "service-telemetry-collector",
+        3
+      ],
+      [
+        "service-template-renderer",
+        3
+      ],
+      [
+        "service-tracing-agent",
+        2
+      ],
+      [
+        "service-user-preferences",
+        2
+      ],
+      [
+        "service-video-streamer",
+        3
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-webhook-dispatcher",
+        2
+      ],
+      [
+        "service-websocket-gateway",
+        2
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-api-hub",
+        1
+      ],
+      [
+        "service-audit-logger",
+        3
+      ],
+      [
+        "service-auth-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        1
+      ],
+      [
+        "service-billing-worker",
+        3
+      ],
+      [
+        "service-cart-service",
+        2
+      ],
+      [
+        "service-catalog-db",
+        2
+      ],
+      [
+        "service-catalog-service",
+        2
+      ],
+      [
+        "service-checkout-api",
+        3
+      ],
+      [
+        "service-config-server",
+        2
+      ],
+      [
+        "service-content-cdn",
+        2
+      ],
+      [
+        "service-customer-portal",
+        3
+      ],
+      [
+        "service-data-warehouse-sync",
+        2
+      ],
+      [
+        "service-dns-resolver",
+        2
+      ],
+      [
+        "service-edge-router",
+        2
+      ],
+      [
+        "service-email-sender",
+        3
+      ],
+      [
+        "service-etl-coordinator",
+        2
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-feature-store",
+        3
+      ],
+      [
+        "service-fraud-detection",
+        3
+      ],
+      [
+        "service-graphql-federation",
+        3
+      ],
+      [
+        "service-identity-provider",
+        2
+      ],
+      [
+        "service-image-resizer",
+        2
+      ],
+      [
+        "service-inventory-api",
+        3
+      ],
+      [
+        "service-kms-vault",
+        3
+      ],
+      [
+        "service-ldap-directory",
+        2
+      ],
+      [
+        "service-ledger",
+        3
+      ],
+      [
+        "service-legacy-reports",
+        3
+      ],
+      [
+        "service-merchant-dashboard",
+        2
+      ],
+      [
+        "service-metrics-collector",
+        2
+      ],
+      [
+        "service-ml-inference-runner",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        3
+      ],
+      [
+        "service-notification-dispatcher",
+        3
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        3
+      ],
+      [
+        "service-payment-vault",
+        2
+      ],
+      [
+        "service-pricing-engine",
+        2
+      ],
+      [
+        "service-push-relay",
+        3
+      ],
+      [
+        "service-rate-limiter",
+        3
+      ],
+      [
+        "service-recommendation-api",
+        2
+      ],
+      [
+        "service-redis-cluster",
+        2
+      ],
+      [
+        "service-search-index",
+        3
+      ],
+      [
+        "service-secret-manager",
+        3
+      ],
+      [
+        "service-session-cache",
+        3
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-sms-gateway",
+        3
+      ],
+      [
+        "service-storage-cluster",
+        2
+      ],
+      [
+        "service-tax-calculator",
+        3
+      ],
+      [
+        "service-telemetry-collector",
+        3
+      ],
+      [
+        "service-template-renderer",
+        3
+      ],
+      [
+        "service-tracing-agent",
+        2
+      ],
+      [
+        "service-user-preferences",
+        2
+      ],
+      [
+        "service-video-streamer",
+        3
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-webhook-dispatcher",
+        2
+      ],
+      [
+        "service-websocket-gateway",
+        2
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 5,
+    "params": {
+      "service": "service-session-cache"
+    },
+    "sqlite": [
+      [
+        "service-api-gateway",
+        1
+      ],
+      [
+        "service-legacy-reports",
+        1
+      ],
+      [
+        "service-model-registry",
+        1
+      ],
+      [
+        "service-web-frontend",
+        2
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-api-gateway",
+        1
+      ],
+      [
+        "service-legacy-reports",
+        1
+      ],
+      [
+        "service-model-registry",
+        1
+      ],
+      [
+        "service-web-frontend",
+        2
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 6,
+    "params": {
+      "service": "service-checkout-api"
+    },
+    "sqlite": [
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-order-service",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-order-service",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 7,
+    "params": {
+      "service": "service-ledger"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-checkout-api",
+        1
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        1
+      ],
+      [
+        "service-graphql-federation",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        3
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        1
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        1
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-checkout-api",
+        1
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        1
+      ],
+      [
+        "service-graphql-federation",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        3
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        1
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        1
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 8,
+    "params": {
+      "service": "service-notifier"
+    },
+    "sqlite": [
+      [
+        "service-mobile-app-backend",
+        1
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-mobile-app-backend",
+        1
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 9,
+    "params": {
+      "service": "service-auth-gateway"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        4
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-batch-exporter",
+        4
+      ],
+      [
+        "service-billing-worker",
+        1
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-mobile-app-backend",
+        4
+      ],
+      [
+        "service-model-registry",
+        1
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        2
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        1
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        4
+      ],
+      [
+        "service-api-gateway",
+        3
+      ],
+      [
+        "service-batch-exporter",
+        4
+      ],
+      [
+        "service-billing-worker",
+        1
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-mobile-app-backend",
+        4
+      ],
+      [
+        "service-model-registry",
+        1
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        2
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        1
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 10,
+    "params": {
+      "service": "service-api-hub"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-audit-logger",
+        2
+      ],
+      [
+        "service-auth-gateway",
+        1
+      ],
+      [
+        "service-batch-exporter",
+        2
+      ],
+      [
+        "service-billing-worker",
+        2
+      ],
+      [
+        "service-cart-service",
+        1
+      ],
+      [
+        "service-catalog-db",
+        1
+      ],
+      [
+        "service-catalog-service",
+        1
+      ],
+      [
+        "service-checkout-api",
+        2
+      ],
+      [
+        "service-config-server",
+        1
+      ],
+      [
+        "service-content-cdn",
+        1
+      ],
+      [
+        "service-customer-portal",
+        2
+      ],
+      [
+        "service-data-warehouse-sync",
+        1
+      ],
+      [
+        "service-dns-resolver",
+        1
+      ],
+      [
+        "service-edge-router",
+        1
+      ],
+      [
+        "service-email-sender",
+        2
+      ],
+      [
+        "service-etl-coordinator",
+        1
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        2
+      ],
+      [
+        "service-graphql-federation",
+        2
+      ],
+      [
+        "service-identity-provider",
+        1
+      ],
+      [
+        "service-image-resizer",
+        1
+      ],
+      [
+        "service-inventory-api",
+        2
+      ],
+      [
+        "service-kms-vault",
+        2
+      ],
+      [
+        "service-ldap-directory",
+        1
+      ],
+      [
+        "service-ledger",
+        2
+      ],
+      [
+        "service-legacy-reports",
+        2
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-metrics-collector",
+        1
+      ],
+      [
+        "service-ml-inference-runner",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-payment-vault",
+        1
+      ],
+      [
+        "service-pricing-engine",
+        1
+      ],
+      [
+        "service-push-relay",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        2
+      ],
+      [
+        "service-recommendation-api",
+        1
+      ],
+      [
+        "service-redis-cluster",
+        1
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-session-cache",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        2
+      ],
+      [
+        "service-sms-gateway",
+        2
+      ],
+      [
+        "service-storage-cluster",
+        1
+      ],
+      [
+        "service-tax-calculator",
+        2
+      ],
+      [
+        "service-telemetry-collector",
+        2
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-tracing-agent",
+        1
+      ],
+      [
+        "service-user-preferences",
+        1
+      ],
+      [
+        "service-video-streamer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        2
+      ],
+      [
+        "service-webhook-dispatcher",
+        1
+      ],
+      [
+        "service-websocket-gateway",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-audit-logger",
+        2
+      ],
+      [
+        "service-auth-gateway",
+        1
+      ],
+      [
+        "service-batch-exporter",
+        2
+      ],
+      [
+        "service-billing-worker",
+        2
+      ],
+      [
+        "service-cart-service",
+        1
+      ],
+      [
+        "service-catalog-db",
+        1
+      ],
+      [
+        "service-catalog-service",
+        1
+      ],
+      [
+        "service-checkout-api",
+        2
+      ],
+      [
+        "service-config-server",
+        1
+      ],
+      [
+        "service-content-cdn",
+        1
+      ],
+      [
+        "service-customer-portal",
+        2
+      ],
+      [
+        "service-data-warehouse-sync",
+        1
+      ],
+      [
+        "service-dns-resolver",
+        1
+      ],
+      [
+        "service-edge-router",
+        1
+      ],
+      [
+        "service-email-sender",
+        2
+      ],
+      [
+        "service-etl-coordinator",
+        1
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        2
+      ],
+      [
+        "service-graphql-federation",
+        2
+      ],
+      [
+        "service-identity-provider",
+        1
+      ],
+      [
+        "service-image-resizer",
+        1
+      ],
+      [
+        "service-inventory-api",
+        2
+      ],
+      [
+        "service-kms-vault",
+        2
+      ],
+      [
+        "service-ldap-directory",
+        1
+      ],
+      [
+        "service-ledger",
+        2
+      ],
+      [
+        "service-legacy-reports",
+        2
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-metrics-collector",
+        1
+      ],
+      [
+        "service-ml-inference-runner",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-payment-vault",
+        1
+      ],
+      [
+        "service-pricing-engine",
+        1
+      ],
+      [
+        "service-push-relay",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        2
+      ],
+      [
+        "service-recommendation-api",
+        1
+      ],
+      [
+        "service-redis-cluster",
+        1
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-session-cache",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        2
+      ],
+      [
+        "service-sms-gateway",
+        2
+      ],
+      [
+        "service-storage-cluster",
+        1
+      ],
+      [
+        "service-tax-calculator",
+        2
+      ],
+      [
+        "service-telemetry-collector",
+        2
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-tracing-agent",
+        1
+      ],
+      [
+        "service-user-preferences",
+        1
+      ],
+      [
+        "service-video-streamer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        2
+      ],
+      [
+        "service-webhook-dispatcher",
+        1
+      ],
+      [
+        "service-websocket-gateway",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 11,
+    "params": {
+      "service": "service-web-frontend"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 12,
+    "params": {
+      "service": "service-api-gateway"
+    },
+    "sqlite": [
+      [
+        "service-web-frontend",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-web-frontend",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 13,
+    "params": {
+      "service": "service-order-service"
+    },
+    "sqlite": [
+      [
+        "service-mobile-app-backend",
+        1
+      ],
+      [
+        "service-model-registry",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-mobile-app-backend",
+        1
+      ],
+      [
+        "service-model-registry",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 14,
+    "params": {
+      "service": "service-search-index"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        2
+      ],
+      [
+        "service-event-stream",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        2
+      ],
+      [
+        "service-event-stream",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 15,
+    "params": {
+      "service": "service-catalog-db"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        2
+      ],
+      [
+        "service-event-stream",
+        1
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        2
+      ],
+      [
+        "service-graphql-federation",
+        2
+      ],
+      [
+        "service-inventory-api",
+        1
+      ],
+      [
+        "service-legacy-reports",
+        2
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        4
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        2
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        3
+      ],
+      [
+        "service-session-cache",
+        1
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-websocket-gateway",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        2
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        2
+      ],
+      [
+        "service-event-stream",
+        1
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        2
+      ],
+      [
+        "service-graphql-federation",
+        2
+      ],
+      [
+        "service-inventory-api",
+        1
+      ],
+      [
+        "service-legacy-reports",
+        2
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        4
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        2
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        3
+      ],
+      [
+        "service-session-cache",
+        1
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-web-frontend",
+        3
+      ],
+      [
+        "service-websocket-gateway",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 16,
+    "params": {
+      "service": "service-template-renderer"
+    },
+    "sqlite": [
+      [
+        "service-api-gateway",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        1
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        1
+      ],
+      [
+        "service-secret-manager",
+        1
+      ],
+      [
+        "service-web-frontend",
+        1
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-api-gateway",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        1
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        1
+      ],
+      [
+        "service-secret-manager",
+        1
+      ],
+      [
+        "service-web-frontend",
+        1
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 17,
+    "params": {
+      "service": "service-user-preferences"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-search-index",
+        1
+      ],
+      [
+        "service-secret-manager",
+        1
+      ],
+      [
+        "service-shipping-calculator",
+        1
+      ],
+      [
+        "service-template-renderer",
+        1
+      ],
+      [
+        "service-web-frontend",
+        2
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        3
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-batch-exporter",
+        3
+      ],
+      [
+        "service-event-stream",
+        2
+      ],
+      [
+        "service-mobile-app-backend",
+        3
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        1
+      ],
+      [
+        "service-notifier",
+        2
+      ],
+      [
+        "service-search-index",
+        1
+      ],
+      [
+        "service-secret-manager",
+        1
+      ],
+      [
+        "service-shipping-calculator",
+        1
+      ],
+      [
+        "service-template-renderer",
+        1
+      ],
+      [
+        "service-web-frontend",
+        2
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 18,
+    "params": {
+      "service": "service-identity-provider"
+    },
+    "sqlite": [
+      [
+        "service-analytics-pipeline",
+        1
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-auth-gateway",
+        1
+      ],
+      [
+        "service-batch-exporter",
+        4
+      ],
+      [
+        "service-billing-worker",
+        2
+      ],
+      [
+        "service-cart-service",
+        1
+      ],
+      [
+        "service-checkout-api",
+        1
+      ],
+      [
+        "service-email-sender",
+        2
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        1
+      ],
+      [
+        "service-kms-vault",
+        2
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        1
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        2
+      ],
+      [
+        "service-video-streamer",
+        3
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-analytics-pipeline",
+        1
+      ],
+      [
+        "service-api-gateway",
+        2
+      ],
+      [
+        "service-auth-gateway",
+        1
+      ],
+      [
+        "service-batch-exporter",
+        4
+      ],
+      [
+        "service-billing-worker",
+        2
+      ],
+      [
+        "service-cart-service",
+        1
+      ],
+      [
+        "service-checkout-api",
+        1
+      ],
+      [
+        "service-email-sender",
+        2
+      ],
+      [
+        "service-event-stream",
+        3
+      ],
+      [
+        "service-feature-store",
+        2
+      ],
+      [
+        "service-fraud-detection",
+        1
+      ],
+      [
+        "service-kms-vault",
+        2
+      ],
+      [
+        "service-merchant-dashboard",
+        1
+      ],
+      [
+        "service-mobile-app-backend",
+        2
+      ],
+      [
+        "service-model-registry",
+        2
+      ],
+      [
+        "service-notification-dispatcher",
+        2
+      ],
+      [
+        "service-notifier",
+        3
+      ],
+      [
+        "service-order-service",
+        2
+      ],
+      [
+        "service-rate-limiter",
+        1
+      ],
+      [
+        "service-search-index",
+        2
+      ],
+      [
+        "service-secret-manager",
+        2
+      ],
+      [
+        "service-shipping-calculator",
+        3
+      ],
+      [
+        "service-template-renderer",
+        2
+      ],
+      [
+        "service-user-preferences",
+        2
+      ],
+      [
+        "service-video-streamer",
+        3
+      ],
+      [
+        "service-web-frontend",
+        3
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q1",
+    "input": 19,
+    "params": {
+      "service": "service-batch-exporter"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 0,
+    "params": {
+      "start": "service-web-frontend",
+      "target": "service-redis-cluster"
+    },
+    "sqlite": [
+      [
+        "service-redis-cluster"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-redis-cluster"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 1,
+    "params": {
+      "start": "service-mobile-app-backend",
+      "target": "service-payment-vault"
+    },
+    "sqlite": [
+      [
+        "service-payment-vault"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-payment-vault"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 2,
+    "params": {
+      "start": "service-analytics-pipeline",
+      "target": "service-storage-cluster"
+    },
+    "sqlite": [
+      [
+        "service-storage-cluster"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-storage-cluster"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 3,
+    "params": {
+      "start": "service-notification-dispatcher",
+      "target": "service-ldap-directory"
+    },
+    "sqlite": [
+      [
+        "service-ldap-directory"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-ldap-directory"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 4,
+    "params": {
+      "start": "service-api-hub",
+      "target": "service-core-auth"
+    },
+    "sqlite": [
+      [
+        "service-core-auth"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-core-auth"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 5,
+    "params": {
+      "start": "service-batch-exporter",
+      "target": "service-core-auth"
+    },
+    "sqlite": [
+      [
+        "service-core-auth"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-core-auth"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 6,
+    "params": {
+      "start": "service-redis-cluster",
+      "target": "service-web-frontend"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 7,
+    "params": {
+      "start": "service-payment-vault",
+      "target": "service-mobile-app-backend"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 8,
+    "params": {
+      "start": "team-commerce",
+      "target": "service-checkout-api"
+    },
+    "sqlite": [
+      [
+        "service-checkout-api"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-checkout-api"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 9,
+    "params": {
+      "start": "team-payments",
+      "target": "service-ledger"
+    },
+    "sqlite": [
+      [
+        "service-ledger"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-ledger"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 10,
+    "params": {
+      "start": "team-platform",
+      "target": "service-rate-limiter"
+    },
+    "sqlite": [
+      [
+        "service-rate-limiter"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-rate-limiter"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 11,
+    "params": {
+      "start": "team-payments",
+      "target": "service-notifier"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 12,
+    "params": {
+      "start": "service-session-cache",
+      "target": "service-redis-cluster"
+    },
+    "sqlite": [
+      [
+        "service-redis-cluster"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-redis-cluster"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 13,
+    "params": {
+      "start": "service-checkout-api",
+      "target": "service-payment-vault"
+    },
+    "sqlite": [
+      [
+        "service-payment-vault"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-payment-vault"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 14,
+    "params": {
+      "start": "service-order-service",
+      "target": "service-ledger"
+    },
+    "sqlite": [
+      [
+        "service-ledger"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-ledger"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 15,
+    "params": {
+      "start": "service-search-index",
+      "target": "service-storage-cluster"
+    },
+    "sqlite": [
+      [
+        "service-storage-cluster"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-storage-cluster"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 16,
+    "params": {
+      "start": "service-notifier",
+      "target": "service-ldap-directory"
+    },
+    "sqlite": [
+      [
+        "service-ldap-directory"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-ldap-directory"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 17,
+    "params": {
+      "start": "service-template-renderer",
+      "target": "service-identity-provider"
+    },
+    "sqlite": [
+      [
+        "service-identity-provider"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-identity-provider"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 18,
+    "params": {
+      "start": "service-auth-gateway",
+      "target": "service-ldap-directory"
+    },
+    "sqlite": [
+      [
+        "service-ldap-directory"
+      ]
+    ],
+    "falkordb": [
+      [
+        "service-ldap-directory"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q3",
+    "input": 19,
+    "params": {
+      "start": "service-core-auth",
+      "target": "service-batch-exporter"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 0,
+    "params": {
+      "topic": "DEC-ADR-3"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 1,
+    "params": {
+      "topic": "DEC-ADR-5"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 2,
+    "params": {
+      "topic": "DEC-ADR-7"
+    },
+    "sqlite": [
+      [
+        "DEC-ADR-3"
+      ],
+      [
+        "INC-2291"
+      ]
+    ],
+    "falkordb": [
+      [
+        "DEC-ADR-3"
+      ],
+      [
+        "INC-2291"
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 3,
+    "params": {
+      "topic": "DEC-ARCH-CORE-00"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 4,
+    "params": {
+      "topic": "DEC-ARCH-CORE-01"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 5,
+    "params": {
+      "topic": "DEC-ARCH-CORE-02"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 6,
+    "params": {
+      "topic": "DEC-ARCH-CORE-03"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 7,
+    "params": {
+      "topic": "DEC-ARCH-CORE-04"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 8,
+    "params": {
+      "topic": "DEC-ARCH-CORE-05"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 9,
+    "params": {
+      "topic": "DEC-ARCH-CORE-06"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 10,
+    "params": {
+      "topic": "DEC-ARCH-CORE-07"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 11,
+    "params": {
+      "topic": "DEC-ARCH-CORE-08"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 12,
+    "params": {
+      "topic": "DEC-ARCH-CORE-09"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 13,
+    "params": {
+      "topic": "DEC-ARCH-CORE-10"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 14,
+    "params": {
+      "topic": "DEC-ARCH-CORE-11"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 15,
+    "params": {
+      "topic": "DEC-ARCH-CORE-12"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 16,
+    "params": {
+      "topic": "DEC-ARCH-CORE-13"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 17,
+    "params": {
+      "topic": "DEC-ARCH-CORE-14"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 18,
+    "params": {
+      "topic": "DEC-ARCH-CORE-15"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q6",
+    "input": 19,
+    "params": {
+      "topic": "DEC-ARCH-CORE-16"
+    },
+    "sqlite": [],
+    "falkordb": [],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 0,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 1,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 2,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 3,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 4,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 5,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 6,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 7,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 8,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 9,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 10,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 11,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 12,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 13,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 14,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 15,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 16,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 17,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 18,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  },
+  {
+    "query": "Q9",
+    "input": 19,
+    "params": {},
+    "sqlite": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "falkordb": [
+      [
+        "team-ai",
+        0
+      ],
+      [
+        "team-commerce",
+        1
+      ],
+      [
+        "team-data",
+        0
+      ],
+      [
+        "team-frontend",
+        0
+      ],
+      [
+        "team-growth",
+        0
+      ],
+      [
+        "team-infra",
+        0
+      ],
+      [
+        "team-mobile",
+        0
+      ],
+      [
+        "team-payments",
+        0
+      ],
+      [
+        "team-platform",
+        2
+      ],
+      [
+        "team-security",
+        0
+      ]
+    ],
+    "match": true
+  }
+]
