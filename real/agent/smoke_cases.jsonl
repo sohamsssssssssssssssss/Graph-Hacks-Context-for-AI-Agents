@@ -1,0 +1,2 @@
+{"id": "R-D1", "type": "decision", "tool": "doc_status", "args": {"adr_id": "ADR013"}, "expected": {"status": "superseded"}, "planted": false}
+{"id": "R-P1", "type": "planted", "tool": "doc_status", "args": {"adr_id": "PLANTED-STATUS"}, "expected": {"status": "superseded"}, "gold_authority": "rejected; original metadata status unchanged", "planted": true}
