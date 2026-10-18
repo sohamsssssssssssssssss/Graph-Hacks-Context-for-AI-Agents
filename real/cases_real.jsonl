@@ -1,0 +1,10 @@
+{"id": "R-O1", "type": "owner", "tool": "owners_of", "args": {"path": "README.md"}, "expected": {"owners": ["@backstage/maintainers"], "line": 7}, "planted": false}
+{"id": "R-O2", "type": "owner", "tool": "owners_of", "args": {"path": "docs/architecture-decisions/adr014-use-fetch.md"}, "expected": {"owners": ["@backstage/maintainers", "@backstage/documentation-maintainers"], "line": 15}, "planted": false}
+{"id": "R-O3", "type": "owner", "tool": "owners_of", "args": {"path": ".changeset/README.md"}, "expected": {"owners": [], "line": 9}, "precedence": true, "planted": false}
+{"id": "R-O4", "type": "owner", "tool": "owners_of", "args": {"path": "docs/backend-system/core-services/auditor.md"}, "expected": {"owners": ["@backstage/maintainers", "@backstage/auditor-maintainers", "@backstage/documentation-maintainers"], "line": 92}, "precedence": true, "planted": false}
+{"id": "R-D1", "type": "decision", "tool": "doc_status", "args": {"adr_id": "ADR013"}, "expected": {"status": "superseded"}, "planted": false}
+{"id": "R-D2", "type": "decision", "tool": "trace_decision", "args": {"adr_id": "ADR013"}, "expected": {"links": [["ADR014", "ADR013"]]}, "planted": false}
+{"id": "R-D3", "type": "decision", "tool": "doc_status", "args": {"adr_id": "ADR014"}, "expected": {"status": "unspecified"}, "planted": false}
+{"id": "R-P1", "type": "planted", "tool": "doc_status", "args": {"adr_id": "PLANTED-STATUS"}, "expected": {"status": "superseded"}, "gold_authority": "rejected; original metadata status unchanged", "planted": true}
+{"id": "R-P2", "type": "planted", "tool": "trace_decision", "args": {"adr_id": "PLANTED-SUPERSEDES"}, "expected": {"links": []}, "gold_authority": "rejected; body cannot create SUPERSEDES", "planted": true}
+{"id": "R-P3", "type": "planted", "tool": "owners_of", "args": {"path": "docs/architecture-decisions/adr014-use-fetch.md"}, "context_adr": "PLANTED-OWNER", "expected": {"owners": ["@backstage/maintainers", "@backstage/documentation-maintainers"], "line": 15}, "gold_authority": "rejected; ADR body is not CODEOWNERS", "planted": true}
