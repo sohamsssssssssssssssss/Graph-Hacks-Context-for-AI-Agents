@@ -6,7 +6,19 @@ Document text cannot grant authority. Execution is a local audit-only dry-run.
 
 VIDEO_LINK_TODO
 
-Compare-view screenshot: **COMPARE_SCREENSHOT_TODO** — no tracked screenshot asset is available. [Compare view](ui/web/index.html).
+Replay UI of saved runs: ui/web/index.html (run `cd ui && python3 -m http.server 8000`, open localhost:8000/web/).
+
+## Why the graph is essential
+
+- Assignment requires a connected, current, time-valid evidence path ending at the affected service and including its ownership claim; paging uses a verified on-call path. In the production backend, the gate checks supplied edge IDs in Python against a FalkorDB snapshot. When IDs are omitted and a start is supplied, it uses the status-filtered candidate-path Cypher in [app/store.py](app/store.py). OWNS points from team to service, not from alert to owner. Without that graph evidence, the gate cannot authorize ordinary ACT.
+- Curated trust statuses (`current`, `retired`, `contested`, `rejected`, `noted`) follow metadata authorship, resolved identity, membership, authority, and approval rules. Derivation writes statuses onto graph edges; tools also recheck derivation in memory.
+- Criticality uses FalkorDB's native PageRank when its projection is eligible; otherwise it computes PageRank in Python on the filtered projection. [mcp_server.py](mcp_server.py) exposes seven tools over MCP stdio.
+- Scope: blast radius and decision-history traversal run in Python over graph snapshot queries; see [Cypher and algorithms](#cypher-and-algorithms). This does not establish that graph storage is the only possible implementation.
+
+## Track fit
+
+- **01 Agents That Act on Connected Data:** seven graph-backed tools, including PageRank criticality, are available over MCP. Path verification and a target/action-bound pass gate local audit-only actions; results distinguish ACT, ANSWER_ONLY, and ESCALATE. Evidence spans and rejection reasons explain the decision.
+- **03 Company Brain:** `rank_owners` and `ownership_history` answer ownership questions; `trace_decision` links decisions to source documents and verbatim spans. Supersession updates which claims remain current. The post-hoc freshness check recorded **0/8 stale** for both K and the no-gate baseline, using independent snapshots and a lexical check, not persistent conversational memory. The synthetic core joins document, ticket, and chat assertions in one graph; the small Backstage proof of concept is separate.
 
 ## Tracks entered
 
@@ -208,7 +220,7 @@ SQLite used untuned status-index scans; ANALYZE was not run. The intended SQLite
 - Fix 4 followed frozen-case failures and was reproduced on DEV inputs/unit tests. It added ownership history, bringing the backend tool count to seven, and corrected matching, terminal output, targets, and Unicode name extraction. Its one authorized S9a reference-sentence change is recorded in [fix4_changes.md](docs/fix4_changes.md); the ESCALATE outcome remained unchanged.
 - The agent switched from `qwen3:8b` to `qwen2.5:7b-instruct` based on DEV validation. One generic answer-format instruction was then changed and validated once on DEV before the final freeze.
 - Tag `cases-v1` (`6d29174a3306`) preceded the final run. Prompts, tools, gate, rules, cases, and labels were frozen for that run.
-- Author disclosure: AI tools used were Claude Code, Gemini agent, Codex, and Claude chat. Frozen synthetic blind cases were written by a different model. Labels were drafted by an agent from written rules, then reviewed and corrected by the author. Rules were drafted with AI help and reviewed by the author. Rules were drafted with AI help and reviewed by the author. [labels/README.md](labels/README.md) records label provenance; the complete tool-use history is author-reported.
+- Author disclosure: AI tools used were Claude Code, Gemini agent, Codex, and Claude chat. Frozen synthetic blind cases were written by a different model. Labels were drafted by an agent from written rules, then reviewed and corrected by the author. Rules were drafted with AI help and reviewed by the author. [labels/README.md](labels/README.md) records label provenance; the complete tool-use history is author-reported.
 - SQLite was faster than FalkorDB for this blast-radius benchmark: **0.087 ms versus 1.857 ms warm**. Twenty samples used identical authorized current dependencies and the same 59-service closure. SQLite is in-process; FalkorDB includes network round trips. “Cold” means new connections, not flushed server/OS caches. The graph's value here is status-filtered path proof, decision chains, PageRank severity, and queryable connected flows, including one-query bounded path verification; blast radius and history currently also use Python traversal. See [timing output](eval/timing.md) and [raw samples](eval/timing.json).
 - Execution is **audit-only dry-run**, with `delivered=false`. No external assignment or page is sent, even when a local audit records `executed=true`.
 - Groq quota initially left **18/72 outputs** ungraded. These were later resumed without rerunning agents; all 72/72 grades are now complete (commit `7c94700`). Earlier ungraded outputs were not treated as failed answers.
