@@ -4,9 +4,9 @@ Engineering alerts and questions become evidence-backed answers over a company g
 Metadata derives trust statuses; verified paths and a gate select ACT, ANSWER_ONLY, or ESCALATE.<br>
 Document text cannot grant authority. Execution is a local audit-only dry-run.
 
-VIDEO_LINK_TODO
+[Demo video](https://youtu.be/_pG_a-Kxads)
 
-Replay UI of saved runs: ui/web/index.html (run `cd ui && python3 -m http.server 8000`, open localhost:8000/web/).
+Replay UI — replay of saved runs: from `ui/`, run `python3 -m http.server <port>` and open `http://localhost:<port>/web/`. For example, use port 8000; use another port if 8000 is taken.
 
 ## Why the graph is essential
 
@@ -26,6 +26,8 @@ Replay UI of saved runs: ui/web/index.html (run `cd ui && python3 -m http.server
 - 03 — Company Brain
 
 ## Local setup
+
+Tested on macOS, fresh venv, Python 3.14.3. Derivation takes about 4 minutes (231 s measured).
 
 Use Python 3.11. The recorded local deployment is Docker container `keystone-db`, image `falkordb/falkordb:latest`, mapping host port 6380 to container port 6379. For an existing container:
 
@@ -224,10 +226,6 @@ SQLite used untuned status-index scans; ANALYZE was not run. The intended SQLite
 - SQLite was faster than FalkorDB for this blast-radius benchmark: **0.087 ms versus 1.857 ms warm**. Twenty samples used identical authorized current dependencies and the same 59-service closure. SQLite is in-process; FalkorDB includes network round trips. “Cold” means new connections, not flushed server/OS caches. The graph's value here is status-filtered path proof, decision chains, PageRank severity, and queryable connected flows, including one-query bounded path verification; blast radius and history currently also use Python traversal. See [timing output](eval/timing.md) and [raw samples](eval/timing.json).
 - Execution is **audit-only dry-run**, with `delivered=false`. No external assignment or page is sent, even when a local audit records `executed=true`.
 - Groq quota initially left **18/72 outputs** ungraded. These were later resumed without rerunning agents; all 72/72 grades are now complete (commit `7c94700`). Earlier ungraded outputs were not treated as failed answers.
-
-## Demo video
-
-The video link remains `VIDEO_LINK_TODO` at the top for the author to fill.
 
 ## Repo map
 
