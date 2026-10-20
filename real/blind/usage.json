@@ -1,0 +1,14 @@
+{
+  "dataset": "post-freeze, real data",
+  "note": "labeler = gpt-oss-120b (also the grader); author review pending",
+  "model": "openai/gpt-oss-120b",
+  "status": "rate_limited_429",
+  "labels": 7,
+  "token_budget": 100000,
+  "tokens": {
+    "prompt_tokens": 8461,
+    "completion_tokens": 1429,
+    "total_tokens": 9890
+  },
+  "tokens_used_this_run": 6127
+}
